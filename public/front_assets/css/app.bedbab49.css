@@ -2338,12 +2338,19 @@
     /* Register */
     
     .register {
-        padding: 40px 10px 150px 10px;
-        background-color: #000000;
+        padding: 40px 10px 50px 10px;
+        background: url(../img/register_bg.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        position: relative;
+        height: 100%;
+        min-width: 1024px;
     }
     
     .register h1 {
-        color: #fff;
+        color: #141A46;
         font-weight: 700;
     }
     
@@ -2362,7 +2369,7 @@
     
     .register p {
         font-size: 20px;
-        color: #fff;
+        color: #141A46;
     }
     
     .register .box {
