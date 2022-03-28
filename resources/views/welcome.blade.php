@@ -18,8 +18,18 @@
                     </h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum magni suscipit vitae praesentium ut similique laboriosam sit asperiores corporis, ab recusandae blanditiis possimus animi eos dolore accusantium. Ducimus praesentium
                         esse consequatur blanditiis, atque illo delectus voluptate numquam nobis temporibus.</p>
-                    <div class="btn-div"><a href="/app" class="btn-register">Register <span></span>
+                    @auth
+                        @if(Auth::user()->account_type == "Administrator")
+                        <div class="btn-div"><a href="/admin/dashbboard" class="btn-register">Dashboard<span></span>
                         <i class="fas fa-arrow-right"></i></a></div>
+                        @else
+                        <div class="btn-div"><a href="/home" class="btn-register">Dashboard<span></span>
+                        <i class="fas fa-arrow-right"></i></a></div>
+                        @endif
+                    @else
+                        <div class="btn-div"><a href="/app" class="btn-register">Register<span></span>
+                        <i class="fas fa-arrow-right"></i></a></div>
+                    @endauth
                 </div>
                 <div class="col-lg-6"><img src="{{URL::asset('front_assets/img/welcome-img.86bb42ba.png')}}"></div>
             </div>

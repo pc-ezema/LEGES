@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+html, body{
+    font-family: 'DM Sans', sans-serif !important;
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register {
+    background: url(../images/register_bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    min-width: 1024px;
+}
+.auth-box{
+    margin-top: 30px;
+    margin-bottom: 100px;
+    padding-left: 20px !important;
+    padding-right: 20px !important; 
+}
+
+.auth-box img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 70px;
+}
+.auth-box h4{
+    font-size: 25px;
+    font-weight: 600 !important;
+    color: #000000;
+}
+.auth-box h5{
+    padding-top: 1rem;
+    font-size: 18px;
+    font-weight: 100 !important;
+    color: #fff;
+}
+.auth-box form{
+    margin-top: 30px;
+    padding: 10px;
+}
+.auth-box form label{
+    font-size: 15px;
+    font-weight: 100;
+    display: block;
+    color: #fff;
+    margin-top: 25px;
+}
+.auth-box form .input{
+    width: 100%;
+    padding: 6px 8px;
+    border: none;
+    /* border: 1px solid #757575; */
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 100;
+    background-color: #ffffff;
+}
+.auth-box form .input:focus{
+    outline: none;
+    border: 1px solid #E20001;
+}
+.auth-box form .input::-webkit-input-placeholder{
+    font-size: 17px;
+    font-weight: 500;
+}
+.auth-box form .input:-ms-input-placeholder{
+    font-size: 17px;
+    font-weight: 500;
+}
+.auth-box form .input::placeholder {
+    font-size: 17px;
+    font-weight: 500;
+}
+.auth-box form .forgot{
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: #E20001;
+}
+.auth-box form .forgot:hover{
+    text-decoration: underline;
+}
+.auth-box form .checkbox-div{
+    padding-top: 10px;
+}
+.auth-box form .checkbox-div input{
+    transform: scale(1.5);
+}
+.auth-box form .checkbox-div span{
+    padding-left: 10px;
+}
+.auth-box form button{
+    width: 100px;
+    background-color: #141A46;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 5px;
+    font-size: 15px;
+    font-weight: 100;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.auth-box form button:hover{
+    background-color: #FF0000;
+    transition: 0.6s;
+}
+.auth-box form .submit-btn{
+    background-color: rgb(0, 119, 0);
+}
+.auth-box form .submit-btn:hover{
+    background-color: rgb(0, 83, 0);
+}
+.auth-box .option-below a{
+    text-decoration: none;
+    color: #E20001;
+    font-weight: 500;
+}
+.auth-box .option-below a:hover{
+    text-decoration: underline;
+}
+.auth-box form .forgot-btn{
+    width: 200px;
+    background-color: #E20001;
+}
+.step {
+    display: none !important;
+    background: #ED4B0C;
+    border: 2px solid #ED4B0C;
+    border-radius: 1rem;
+    padding: 1rem 3rem;
+}
+.step.active {
+    display: block !important;
+}
+.signUp {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+}
+.signUp a {
+    color: #fff;
+    text-decoration: none;
+}
+.signUp a:hover {
+    color: #141A46
+}
+@media(max-width: 550px){
+    .auth-box{
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .auth-box form button {
+        width: 100%;
+    }
+}

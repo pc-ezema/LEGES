@@ -50,4 +50,15 @@ class HomePageController extends Controller
     public function lawyer_registration() {
         return view ('auth.lawyer_register');
     }
+
+    // 
+    public function client_registration() {
+        return view ('auth.client_register');
+    }
+
+    //
+    public function home() {
+        return view ('dashboard');
+    }
+
 }

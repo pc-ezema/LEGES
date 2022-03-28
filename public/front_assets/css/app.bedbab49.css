@@ -2346,7 +2346,7 @@
         background-size: cover;
         position: relative;
         height: 100%;
-        min-width: 1024px;
+        /* min-width: 1024px; */
     }
     
     .register h1 {
