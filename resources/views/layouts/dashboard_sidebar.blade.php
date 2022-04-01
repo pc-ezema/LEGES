@@ -18,6 +18,7 @@
                 </form>
             </ul>
         </div>
+        @if(Auth::user()->account_type == 'Client')
         <div class="multinav">
             <div class="multinav-scroll" style="height: 100%;">
                 <!-- sidebar menu-->
@@ -66,5 +67,55 @@
                 </ul>
             </div>
         </div>
+        @elseif(Auth::user()->account_type == 'Lawyer')
+        <div class="multinav">
+            <div class="multinav-scroll" style="height: 100%;">
+                <!-- sidebar menu-->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li>
+                        <a href="/home">
+                            <i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Cases</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('client.case.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create Cases</a></li>
+                            <li><a href="{{ route('client.case.details') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Case Details</a></li>
+                        </ul>
+                    </li>	
+                    <li>
+                        <a href="#">
+                            <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
+                    <li class="header">Settings</li>
+                    <li>
+                        <a href="{{ route('lawyer.profile') }}">
+                            <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="icon-Lock-overturning"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Log Out</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        @endif
     </section>
 </aside>

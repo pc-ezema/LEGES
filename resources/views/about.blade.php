@@ -133,41 +133,4 @@
             </div>
         </div>
     </section>
-
-    <div class="about-area pt-100">
-        <div class="container">
-            <div class="about-item">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="about-information">
-                            <h2><span>21 feb 1998,</span> We started our law firm</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-information">
-                            <h2><span>10 March 2000,</span> We started our law firm</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-information">
-                            <h2><span>9 Nov 2000,</span> We started our law firm</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-information">
-                            <h2><span>25 Jan 2010,</span> We started our law firm</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

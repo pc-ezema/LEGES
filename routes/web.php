@@ -38,6 +38,10 @@ Route::prefix('client/dashboard')->group(function () {
     Route::get('/profile', 'DashboardController@profile')->name('profile');
 });
 
+Route::prefix('lawyer/dashboard')->group(function () {
+    Route::get('/profile', 'DashboardController@profile')->name('lawyer.profile');
+});
+
 // Admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('dashboard');

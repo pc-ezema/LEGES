@@ -825,7 +825,7 @@
     .page-title-text h2 {
         font-weight: 900;
         font-size: 38px;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif!important;
         color: #ffffff;
         margin-bottom: 20px;
     }
@@ -1004,7 +1004,7 @@
         font-size: 28px;
         color: #ffffff;
         margin-bottom: 15px;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif!important;
     }
     
     .location-item ul {
@@ -1422,7 +1422,7 @@
     .help-item .help-right h2 {
         font-size: 38px;
         font-weight: 700;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif;
         margin-bottom: 25px;
         line-height: 1.4;
     }
@@ -1679,7 +1679,7 @@
     .about-item .about-content h2 {
         font-weight: 600;
         font-size: 22px;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif;
         margin-bottom: 10px;
     }
     
@@ -1727,7 +1727,7 @@
     .section-title h2 {
         font-weight: 700;
         font-size: 38px;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif;
         margin-bottom: 0;
     }
     
@@ -1829,7 +1829,7 @@
     .practice-item h3 {
         margin-bottom: 25px;
         color: #ffffff;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif;
         font-weight: 600;
         font-size: 28px;
     }
@@ -1948,7 +1948,7 @@
         padding-left: 135px;
         font-size: 28px;
         font-weight: 700;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif;
         margin-bottom: 18px;
         color: #ffffff;
     }
@@ -2064,7 +2064,7 @@
     .about-item .about-content h2 {
         font-weight: 600;
         font-size: 22px;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif;
         margin-bottom: 10px;
     }
     
@@ -2169,7 +2169,7 @@
         padding-top: 25px;
         -webkit-transition: 0.5s all ease;
         transition: 0.5s all ease;
-        font-family: "Playfair Display", serif;
+        font-family: Poppins, sans-serif;
     }
     
     .team-item .team-inner h3 a {
@@ -2317,8 +2317,8 @@
     .back-to-top-btn i {
         background-color: #ED4B0C;
         color: #ffffff;
-        height: 50px;
-        width: 50px;
+        height: 20px;
+        width: 20px;
         line-height: 50px;
         display: inline-block;
         text-align: center;
@@ -2338,7 +2338,7 @@
     /* Register */
     
     .register {
-        padding: 40px 10px 50px 10px;
+        padding: 50px 10px 50px 10px;
         background: url(../img/register_bg.png) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
