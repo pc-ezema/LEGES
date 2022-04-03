@@ -78,18 +78,17 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li>
                         <a href="#">
-                            <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
-                            <span>Cases</span>
-                            <span class="pull-right-container">
-                            <i class="fa fa-angle-right pull-right"></i>
-                            </span>
+                            <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Services</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('client.case.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create Cases</a></li>
-                            <li><a href="{{ route('client.case.details') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Case Details</a></li>
-                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('client.case.create') }}">
+                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Cases</span>
+                        </a>
                     </li>	
                     <li>
                         <a href="#">
