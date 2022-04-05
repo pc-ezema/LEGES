@@ -49,6 +49,7 @@
     <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
 
     <script src="{{URL::asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/dropzone/dropzone.js')}}"></script>
 
     <!-- Law Firm App -->
     <script src="{{URL::asset('js/template.js')}}"></script>

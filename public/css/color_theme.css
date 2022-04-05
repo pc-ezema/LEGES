@@ -1728,6 +1728,9 @@ Theme Primary Color
     border-bottom-color: #141A46;
     background-color: #141A46;
     color: #ffffff; }
+    .nav-bg:focus{
+      color: #fff !important;
+    }
 .theme-primary .nav-tabs .nav-item.open .nav-link {
   border-bottom-color: #141A46;
   background-color: #141A46; }
