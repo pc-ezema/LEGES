@@ -76,7 +76,7 @@ class RegisterController extends Controller
                 'documents' => ['required', 'string', 'max:255'],
             ));
 
-            return User::create([
+            $user = User::create([
                 'account_type' => $data['account_type'],
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -93,6 +93,9 @@ class RegisterController extends Controller
             if ($admin) {
                 $admin->notify(new NewUser($user));
             }
+
+            return $user;
+            
         } else {
             $this->validate(request(), array(
                 'gender' => ['required', 'string', 'max:255'],

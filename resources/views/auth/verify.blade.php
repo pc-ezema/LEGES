@@ -31,22 +31,20 @@
                                     <img src="{{URL::asset('front_assets/favicon.png')}}" alt="Leges logo" width="70px">
                                 </a>
                                 <h3 class="text-primary">{{ __('Verify Your Email Address') }}</h3>	
-                                
-                                <div class="card">
-                                    <div class="card-body">
-                                        @if (session('resent'))
-                                            <div class="alert alert-success" role="alert">
-                                                {{ __('A fresh verification link has been sent to your email address.') }}
-                                            </div>
-                                        @endif
+                                <hr>
+                                <div>
+                                    @if (session('resent'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ __('A fresh verification link has been sent to your email address.') }}
+                                        </div>
+                                    @endif
 
-                                        <p>{{ __('Before proceeding, please check your email for a verification link.') }}</p>
-                                        <p>{{ __('If you did not receive the email') }}</p>
-                                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                                            @csrf
-                                            <button type="submit" class="btn btn-link p-2 m-0 align-baseline" style="background: #ED4B0C; color: #fff;">{{ __('click here to request another') }}</button>.
-                                        </form>
-                                    </div>
+                                    <p>{{ __('Before proceeding, please check your email for a verification link.') }}</p>
+                                    <p>{{ __('If you did not receive the email') }}</p>
+                                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-link p-2 m-0 align-baseline mb-5 ajax" style="background: #ED4B0C; color: #fff;">{{ __('click here to request another') }}</button>.
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +57,9 @@
 <script src="{{URL::asset('js/vendors.min.js')}}"></script>
 <script src="{{URL::asset('js/pages/chat-popup.js')}}"></script>
 <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
-
+<script src="{{URL::asset('js/pages/pace.js')}}"></script>
+<script src="{{URL::asset('assets/vendor_components/PACE/pace.min.js')}}"></script>
+<script src="https://use.fontawesome.com/633ef7b88d.js"></script>
 </body>
 
 </html>

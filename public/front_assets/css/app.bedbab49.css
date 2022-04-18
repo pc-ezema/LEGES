@@ -1998,6 +1998,7 @@
         border: 2px solid #ED4B0C;
         padding: 20px 20px 25px 35px;
         margin-bottom: 30px;
+        border-radius: 20px;
     }
     
     .expertise-area-two .expertise-item ul li .expertise-icon {

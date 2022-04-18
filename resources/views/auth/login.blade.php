@@ -75,10 +75,10 @@
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn mt-10" style="background: #ED4B0C; color: #fff;">SIGN IN</button>
+                                        <button type="submit" class="btn mt-10 ajax" style="background: #ED4B0C; color: #fff;">SIGN IN</button>
                                     </div>
                                     <div class="text-center">
-                                        <p class="mt-15 mb-0">Don't have an account? <a href="/app" class="text-warning ms-5">Sign Up</a></p>
+                                        <p class="mt-15 mb-0">Don't have an account? <a href="/app" class="text-warning ms-5 ajax">Sign Up</a></p>
                                     </div>	
                                     <!-- /.col -->
                                 </div>
@@ -95,7 +95,9 @@
 <script src="{{URL::asset('js/vendors.min.js')}}"></script>
 <script src="{{URL::asset('js/pages/chat-popup.js')}}"></script>
 <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
-
+<script src="{{URL::asset('js/pages/pace.js')}}"></script>
+<script src="{{URL::asset('assets/vendor_components/PACE/pace.min.js')}}"></script>
+<script src="https://use.fontawesome.com/633ef7b88d.js"></script>
 </body>
 
 </html>

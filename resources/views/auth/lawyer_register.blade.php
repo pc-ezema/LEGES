@@ -12,6 +12,7 @@
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{URL::asset('css/vendors_css.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Style-->
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
@@ -143,7 +144,14 @@
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text bg-transparent"><i class="ti-clipboard"></i></span>
-                                                    <input id="area_practice" placeholder="Area of Practice" class="form-control ps-15 bg-transparent @error('area_practice') is-invalid @enderror" type="text" name="area_practice" required value="{{ old('area_practice') }}" autofocus>
+                                                    <select id="area_practice" class="form-control ps-15 bg-transparent @error('area_practice') is-invalid @enderror" name="area_practice" required value="{{ old('area_practice') }}" autofocus>
+                                                        <option>-- Select Area Practice --</option>
+                                                        <option value="Advisory Services">Advisory Services</option>
+                                                        <option value="Contract Negotiation">Contract Negotiation</option>
+                                                        <option value="Contract Drafting">Contract Drafting</option>
+                                                        <option value="Contract Review">Contract Review</option>
+                                                    </select>
+                                                    <!-- <input id="area_practice" placeholder="Area of Practice" class="form-control ps-15 bg-transparent @error('area_practice') is-invalid @enderror" type="text" name="area_practice" required value="{{ old('area_practice') }}" autofocus> -->
                                                     @error('area_practice')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -179,10 +187,10 @@
                                             </div>
                                             <!-- /.col -->
                                             <div class="col-12 text-center">
-                                            <button type="submit" class="btn mt-20" style="background: #ED4B0C; color: #fff;">Register</button>
+                                            <button type="submit" class="btn mt-20 ajax" style="background: #ED4B0C; color: #fff;">Register</button>
                                             </div>
                                             <div class="text-center">
-                                                <p class="mt-10 mb-0">Already have an account?<a href="/login" class="text-danger ms-5"> Sign In</a></p>
+                                                <p class="mt-10 mb-0">Already have an account?<a href="/login" class="text-danger ms-5 ajax"> Sign In</a></p>
                                             </div>
                                             <!-- /.col -->
                                         </div>
@@ -201,7 +209,9 @@
     <script src="{{URL::asset('js/vendors.min.js')}}"></script>
     <script src="{{URL::asset('js/pages/chat-popup.js')}}"></script>
     <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
-
+    <script src="{{URL::asset('js/pages/pace.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/PACE/pace.min.js')}}"></script>
+    <script src="https://use.fontawesome.com/633ef7b88d.js"></script>
 </body>
 
 </html>

@@ -15,6 +15,7 @@
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{URL::asset('css/vendors_css.css')}}">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Style-->
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
@@ -47,13 +48,18 @@
     <script src="{{URL::asset('js/vendors.min.js')}}"></script>
     <script src="{{URL::asset('js/pages/chat-popup.js')}}"></script>
     <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
+    <script src="https://use.fontawesome.com/633ef7b88d.js"></script>
 
     <script src="{{URL::asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/dropzone/dropzone.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/PACE/pace.min.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/datatable/datatables.min.js')}}"></script>
 
     <!-- Law Firm App -->
     <script src="{{URL::asset('js/template.js')}}"></script>
     <script src="{{URL::asset('js/pages/dashboard.js')}}"></script>
+    <script src="{{URL::asset('js/pages/pace.js')}}"></script>
+    <script src="{{URL::asset('js/pages/patients.js')}}"></script>
 
 </body>
 

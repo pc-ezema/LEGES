@@ -22,7 +22,7 @@
 								<div class="d-flex justify-content-around">
 									<div class="bg-primary p-20 w-p100">									
 										<div class="fw-400"><h1 class="mb-2">40</h1></div>
-										<span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span>
+										<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
 										<div class="text-white fw-600 mb-2 mt-5"><h2>Completed Cases</h2></div>
 									</div>
 								</div>
@@ -35,7 +35,7 @@
 								<div class="d-flex justify-content-around">
 									<div class="p-20 w-p100" style="background: #ED4B0C !important;">									
 										<div class="fw-400"><h1 class="mb-2">23</h1></div>
-										<span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span>
+										<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
 										<div class="text-white fw-600 mb-2 mt-5"><h2>Pending Cases</h2></div>
 									</div>
 								</div>
@@ -48,7 +48,7 @@
 								<div class="d-flex justify-content-around">
 									<div class="bg-primary p-20 w-p100">									
 										<div class="fw-400"><h1 class="mb-2">90</h1></div>
-										<span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span>
+										<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
 										<div class="text-white fw-600 mb-2 mt-5"><h2>Performance Index</h2></div>
 									</div>
 								</div>

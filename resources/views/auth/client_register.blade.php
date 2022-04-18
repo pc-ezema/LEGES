@@ -12,6 +12,7 @@
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{URL::asset('css/vendors_css.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Style-->
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
@@ -156,10 +157,10 @@
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-12 text-center">
-                                        <button type="submit" class="btn mt-20" style="background: #ED4B0C; color: #fff;">Register</button>
+                                        <button type="submit" class="btn mt-20 ajax" style="background: #ED4B0C; color: #fff;">Register</button>
                                         </div>
                                         <div class="text-center">
-                                            <p class="mt-10 mb-0">Already have an account?<a href="/login" class="text-danger ms-5"> Sign In</a></p>
+                                            <p class="mt-10 mb-0">Already have an account?<a href="/login" class="text-danger ms-5 ajax"> Sign In</a></p>
                                         </div>
                                         <!-- /.col -->
                                     </div>
@@ -178,6 +179,9 @@
 <script src="{{URL::asset('js/vendors.min.js')}}"></script>
 <script src="{{URL::asset('js/pages/chat-popup.js')}}"></script>
 <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
+<script src="{{URL::asset('js/pages/pace.js')}}"></script>
+<script src="{{URL::asset('assets/vendor_components/PACE/pace.min.js')}}"></script>
+<script src="https://use.fontawesome.com/633ef7b88d.js"></script>
 
 </body>
 

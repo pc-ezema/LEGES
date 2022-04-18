@@ -674,8 +674,8 @@ Theme Primary Color
 .theme-primary .btn-link {
   color: #141A46; }
 .theme-primary .btn-primary {
-  background-color: #141A46;
-  border-color: #141A46;
+  background-color: #ed4b0c;
+  border-color: #ed4b0c;
   color: #ffffff; }
   .theme-primary .btn-primary:hover, .theme-primary .btn-primary:active, .theme-primary .btn-primary:focus, .theme-primary .btn-primary.active {
     background-color: #163075 !important;

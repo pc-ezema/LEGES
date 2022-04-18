@@ -38,25 +38,25 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{ route('client.case.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create Cases</a></li>
-                            <li><a href="{{ route('client.case.details') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Case Details</a></li>
+                            <li><a href="{{ route('client.case.create') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create Cases</a></li>
+                            <li><a href="{{ route('client.case.details') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Case Details</a></li>
                         </ul>
                     </li>	
                     <li>
-                        <a href="#">
+                        <a href="{{ route('client.messages') }}" class="ajax">
                             <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
                             <span>Messages</span>
                         </a>
                     </li>
                     <li class="header">Settings</li>
                     <li>
-                        <a href="{{ route('profile') }}">
+                        <a href="{{ route('client.profile') }}" class="ajax">
                             <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a href="{{ route('logout') }}" class="ajax" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="icon-Lock-overturning"><span class="path1"></span><span class="path2"></span></i>
                             <span>Log Out</span>
                         </a>
@@ -73,42 +73,49 @@
                 <!-- sidebar menu-->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li>
-                        <a href="/home">
+                        <a href="/home" class="ajax">
                             <i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <!-- <li>
+                        <a href="{{ route('lawyer.services') }}" class="ajax">
                             <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
                             <span>Services</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('client.case.create') }}">
-                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
+                    </li> -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
                             <span>Cases</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('lawyer.cases') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cases</a></li>
+                            <li><a href="{{ route('lawyer.case.details') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Case Details</a></li>
+                        </ul>
                     </li>	
                     <li>
-                        <a href="#">
+                        <a href="{{ route('lawyer.messages') }}" class="ajax">
                             <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
                             <span>Messages</span>
                         </a>
                     </li>
                     <li class="header">Settings</li>
                     <li>
-                        <a href="{{ route('lawyer.profile') }}">
+                        <a href="{{ route('lawyer.profile') }}" class="ajax">
                             <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="ajax">
                             <i class="icon-Lock-overturning"><span class="path1"></span><span class="path2"></span></i>
                             <span>Log Out</span>
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="ajax">
                             @csrf
                         </form>
                     </li>

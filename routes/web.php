@@ -26,6 +26,7 @@ Route::get('/app', 'HomePageController@app');
 
 Route::get('/lawyer/registration', 'HomePageController@lawyer_registration');
 Route::get('/client/registration', 'HomePageController@client_registration');
+Route::get('/admin/login', 'HomePageController@admin_login');
 
 Auth::routes(['verify' => true]);
 
@@ -33,16 +34,24 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('client/dashboard')->group(function () {
-    Route::get('/case/create', 'DashboardController@case_create')->name('client.case.create');
-    Route::get('/case/details', 'DashboardController@case_details')->name('client.case.details');
-    Route::get('/profile', 'DashboardController@profile')->name('profile');
+    Route::get('/case/create', 'ClientController@case_create')->name('client.case.create');
+    Route::get('/case/details', 'ClientController@case_details')->name('client.case.details');
+    Route::get('/services', 'ClientController@services')->name('client.services');
+    Route::get('/messages', 'ClientController@messages')->name('client.messages');
+    Route::get('/profile', 'ClientController@profile')->name('client.profile');
 });
 
 Route::prefix('lawyer/dashboard')->group(function () {
-    Route::get('/profile', 'DashboardController@profile')->name('lawyer.profile');
+    Route::get('/cases', 'LawyerController@cases')->name('lawyer.cases');
+    Route::get('/case/details', 'LawyerController@case_details')->name('lawyer.case.details');
+    Route::get('/services', 'LawyerController@services')->name('lawyer.services');
+    Route::get('/messages', 'LawyerController@messages')->name('lawyer.messages');
+    Route::get('/profile', 'LawyerController@profile')->name('lawyer.profile');
 });
 
 // Admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('dashboard');
+    Route::get('/users/{user_id}/approve', 'AdminController@approve')->name('admin.users.approve');
+    Route::get('/users/{user_id}/disapprove', 'AdminController@disapprove')->name('admin.users.disapprove');   
 });

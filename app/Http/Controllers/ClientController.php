@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class ClientController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,11 +23,21 @@ class DashboardController extends Controller
      */
     public function profile()
     {
-        return view('dashboard.profile');
+        return view('client.profile');
     }
 
     public function case_create()
     {
-        return view('dashboard.create_case');
+        return view('client.create_case');
+    }
+
+    public function messages()
+    {
+        return view('client.messages');
+    }
+
+    public function services()
+    {
+        return view('client.services');
     }
 }

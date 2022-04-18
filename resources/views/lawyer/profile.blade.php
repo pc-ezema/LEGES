@@ -24,157 +24,6 @@
         </div>
     </div>	  
 
-    <!-- Main content -->
-    @if(Auth::user()->account_type == 'Client')
-    <section class="content">
-        <div class="row">			  
-            <div class="col-lg-6 col-12">
-                <div class="box">
-                <!-- /.box-header -->
-                <form class="form">
-                    <div class="box-body">
-                        <h4 class="box-title text-info mb-0"><i class="ti-user me-15"></i> Personal Info</h4>
-                        <hr class="my-15">
-                        <div class="user-profile bb-1 px-20 py-10">
-                            <div class="d-block text-center">
-                                <div class="image">
-                                    <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
-                                </div>
-                                <div class="info pt-15">
-                                    <a class="px-20 fs-18 fw-500" href="#">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                            <div class="form-group">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" Value="{{Auth::user()->email}}" Readonly>
-                            </div>
-                            </div>
-                            <div class="col-12">
-                            <div class="form-group">
-                                <label class="form-label">Gender</label>
-                                <input type="text" class="form-control" value="{{Auth::user()->gender}}" readonly>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">User Name</label>
-                                <input type="text" class="form-control" value="{{Auth::user()->user_name}}" readonly>
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Contact Number</label>
-                                <input type="text" class="form-control" value="{{Auth::user()->phone_number}}" readonly>
-                            </div>
-                            </div>
-                        </div>
-                        <h4 class="box-title text-info mb-0 mt-20"><i class="ti-save me-15"></i> Profile Picture</h4>
-                        <hr class="my-15">
-                        <div class="form-group">
-                            <label class="file">
-                            <input type="file" class="form-control">
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="ti-save-alt"></i> Upload Profile Picture
-                        </button>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                    </div>  
-                </form>
-                </div>
-                <!-- /.box -->			
-            </div>  
-
-            <div class="col-lg-6 col-12">
-                <div class="box">
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <h4 class="box-title text-info mb-0"><i class="ti-user me-15"></i> About User</h4>
-                        <hr class="my-15">
-                        <form class="form">
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" value="{{Auth::user()->first_name}}" name="first_name">
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control"  value="{{Auth::user()->last_name}}" name="last_name">
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">E-mail</label>
-                                <input type="email" class="form-control" value="{{Auth::user()->email}}" name="email">
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Contact Number</label>
-                                <input type="tel" class="form-control" value="{{Auth::user()->phone_number}}" name="phone_number">
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">User Name</label>
-                                <input type="text" class="form-control" value="{{Auth::user()->user_name}}" name="user_name">
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">Gender</label>
-                                    <select class="form-select">
-                                    <option value="{{Auth::user()->gender}}">{{Auth::user()->gender}}</option>
-                                    <option>-- Gender --</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Bio</label>
-                            <textarea rows="4" class="form-control" placeholder="Bio"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="ti-save-alt"></i> Update Profile
-                        </button>
-                        </form>
-                        <br>
-                        <h4 class="box-title text-info mb-0 mt-50"><i class="ti-envelope me-15"></i>Password</h4>
-                        <hr class="my-15">
-                        <form>
-                            <div class="form-group">
-                                <label class="form-label">Enter New Password</label>
-                                <input class="form-control" type="password" value="{{Auth::user()->password}}" name="password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="ti-save-alt"></i> Update Password
-                            </button>
-                        </form>
-                    </div>
-                    <!-- /.box-body -->
-                </form>
-                </div>
-                <!-- /.box -->			
-            </div>
-        </div>
-    </section>
-    @elseif(Auth::user()->account_type == 'Lawyer')
     <section class="content">
         <!-- tabs -->
         <div class="col-12">
@@ -248,7 +97,7 @@
                                                 <input type="file" class="form-control">
                                                 </label>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary ajax">
                                                 <i class="ti-save-alt"></i> Upload Profile Picture
                                             </button>
                                         </div>
@@ -271,7 +120,7 @@
                                                     <label class="form-label">Enter New Password</label>
                                                     <input class="form-control" type="password" value="{{Auth::user()->password}}" name="password">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-primary ajax">
                                                     <i class="ti-save-alt"></i> Update Password
                                                 </button>
                                             </form>
@@ -371,7 +220,7 @@
                                         </div>
                                         <!-- /.box-body -->
                                         <div class="box-footer">
-                                            <button type="submit" class="btn btn-primary pull-left">Save</button>
+                                            <button type="submit" class="btn btn-primary pull-left ajax">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -385,7 +234,7 @@
                             <div class="col-12">
                                 <div class="box">
                                     <div class="box-header">					
-                                        <h4 class="box-title">Dropzone</h4>
+                                        <h4 class="box-title">Upload Documents</h4>
                                         <h6 class="box-subtitle">The following documents should be submit for evaluation:</h6>
                                         <h6 class="box-subtitle">- A copy of the qualifying certificate from the council of legal education.</h6>
                                         <h6 class="box-subtitle">- A copy of the call to bar certificate.</h6>
@@ -403,7 +252,7 @@
                                         <p class="text-danger">Note: Documents must be rename according to the requirement listed above.</p>
                                     </div>
                                     <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary pull-left">Save</button>
+                                        <button type="submit" class="btn btn-primary pull-left ajax">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -423,7 +272,6 @@
         <!-- END tabs -->
 
     </section>
-    @endif
     <!-- /.content -->
     </div>
 </div>
