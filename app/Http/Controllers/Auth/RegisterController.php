@@ -83,10 +83,12 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'user_name' => $data['user_name'],
                 'password' => Hash::make($data['password']),
+                'agreement' => $data['agreenent'],
                 'bar' => $data['bar'],
                 'location_practice' => $data['location_practice'],
                 'area_practice' => $data['area_practice'],
                 'documents' => $data['documents'],
+                'progress_value' => 15,
             ]);
 
             $admin = User::where('account_type', 'Administrator')->first();
@@ -109,6 +111,7 @@ class RegisterController extends Controller
                 'user_name' => $data['user_name'],
                 'password' => Hash::make($data['password']),
                 'gender' => $data['gender'],
+                'agreement' => $data['agreenent'],
                 'phone_number' => $data['phone_number'],
                 'status' => 'Approved',
                 'approved_at' => now()

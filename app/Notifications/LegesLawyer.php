@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewUser extends Notification
+class LegesLawyer extends Notification
 {
     use Queueable;
 
@@ -44,8 +44,7 @@ class NewUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('New user has registered with email ' . $this->new_user->email);
-            // ->action('Approve user', route('admin.users.approve', $this->new_user->id));
+            ->line($this->new_user->first_name.' '.$this->new_user->last_name.' has completed his/her profile.');
     }
 
 

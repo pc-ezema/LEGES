@@ -29,33 +29,43 @@
         <div class="col-12">
             <div class="box">
             <div class="progress">
+                @if (Auth::user()->progress_value >= 100)
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{Auth::user()->progress_value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Auth::user()->progress_value}}%">
+                </div>
+                @else
                 <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{Auth::user()->progress_value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Auth::user()->progress_value}}%">
                 </div>
+                @endif
             </div>  
             <!-- /.box-header -->
             <div class="box-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs customtab" role="tablist">
-                    <li class="nav-item"> <a class="nav-link active nav-bg" data-bs-toggle="tab" href="#settings" role="tab">Settings</a> </li>
-                    <li class="nav-item"> <a class="nav-link nav-bg" data-bs-toggle="tab" href="#personalData" role="tab">Personal Data</a> </li>
-                    <li class="nav-item"> <a class="nav-link nav-bg" data-bs-toggle="tab" href="#documents" role="tab">Documents</a></li>
+                    <li class="nav-item"> <a class="nav-link @if($active_tab == 'settings') active show @endif nav-bg" data-bs-toggle="tab" href="#settings" role="tab">Settings</a> </li>
+                    <li class="nav-item"> <a class="nav-link @if($active_tab == 'personalData') active show @endif nav-bg" data-bs-toggle="tab" href="#personalData" role="tab">Personal Data</a> </li>
+                    <li class="nav-item"> <a class="nav-link @if($active_tab == 'documents') active show @endif nav-bg" data-bs-toggle="tab" href="#documents" role="tab">Documents</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="settings" role="tabpanel">
+                    <div class="tab-pane @if($active_tab == 'settings') active @endif" id="settings" role="tabpanel">
                         <div class="p-15">
                             <div class="row">			  
                                 <div class="col-lg-6 col-12">
                                     <div class="box">
                                     <!-- /.box-header -->
-                                    <form class="form">
+                                    <form class="form" method="POST" action="{{ route('lawyer.profile-picture', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="box-body">
                                             <h4 class="box-title text-info mb-0"><i class="ti-user me-15"></i> Personal Info</h4>
                                             <hr class="my-15">
                                             <div class="user-profile bb-1 px-20 py-10">
                                                 <div class="d-block text-center">
                                                     <div class="image">
+                                                        @if(Auth::user()->avatar)
+                                                        <img src="/storage/avatars/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
+                                                        @else
                                                         <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
+                                                        @endif
                                                     </div>
                                                     <div class="info pt-15">
                                                         <a class="px-20 fs-18 fw-500" href="#">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
@@ -92,9 +102,9 @@
                                             </div>
                                             <h4 class="box-title text-info mb-0 mt-20"><i class="ti-save me-15"></i> Profile Picture</h4>
                                             <hr class="my-15">
-                                            <div class="form-group">
+                                            <div class="form-group col-12">
                                                 <label class="file">
-                                                <input type="file" class="form-control">
+                                                <input type="file" class="form-control" name="avatar">
                                                 </label>
                                             </div>
                                             <button type="submit" class="btn btn-primary ajax">
@@ -115,10 +125,15 @@
                                         <div class="box-body">
                                             <h4 class="box-title text-info mb-0"><i class="ti-envelope me-15"></i>Password</h4>
                                             <hr class="my-15">
-                                            <form>
+                                            <form class="form" method="POST" action="{{ route('lawyer.password', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
+                                                @csrf
                                                 <div class="form-group">
-                                                    <label class="form-label">Enter New Password</label>
-                                                    <input class="form-control" type="password" value="{{Auth::user()->password}}" name="password">
+                                                    <label class="form-label">New Password</label>
+                                                    <input class="form-control" type="password" name="new_password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Comfirm New Password</label>
+                                                    <input class="form-control" type="password" name="new_password_confirmation">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary ajax">
                                                     <i class="ti-save-alt"></i> Update Password
@@ -132,7 +147,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="personalData" role="tabpanel">
+                    <div class="tab-pane @if($active_tab == 'personalData') active show @endif" id="personalData" role="tabpanel">
                         <div class="p-15">
                             <div class="col-12">
                                 <!-- Basic Forms -->
@@ -141,11 +156,16 @@
                                     <h4 class="box-title">Personal Data</h4>
                                     </div>
                                     <!-- /.box-header -->
-                                    <form>
+                                    @if (Auth::user()->progress_value >= 50)
+                                    <form class="form" method="POST" action="{{ route('lawyer.personal-data.update', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
+                                        @csrf
+                                    @else
+                                    <form class="form" method="POST" action="{{ route('lawyer.personal-data', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
+                                        @csrf
+                                    @endif
                                         <div class="box-body">
                                             <h4 class="box-title mb-0">About</h4>
                                             <hr class="my-15">
-                                            <form class="form">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                 <div class="form-group">
@@ -164,7 +184,7 @@
                                                 <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label">E-mail</label>
-                                                    <input type="email" class="form-control" value="{{Auth::user()->email}}" name="email">
+                                                    <input type="email" class="form-control" value="{{Auth::user()->email}}" name="email" readonly>
                                                 </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -184,18 +204,18 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Gender</label>
-                                                        <select class="form-select">
-                                                        <option value="{{Auth::user()->gender}}">{{Auth::user()->gender}}</option>
-                                                        <option>-- Gender --</option>
-                                                        <option value="Male">Male</option>
-                                                        <option value="Female">Female</option>
-                                                        </select>
+                                                        <select class="form-select" name="gender">
+                                                            <option value="{{Auth::user()->gender}}">{{Auth::user()->gender}}</option>
+                                                            <option>-- Gender --</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Bio</label>
-                                                <textarea rows="4" class="form-control" placeholder="Bio"></textarea>
+                                                <textarea rows="4" class="form-control" placeholder="Bio" name="bio" value="{{Auth::user()->bio}}">{{Auth::user()->bio}}</textarea>
                                             </div>
 
                                             <hr>
@@ -211,7 +231,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Area of practice</label>
-                                                <input type="text" class="form-control" name="area_practice" value="{{Auth::user()->area_practice}}">
+                                                <select id="area_practice" class="form-control" name="area_practice" required>
+                                                    <option value="{{Auth::user()->area_practice}}">{{Auth::user()->area_practice}}</option>
+                                                    <option>-- Select Area Practice --</option>
+                                                    <option value="Advisory Services">Advisory Services</option>
+                                                    <option value="Contract Negotiation">Contract Negotiation</option>
+                                                    <option value="Contract Drafting">Contract Drafting</option>
+                                                    <option value="Contract Review">Contract Review</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Documents to submit</label>
@@ -219,16 +246,22 @@
                                             </div>
                                         </div>
                                         <!-- /.box-body -->
+                                        @if (Auth::user()->progress_value >= 50)
                                         <div class="box-footer">
-                                            <button type="submit" class="btn btn-primary pull-left ajax">Save</button>
+                                            <button type="submit" class="btn pull-left ajax" style="background: #172b4c; color: #fff">Update</button>
                                         </div>
+                                        @else
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn pull-left ajax" style="background: #ed4b0c; color: #fff">Save & Continue</button>
+                                        </div>
+                                        @endif
                                     </form>
                                 </div>
                                 <!-- /.box -->			
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="documents" role="tabpanel">
+                    <div class="tab-pane @if($active_tab == 'documents') active show @endif" id="documents" role="tabpanel">
                         <div class="p-15">
                             <!-- Main content -->
                             <div class="col-12">
@@ -242,18 +275,39 @@
                                         <h6 class="box-subtitle">- A copy of curriculum vitae</h6>
                                     </div>
                                     <div class="box-body">
-                                        <form action="#" class="dropzone">
+                                        @if (Auth::user()->progress_value >= 100)
+                                        <form id="document-submit" class="dropzone" method="POST" action="{{ route('lawyer.documents.update', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
+                                            @csrf
+                                        @else
+                                        <form id="document-submit" class="dropzone" method="POST" action="{{ route('lawyer.documents', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
+                                            @csrf
+                                        @endif
                                             <div class="fallback">
-                                                <input name="file" type="file" multiple />
+                                                <input name="documents[]" type="file" onchange="loadPreview(this)" required multiple />
+                                                <!-- <div class="row"> -->
+                                                    <div id="thumb-output" class="mt-3 mb-2 col-12"></div>
+                                                <!-- </div> -->
                                             </div>
                                             <!-- /.box-body -->
-                                            
                                         </form>
+                                        <div class="text-left mt-5">
+                                            <p><b>How to upload multiple pictures at once</b></p>
+                                            <ul>
+                                                <li>Click the Choose Files button above</li>
+                                                <li>Hold down the ctrl key (Window) or command key (macOS) and at the same time select the pictures you want to upload.</li>
+                                            </ul>
+                                        </div>
                                         <p class="text-danger">Note: Documents must be rename according to the requirement listed above.</p>
                                     </div>
+                                    @if (Auth::user()->progress_value >= 100)
                                     <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary pull-left ajax">Save</button>
+                                        <button form="document-submit" type="submit" class="btn pull-left ajax" style="background: #172b4c; color: #fff">Update</button>
                                     </div>
+                                    @else
+                                    <div class="box-footer">
+                                        <button form="document-submit" type="submit" class="btn pull-left ajax" style="background: #ed4b0c; color: #fff">Save</button>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- /.content -->

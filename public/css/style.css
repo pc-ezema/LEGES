@@ -32070,3 +32070,11 @@ img.away, img.busy, img.offline, img.online {
 .hover-primary td:hover {
   color: #fff;
 } */
+
+.hover-primary {
+  cursor: pointer;
+}
+.thumb {
+  width: 30% !important;
+  padding: 1rem;
+}

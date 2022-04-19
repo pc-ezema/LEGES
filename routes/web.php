@@ -46,7 +46,13 @@ Route::prefix('lawyer/dashboard')->group(function () {
     Route::get('/case/details', 'LawyerController@case_details')->name('lawyer.case.details');
     Route::get('/services', 'LawyerController@services')->name('lawyer.services');
     Route::get('/messages', 'LawyerController@messages')->name('lawyer.messages');
-    Route::get('/profile', 'LawyerController@profile')->name('lawyer.profile');
+    Route::get('/profile/{id}', 'LawyerController@profile')->name('lawyer.profile');
+    Route::post('/profile/profile-picture/{id}', 'LawyerController@profile_picture')->name('lawyer.profile-picture');
+    Route::post('/profile/password/{id}', 'LawyerController@password')->name('lawyer.password');
+    Route::post('/profile/personal-data/{id}', 'LawyerController@personal_data')->name('lawyer.personal-data');
+    Route::post('/profile/personal-data/update/{id}', 'LawyerController@personal_data_update')->name('lawyer.personal-data.update');
+    Route::post('/profile/documents/{id}', 'LawyerController@documents')->name('lawyer.documents');
+    Route::post('/profile/documents/update/{id}', 'LawyerController@documents_update')->name('lawyer.documents.update');
 });
 
 // Admin

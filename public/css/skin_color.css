@@ -73,7 +73,7 @@ File: scss
   background: #ffffff !important;
   color: #ffffff; }
 .light-skin .sidebar a {
-  color: #5C607B; }
+  color: #172B4C; }
   .light-skin .sidebar a:hover {
     text-decoration: none; }
 .light-skin .sidebar-form {
@@ -330,7 +330,7 @@ body.dark-skin {
     .dark-skin .box-profile.nav-tabs-custom > .nav-tabs > li > a.active:hover {
       color: #b5b5c3; }
 .dark-skin .box-comments {
-  border: 1px solid #5C607B; }
+  border: 1px solid #172B4C; }
   .dark-skin .box-comments .username {
     color: #ffffff; }
     .dark-skin .box-comments .username .comment-text {
@@ -339,13 +339,13 @@ body.dark-skin {
     border-color: rgba(255, 255, 255, 0.12); }
 .dark-skin .card {
   background-color: #0c1a32;
-  border: 1px solid #5C607B; }
+  border: 1px solid #172B4C; }
   .dark-skin .card .card-header {
     background-color: transparent !important;
-    border-color: #5C607B; }
+    border-color: #172B4C; }
   .dark-skin .card .card-footer {
     background-color: transparent !important;
-    border-color: #5C607B; }
+    border-color: #172B4C; }
 .dark-skin .left-block {
   border-color: rgba(255, 255, 255, 0.12) !important;
   background-color: #112547; }
@@ -365,7 +365,7 @@ body.dark-skin {
   background: rgba(255, 255, 255, 0.7); }
 .dark-skin .info-box {
   background-color: #254f99;
-  border: 1px solid #5C607B; }
+  border: 1px solid #172B4C; }
 .dark-skin .badge-default {
   color: #172b4c;
   background-color: #789edf; }
@@ -883,7 +883,7 @@ body.dark-skin {
 .dark-skin .box-header {
   color: #b5b5c3; }
 .dark-skin .small-box {
-  border: 1px solid #5C607B; }
+  border: 1px solid #172B4C; }
 .dark-skin .control-sidebar {
   color: #b5b5c3;
   background-color: #112547; }

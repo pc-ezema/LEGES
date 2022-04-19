@@ -11,9 +11,21 @@
 				<div class="row">			
 					<div class="col-12">			
 						<div class="card">
-						<div class="card-header" style="background: #ED4B0C !important; color: #fff;">
-							<h4 class="card-title">Complete your registration <a href="{{route('lawyer.profile')}}" class="font-weight-bolder status-complete" style="text-decoration: underline !important; color: #141A46 !important">Click here!</a></h4>
-						</div>
+							@if(Auth::user()->notification == null)
+                                @if(Auth::user()->progress_value >= 100)
+									<div class="card-header" style="background: green !important; color: #fff;">
+										<h4 class="card-title">Registration Completed</h4>
+									</div>
+                                @else   
+									<div class="card-header" style="background: #ED4B0C !important; color: #fff;">
+										<h4 class="card-title">Complete your registration <a href="{{ route('lawyer.profile', 'settings') }}" class="font-weight-bolder status-complete" style="text-decoration: underline !important; color: #141A46 !important">Click here!</a></h4>
+									</div>
+                                @endif
+                            @else
+								<div class="card-header" style="background: #ED4B0C !important; color: #fff;">
+									<h4 class="card-title">{{Auth::user()->notification}}</h4>
+								</div>
+                            @endif
 						</div>
 					</div>						
 					<div class="col-xl-4 col-12">

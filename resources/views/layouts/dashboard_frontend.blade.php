@@ -21,10 +21,22 @@
     <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/skin_color.css')}}">
 
+    <script type="text/javascript">
+        window.setTimeout(function() {
+            $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function(){
+                $(this).remove(); 
+            });
+        }, 1500);
+    </script>
+
 </head>
 
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
-
+    <!-- Alerts  Start-->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 100000; width: auto;">
+        @include('layouts.alert')
+    </div>
+    <!-- Alerts End -->'
     <div class="wrapper">
 
         <!-- Dashboard Header -->
@@ -44,11 +56,29 @@
         <!-- End Dashboard Footer -->
 
     </div>
+    <script>
+        function loadPreview(input){
+            var data = $(input)[0].files; //this file data
+            $.each(data, function(index, file){
+                if(/(\.|\/)(gif|jpe?g|png|docx|pdf)$/i.test(file.type)){
+                    var fRead = new FileReader();
+                    fRead.onload = (function(file){
+                        return function(e) {
+                            var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image thumb element
+                            $('#thumb-output').append(img);
+                        };
+                    })(file);
+                    fRead.readAsDataURL(file);
+                }
+            })
+        }
+    </script>
     <!-- Vendor JS -->
     <script src="{{URL::asset('js/vendors.min.js')}}"></script>
     <script src="{{URL::asset('js/pages/chat-popup.js')}}"></script>
     <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
     <script src="https://use.fontawesome.com/633ef7b88d.js"></script>
+    <script src="{{URL::asset('assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js')}}"></script>
 
     <script src="{{URL::asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/dropzone/dropzone.js')}}"></script>
@@ -60,6 +90,8 @@
     <script src="{{URL::asset('js/pages/dashboard.js')}}"></script>
     <script src="{{URL::asset('js/pages/pace.js')}}"></script>
     <script src="{{URL::asset('js/pages/patients.js')}}"></script>
+    <script src="{{URL::asset('js/pages/toastr.js')}}"></script>
+    <script src="{{URL::asset('js/pages/notification.js')}}"></script>
 
 </body>
 
