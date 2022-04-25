@@ -25,24 +25,12 @@
     </div>	
 
 	<section class="content">
-		<div class="box">
-			<div class="box-body p-0">
-				<div class="flexbox align-items-center p-15" style="justify-content: flex-end;">
-				<div>
-					<div class="lookup lookup-cirle lookup-left">
-						<input type="text" placeholder="search...." data-provide="media-search">
-					</div>
-				</div>
-				</div>              
-			</div>
-			<!-- /.box-body -->
-		</div>
 		<div class="row">
 			<div class="col-12">
 				<div class="box">
 					<div class="box-body">
-						<div class="table-responsive rounded card-table">
-							<table class="table border-no" id="example1">
+						<div class="table-responsive">
+							<table class="table mt-0 table-hover no-wrap" data-page-size="10" id="example2">
 								<thead>
 									<tr>
 										<th>Cases ID</th>

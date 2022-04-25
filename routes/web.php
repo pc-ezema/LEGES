@@ -34,11 +34,16 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('client/dashboard')->group(function () {
-    Route::get('/case/create', 'ClientController@case_create')->name('client.case.create');
-    Route::get('/case/details', 'ClientController@case_details')->name('client.case.details');
     Route::get('/services', 'ClientController@services')->name('client.services');
+    Route::get('/services/create/case', 'ClientController@services_create_case')->name('client.services.create.case');
+    Route::get('/case/details', 'ClientController@case_details')->name('client.case.details');
+    Route::post('/case/pay', 'ClientController@redirectToGateway')->name('client.pay');
+    Route::get('/payment/callback', 'ClientController@handleGatewayCallback');
     Route::get('/messages', 'ClientController@messages')->name('client.messages');
     Route::get('/profile', 'ClientController@profile')->name('client.profile');
+    Route::post('/profile/profile-picture/{id}', 'ClientController@profile_picture')->name('client.profile-picture');
+    Route::post('/profile/password/{id}', 'ClientController@password')->name('client.password');
+    Route::post('/profile/personal-data/{id}', 'ClientController@personal_data')->name('client.personal-data');
 });
 
 Route::prefix('lawyer/dashboard')->group(function () {

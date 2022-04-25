@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Notifications\LegesLawyer;
+use Illuminate\Support\Facades\Auth;
+use Redirect;
 
 class LawyerController extends Controller
 {

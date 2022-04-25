@@ -156,15 +156,43 @@
 		<div class="container-full">
 			<!-- Main content -->
 			<section class="content">
-				<div class="row">			
-					<div class="col-12">			
-						<div class="card">
-						<div class="card-header" style="background: #ED4B0C !important; color: #fff;">
-							<h4 class="card-title">On progress</h4>
+			<div class="row">
+				<div class="col-12">
+					<div class="box box-inverse bg-img" style="background: #141A46;" data-overlay="2">
+					<div class="flexbox px-20 pt-20">
+						<div class="dropdown">
+						<a data-bs-toggle="dropdown" href="#"><i class="ti-more-alt rotate-90 text-white"></i></a>
+						<div class="dropdown-menu dropdown-menu-end">
+							<a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
 						</div>
 						</div>
 					</div>
-				</div>				
+
+					<div class="box-body text-center pb-50">
+						<a href="#">
+						<img class="avatar avatar-xxl avatar-bordered" src="../images/avatar/5.jpg" alt="">
+						</a>
+						<h4 class="mt-2 mb-0"><a class="hover-primary text-white" href="#">Roben Parkar</a></h4>
+						<span><i class="fa fa-map-marker w-20"></i> Miami</span>
+					</div>
+
+					<ul class="box-body flexbox flex-justified text-center" data-overlay="4">
+						<li>
+						<span class="opacity-60">Followers</span><br>
+						<span class="fs-20">8.6K</span>
+						</li>
+						<li>
+						<span class="opacity-60">Following</span><br>
+						<span class="fs-20">8457</span>
+						</li>
+						<li>
+						<span class="opacity-60">Tweets</span><br>
+						<span class="fs-20">2154</span>
+						</li>
+					</ul>
+					</div>
+				</div>
+			</div>
 			</section>
 			<!-- /.content -->
 		</div>

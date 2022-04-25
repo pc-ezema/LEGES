@@ -26,7 +26,7 @@
             $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function(){
                 $(this).remove(); 
             });
-        }, 1500);
+        }, 3000);
     </script>
 
 </head>
@@ -92,9 +92,10 @@
     <script src="{{URL::asset('js/pages/patients.js')}}"></script>
     <script src="{{URL::asset('js/pages/toastr.js')}}"></script>
     <script src="{{URL::asset('js/pages/notification.js')}}"></script>
+    <script src="{{URL::asset('js/pages/data-table.js')}}"></script>
+	<script src="{{URL::asset('js/pages/app-ticket.js')}}"></script>
 
 </body>
 
 <!-- Mirrored from lawfirm-admin-template.multipurposethemes.com/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Jan 2022 06:12:17 GMT -->
-
 </html>

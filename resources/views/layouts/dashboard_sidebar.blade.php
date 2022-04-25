@@ -37,18 +37,17 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
-                            <span>Cases</span>
-                            <span class="pull-right-container">
-                            <i class="fa fa-angle-right pull-right"></i>
-                            </span>
+                    <li>
+                        <a href="{{ route('client.services') }}" class="ajax">
+                            <i class="icon-Hummer"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Services</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('client.case.create') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create Cases</a></li>
-                            <li><a href="{{ route('client.case.details') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Case Details</a></li>
-                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="{{ route('client.case.details') }}" class="ajax">
+                            <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Cases Details</span>
+                        </a>
                     </li>	
                     <li>
                         <a href="{{ route('client.messages') }}" class="ajax">
@@ -86,12 +85,6 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="{{ route('lawyer.services') }}" class="ajax">
-                            <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
-                            <span>Services</span>
-                        </a>
-                    </li> -->
                     <li class="treeview">
                         <a href="#">
                             <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>

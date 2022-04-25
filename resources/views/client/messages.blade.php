@@ -135,16 +135,13 @@
                             <input class="form-control b-0 py-10" type="text" placeholder="Say something...">
                             <div class="d-flex justify-content-between align-items-center mt-md-0 mt-30">
                                 <button type="button" class="waves-effect waves-circle btn btn-circle me-10 btn-outline-secondary">
-                                    <i class="mdi mdi-link"></i>
-                                </button>
-                                <button type="button" class="waves-effect waves-circle btn btn-circle me-10 btn-outline-secondary">
-                                    <i class="mdi mdi-face"></i>
-                                </button>
-                                <button type="button" class="waves-effect waves-circle btn btn-circle me-10 btn-outline-secondary">
-                                    <i class="mdi mdi-microphone"></i>
+                                <span class="publisher-btn file-group">
+									<i class="fa fa-paperclip file-browser"></i>
+									<input type="file">
+								</span>
                                 </button>
                                 <button type="button" class="waves-effect waves-circle btn btn-circle btn-primary">
-                                    <i class="mdi mdi-send"></i>
+                                    <i class="fa fa-paper-plane"></i>
                                 </button>
                             </div>
                         </div>

@@ -111,7 +111,7 @@ class RegisterController extends Controller
                 'user_name' => $data['user_name'],
                 'password' => Hash::make($data['password']),
                 'gender' => $data['gender'],
-                'agreement' => $data['agreenent'],
+                'agreement' => $data['agreement'],
                 'phone_number' => $data['phone_number'],
                 'status' => 'Approved',
                 'approved_at' => now()
