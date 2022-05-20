@@ -3,9 +3,9 @@
         <!-- Logo -->
         <a href="/" class="logo">
             <!-- logo-->
-            <div class="logo-mini w-50">
+            <!-- <div class="logo-mini w-50">
                 <span class="light-logo"><img src="{{URL::asset('images/favicon.png')}}" alt="logo"></span>
-            </div>
+            </div> -->
             <div class="logo-lg">
                 <span class="light-logo"><img src="{{URL::asset('images/logo.png')}}" alt="logo" width="110px"></span>
             </div>
