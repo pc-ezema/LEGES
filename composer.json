@@ -15,6 +15,7 @@
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.4",
+        "munafio/chatify": "^1.4",
         "unicodeveloper/laravel-paystack": "^1.0"
     },
     "require-dev": {

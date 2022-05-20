@@ -8,6 +8,6 @@ class Payment extends Model
 {
     //
     protected $fillable = [
-        'user_id', 'email', 'amount', 'transaction_id', 'ref_id', 'paid_at', 
+        'user_id', 'case_id', 'email', 'amount', 'transaction_id', 'ref_id', 'paid_at', 
         'channel', 'ip_address', 'status'];
 }

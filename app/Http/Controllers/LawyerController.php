@@ -10,6 +10,8 @@ use App\User;
 use App\Notifications\LegesLawyer;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
+use App\UserCase;
+use App\CaseRequest;
 
 class LawyerController extends Controller
 {
@@ -319,12 +321,29 @@ class LawyerController extends Controller
 
     public function cases()
     {
-        return view('lawyer.cases');
+        $user = User::latest()->where('id', Auth::user()->id)->first();
+
+        $cases = UserCase::latest()->where('type_of_case', $user->area_practice)
+                                    ->where('payment', true)
+                                    ->where('status', 'Pending')->get();
+
+        return view('lawyer.cases', [
+            'cases' => $cases
+        ]);
     }
 
     public function case_details()
     {
-        return view('lawyer.case_details');
+        $user = User::latest()->where('id', Auth::user()->id)->first();
+
+        $cases = UserCase::latest()->where('type_of_case', $user->area_practice)
+                                    ->where('lawyer_id', $user->id)
+                                    ->where('payment', true)
+                                    ->where('status', '!=', 'Pending')->get();
+
+        return view('lawyer.case_details', [
+            'cases' => $cases
+        ]);
     }
 
     public function messages()
@@ -335,5 +354,50 @@ class LawyerController extends Controller
     public function services()
     {
         return view('dashboard.services');
+    }
+
+    public function case_request($id) {
+        $caseid = Crypt::decrypt($id);
+
+        $caseRequest = CaseRequest::latest()->get();
+
+        if ($caseRequest->isEmpty()) {
+            CaseRequest::create([
+                'user_id' => Auth::user()->id,
+                'first_name' => Auth::user()->first_name,
+                'last_name' => Auth::user()->last_name,
+                'email' => Auth::user()->email,
+                'case_id' => $caseid
+            ]);
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Request sent successfully!'
+            ]);
+        } else {
+            $case_request = CaseRequest::latest()->where('user_id', Auth::user()->id)
+                                    ->where('case_id', $caseid)->first();
+
+            if($case_request) {
+                return back()->with([
+                    'type' => 'danger',
+                    'message' => 'Request has been sent before!'
+                ]);
+            } else {
+                CaseRequest::create([
+                    'user_id' => Auth::user()->id,
+                    'first_name' => Auth::user()->first_name,
+                    'last_name' => Auth::user()->last_name,
+                    'email' => Auth::user()->email,
+                    'case_id' => $caseid
+                ]);
+
+                return back()->with([
+                    'type' => 'success',
+                    'message' => 'Request sent successfully!'
+                ]);
+
+            }
+        }
     }
 }

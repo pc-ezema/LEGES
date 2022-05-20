@@ -26,6 +26,7 @@
                 </form>
             </ul>
         </div>
+        
         @if(Auth::user()->account_type == 'Client')
         <div class="multinav">
             <div class="multinav-scroll" style="height: 100%;">
@@ -43,7 +44,7 @@
                             <span>Services</span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li>
                         <a href="{{ route('client.case.details') }}" class="ajax">
                             <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
                             <span>Cases Details</span>
@@ -53,6 +54,12 @@
                         <a href="{{ route('client.messages') }}" class="ajax">
                             <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
                             <span>Messages</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('client.transactions') }}" class="ajax">
+                            <i class="icon-Money"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Transactions</span>
                         </a>
                     </li>
                     <li class="header">Settings</li>

@@ -36,7 +36,7 @@
     <div style="position: fixed; top: 20px; right: 20px; z-index: 100000; width: auto;">
         @include('layouts.alert')
     </div>
-    <!-- Alerts End -->'
+    <!-- Alerts End -->
     <div class="wrapper">
 
         <!-- Dashboard Header -->
@@ -84,6 +84,12 @@
     <script src="{{URL::asset('assets/vendor_components/dropzone/dropzone.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/PACE/pace.min.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/datatable/datatables.min.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_components/jquery.peity/jquery.peity.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_components/easypiechart/dist/jquery.easypiechart.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_components/chart.js-master/Chart.min.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_components/d3/d3.min.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_components/d3/d3_tooltip.js')}}"></script>
 
     <!-- Law Firm App -->
     <script src="{{URL::asset('js/template.js')}}"></script>
@@ -94,6 +100,8 @@
     <script src="{{URL::asset('js/pages/notification.js')}}"></script>
     <script src="{{URL::asset('js/pages/data-table.js')}}"></script>
 	<script src="{{URL::asset('js/pages/app-ticket.js')}}"></script>
+    <script src="{{URL::asset('js/pages/chart-widgets.js')}}"></script>
+    <script src="{{URL::asset('js/pages/chartjs-int.js')}}"></script>
 
 </body>
 

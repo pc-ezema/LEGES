@@ -26,6 +26,7 @@ class CreateUserCasesTable extends Migration
             $table->text('description');
             $table->string('lawyer_id')->nullable();
             $table->string('status')->default('Pending');
+            $table->string('payment')->default(false);
             $table->timestamps();
         });
     }

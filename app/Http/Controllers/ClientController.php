@@ -12,6 +12,8 @@ use App\Payment;
 use App\UserCase;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
+use App\CaseRequest;
+use App\Message;
 
 class ClientController extends Controller
 {
@@ -139,7 +141,58 @@ class ClientController extends Controller
 
     public function messages()
     {
-        return view('client.messages');
+        $display = 'inline-block';
+        $chat = 'none';
+
+        $users = UserCase::join('users', 'users.id', '=', 'user_cases.lawyer_id')
+                            ->select('user_cases.case_id', 'users.*')
+                            ->latest()
+                            ->where('user_id', Auth::user()->id)
+                            ->where('lawyer_id', '!=', null)->get();
+
+        $messages = Message::where('from_user', Auth::user()->id)->get();
+
+        $receiverUser = '';
+
+        return view('client.messages', [
+            'users' => $users,
+            'display' => $display,
+            'chat' => $chat,
+            'messages' => $messages,
+            'receiverUser' =>$receiverUser
+        ]);
+    }
+
+    public function getmessages($id) {
+        $display = 'none';
+        $chat = 'inline-block';
+
+        //Find user 
+        $receiverid = Crypt::decrypt($id);
+
+        $users = UserCase::join('users', 'users.id', '=', 'user_cases.lawyer_id')
+                            ->select('user_cases.case_id', 'users.*')
+                            ->latest()
+                            ->where('user_id', Auth::user()->id)
+                            ->where('lawyer_id', '!=', null)->get();
+
+        $receiverUser = User::findorfail($receiverid);
+
+        $messages = Message::orWhere(function ($query) use ($receiverid) {
+                        $query->where('from_user', Auth::user()->id)
+                            ->where('to_user', $receiverid);
+                    })->orWhere(function ($query) use ($receiverid) {
+                        $query->where('from_user', $receiverid)
+                            ->where('to_user', Auth::user()->id);
+                    })->get();
+
+        return view('client.messages', [
+            'receiverUser' =>$receiverUser,
+            'users' => $users,
+            'display' => $display,
+            'chat' => $chat,
+            'messages' => $messages
+        ]);
     }
 
     public function services()
@@ -153,11 +206,7 @@ class ClientController extends Controller
         return view('client.service_create_case');
     }
 
-     /**
-     * Redirect the User to Paystack Payment Page
-     * @return Url
-     */
-    public function redirectToGateway(Request $request)
+    public function case_save(Request $request)
     {
         //Validate Request
         $this->validate($request, [
@@ -171,7 +220,7 @@ class ClientController extends Controller
             'user_id' => Auth::user()->id,
             'first_name' => Auth::user()->first_name,
             'last_name' => Auth::user()->last_name,
-            'email' => request()->email,
+            'email' => Auth::user()->email,
             'case_id' => 'LEGES-'.$this->id_no(5),
             'type_of_case' => request()->type_of_case,
             'time_limit' => request()->time_limit,
@@ -180,14 +229,13 @@ class ClientController extends Controller
         ]);
 
         if ($user_case) {
-           try{
-                return Paystack::getAuthorizationUrl()->redirectNow();
-            }   catch(\Exception $e) {
-                return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
-            }          
+            return redirect()->route('client.confirm.case', Crypt::encrypt($user_case->id))->with([
+                'type' => 'success',
+                'message' => 'Case Added, Please kindly make payment!'
+            ]);          
         } else {
             return back()->with([
-                'type' => 'success',
+                'type' => 'danger',
                 'message' => 'Case failed to Submit, Please try again!'
             ]);
         }     
@@ -205,6 +253,27 @@ class ClientController extends Controller
         return $random_string;
     }
 
+    public function case_confirm(Request $request, $id) 
+    {
+        //Find case 
+        $caseFinder = Crypt::decrypt($id);
+
+        //Case
+        $user_case = UserCase::findorfail($caseFinder);
+
+        return view ('client.payment', [
+            'user_case' => $user_case
+        ]);
+    }
+
+    public function redirectToGateway(Request $request) {
+        try{
+            return Paystack::getAuthorizationUrl()->redirectNow();
+        }   catch(\Exception $e) {
+            return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
+        } 
+    }
+
     /**
      * Obtain Paystack payment information
      * @return void
@@ -218,8 +287,11 @@ class ClientController extends Controller
         
         // dd($paymentDetails);
 
+        $user_case = UserCase::latest()->where('user_id', Auth::user()->id)->first();
+
         Payment::create([
             'user_id' => Auth::user()->id,
+            'case_id' => $user_case->case_id,
             'email' => $paymentDetails['data']['customer']['email'],
             'amount' => $paymentDetails['data']['amount'],
             'transaction_id' => $paymentDetails['data']['id'],
@@ -230,9 +302,76 @@ class ClientController extends Controller
             'status' => $paymentDetails['data']['status'],
         ]);
 
-        return redirect()->route('client.services')->with([
+        $user_case->payment = true;
+        $user_case->save();
+
+        return redirect()->route('client.case.details')->with([
             'type' => 'success',
             'message' => 'Case Submit Successfully!'
+        ]);
+    }
+
+    public function case_details() {
+        $cases = UserCase::latest()->where('user_id', Auth::user()->id)->get();
+
+        return view('client.case_details', [
+            'cases' => $cases
+        ]);
+    }
+
+    public function case_delete($id) {
+        //Find case
+        $caseFinder = Crypt::decrypt($id);
+
+        //Case
+        $user_case = UserCase::findorfail($caseFinder)->delete();
+
+        Payment::where('case_id', $user_case->case_id)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Case Deleted Successfully!',
+        ]);
+    }
+
+    public function case_request($id) {
+        $caseid = Crypt::decrypt($id);
+
+        $caseRequests = CaseRequest::latest()->where('case_id', $caseid)->get();
+        $case = UserCase::latest()->where('id', $caseid)->first();
+
+        return view('client.case_request', [
+            'caseRequests' => $caseRequests,
+            'case' => $case
+        ]);
+    }
+
+    public function case_lawyer_accept($id) {
+        $caseid = Crypt::decrypt($id);
+        
+        $caseRequests = CaseRequest::findorfail($caseid);
+        $case = UserCase::findorfail($caseRequests->case_id);
+
+        $user = User::findorfail($caseRequests->user_id);
+
+        $case->lawyer_id = $caseRequests->user_id;
+        $case->status = 'Assigned';
+        $case->save();
+
+        $caseRequests->status = 'Assigned';
+        $caseRequests->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Case assigned to a '.$user->first_name. ' ' .$user->last_name
+        ]);
+    }
+
+    public function transactions() {
+        $transactions = Payment::latest()->where('email', Auth::user()->email)->get();
+
+        return view('client.transactions', [
+            'transactions' => $transactions
         ]);
     }
 }
