@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
             'account_type' => 'Administrator',
             'first_name' => 'Admin',
             'last_name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'email' => 'ezemapromise@yahoo.com',
             'user_name' => 'admin-admin',
             'email_verified_at' => now(),
             'password' => bcrypt('Password1'),

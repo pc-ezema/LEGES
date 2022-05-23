@@ -39,7 +39,7 @@
                                 <div class="d-block text-center">
                                     <div class="image">
                                         @if(Auth::user()->avatar)
-                                        <img src="/storage/avatars/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
+                                        <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
                                         @else
                                         <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
                                         @endif
@@ -79,10 +79,14 @@
                             </div>
                             <h4 class="box-title text-info mb-0 mt-20"><i class="ti-save me-15"></i> Profile Picture</h4>
                             <hr class="my-15">
-                            <div class="form-group">
-                                <label class="file">
-                                <input type="file" class="form-control" name="avatar">
-                                </label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="file">
+                                        <input type="file" class="form-control" name="avatar">
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 <i class="ti-save-alt"></i> Upload Profile Picture

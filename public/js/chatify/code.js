@@ -372,11 +372,12 @@ function IDinfo(id, type) {
         // avatar photo
         $(".messenger-infoView")
           .find(".avatar")
-          .css("background-image", 'url("' + data.user_avatar + '")');
+          .css("background-image", 'url("/storage/users-avatar/' + data.user_avatar + '")');
         $(".header-avatar").css(
           "background-image",
-          'url("' + data.user_avatar + '")'
+          'url("/storage/users-avatar/' + data.user_avatar + '")',
         );
+        
         // Show shared and actions
         $(".messenger-infoView-btns .delete-conversation").show();
         $(".messenger-infoView-shared").show();
@@ -385,8 +386,8 @@ function IDinfo(id, type) {
         // focus on messaging input
         messageInput.focus();
         // update info in view
-        $(".messenger-infoView .info-name").html(data.fetch.name);
-        $(".m-header-messaging .user-name").html(data.fetch.name);
+        $(".messenger-infoView .info-name").html(data.fetch.first_name + ' ' + data.fetch.last_name);
+        $(".m-header-messaging .user-name").html(data.fetch.first_name + ' ' + data.fetch.last_name);
         // Star status
         data.favorite > 0
           ? $(".add-to-favorite").addClass("favorite")
@@ -847,6 +848,7 @@ function updateContactItem(user_id) {
       },
       dataType: "JSON",
       success: (data) => {
+        var_dump(data.contactItem);
         const totalContacts =
           $(".listOfContacts").find(".messenger-list-item")?.length || 0;
         if (totalContacts < 1)

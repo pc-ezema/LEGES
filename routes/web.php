@@ -42,8 +42,6 @@ Route::prefix('client/dashboard')->group(function () {
     Route::get('/case/payment', 'ClientController@redirectToGateway')->name('client.case.payment');
     Route::get('/case/delete/{id}', 'ClientController@case_delete')->name('client.case.delete');
     Route::get('/payment/callback', 'ClientController@handleGatewayCallback');
-    Route::get('/messages', 'ClientController@messages')->name('client.messages');
-    Route::get('/messages/get/{id}', 'ClientController@getmessages')->name('client.get.messages');
     Route::get('/profile', 'ClientController@profile')->name('client.profile');
     Route::post('/profile/profile-picture/{id}', 'ClientController@profile_picture')->name('client.profile-picture');
     Route::post('/profile/password/{id}', 'ClientController@password')->name('client.password');
@@ -58,7 +56,6 @@ Route::prefix('lawyer/dashboard')->group(function () {
     Route::get('/cases', 'LawyerController@cases')->name('lawyer.cases');
     Route::get('/case/details', 'LawyerController@case_details')->name('lawyer.case.details');
     Route::get('/services', 'LawyerController@services')->name('lawyer.services');
-    Route::get('/messages', 'LawyerController@messages')->name('lawyer.messages');
     Route::get('/profile/{id}', 'LawyerController@profile')->name('lawyer.profile');
     Route::post('/profile/profile-picture/{id}', 'LawyerController@profile_picture')->name('lawyer.profile-picture');
     Route::post('/profile/password/{id}', 'LawyerController@password')->name('lawyer.password');
@@ -71,7 +68,7 @@ Route::prefix('lawyer/dashboard')->group(function () {
 
 // Admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/admin', 'AdminController@index')->name('dashboard');
+    Route::get('/admin/dashboard', 'AdminController@index')->name('dashboard');
     Route::get('/users/{user_id}/approve', 'AdminController@approve')->name('admin.users.approve');
     Route::get('/users/{user_id}/disapprove', 'AdminController@disapprove')->name('admin.users.disapprove');   
 });

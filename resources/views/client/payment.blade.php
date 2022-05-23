@@ -80,10 +80,7 @@
                                     Proceed To Payment
                                 </button>
 
-                                <form class="form" method="GET" action="{{ route('client.case.details') }}">
-                                    @csrf
-                                    <button type="submit" class="waves-effect waves-light btn btn-danger btn-flat">Cancel</button>
-                                </form>
+                                <a href="{{ route('client.case.details') }}"" type="submit" form="caseDetails" class="waves-effect waves-light btn btn-danger btn-flat">Cancel</a>
                             </form>
                         </div>
                         <!-- /.box-body -->

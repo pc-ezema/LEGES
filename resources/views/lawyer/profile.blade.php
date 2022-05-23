@@ -62,7 +62,7 @@
                                                 <div class="d-block text-center">
                                                     <div class="image">
                                                         @if(Auth::user()->avatar)
-                                                        <img src="/storage/avatars/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
+                                                        <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
                                                         @else
                                                         <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
                                                         @endif

@@ -32,7 +32,7 @@
                                 </a>
                                 <h3 class="text-primary">{{ __('Verify Your Email Address') }}</h3>	
                                 <hr>
-                                <div>
+                                <div style="padding-bottom: 3rem;">
                                     @if (session('resent'))
                                         <div class="alert alert-success" role="alert">
                                             {{ __('A fresh verification link has been sent to your email address.') }}
@@ -43,7 +43,7 @@
                                     <p>{{ __('If you did not receive the email') }}</p>
                                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                                         @csrf
-                                        <button type="submit" class="btn btn-link p-2 m-0 align-baseline mb-5 ajax" style="background: #ED4B0C; color: #fff;">{{ __('click here to request another') }}</button>.
+                                        <button type="submit" class="btn btn-link p-2 m-0 align-baseline mb-5 ajax" style="background: #ED4B0C; color: #fff;">{{ __('Click Here to Request Another') }}</button>.
                                     </form>
                                 </div>
                             </div>

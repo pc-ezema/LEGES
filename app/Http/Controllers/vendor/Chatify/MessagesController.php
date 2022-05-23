@@ -36,7 +36,7 @@ class MessagesController extends Controller
         $authData = json_encode([
             'user_id' => Auth::user()->id,
             'user_info' => [
-                'name' => Auth::user()->name
+                'name' => Auth::user()->first_name
             ]
         ]);
         // check if user authorized
@@ -88,7 +88,8 @@ class MessagesController extends Controller
         if ($request['type'] == 'user') {
             $fetch = User::where('id', $request['id'])->first();
             if($fetch){
-                $userAvatar = Chatify::getUserWithAvatar($fetch)->avatar;
+                // $userAvatar = Chatify::getUserWithAvatar($fetch)->avatar;
+                $userAvatar = ($fetch)->avatar;
             }
         }
 
@@ -271,7 +272,7 @@ class MessagesController extends Controller
         ->paginate($request->per_page ?? $this->perPage);
 
         $usersList = $users->items();
-
+        
         if (count($usersList) > 0) {
             $contacts = '';
             foreach ($usersList as $user) {
@@ -372,14 +373,24 @@ class MessagesController extends Controller
     {
         $getRecords = null;
         $input = trim(filter_var($request['input']));
-        $records = User::where('id','!=',Auth::user()->id)
-                    ->where('name', 'LIKE', "%{$input}%")
+
+        // $records = User::where('id','!=',Auth::user()->id)
+        //             ->where('first_name', 'LIKE', "%{$input}%")
+        //             ->paginate($request->per_page ?? $this->perPage);
+
+        $records = UserCase::join('users',  function ($join) {
+                    $join->on('user_cases.lawyer_id', '=', 'users.id');
+                    })->where('user_cases.user_id', Auth::user()->id)
+                    ->where('users.first_name', 'LIKE', "%{$input}%")
+                    ->select('user_cases.case_id', 'users.*')
                     ->paginate($request->per_page ?? $this->perPage);
+
         foreach ($records->items() as $record) {
             $getRecords .= view('Chatify::layouts.listItem', [
                 'get' => 'search_item',
                 'type' => 'user',
-                'user' => Chatify::getUserWithAvatar($record),
+                // 'user' => Chatify::getUserWithAvatar($record),
+                'user' => $record,
             ])->render();
         }
         if($records->total() < 1){
@@ -408,7 +419,8 @@ class MessagesController extends Controller
         for ($i = 0; $i < count($shared); $i++) {
             $sharedPhotos .= view('Chatify::layouts.listItem', [
                 'get' => 'sharedPhoto',
-                'image' => Chatify::getAttachmentUrl($shared[$i]),
+                // 'image' => Chatify::getAttachmentUrl($shared[$i]),
+                'image' => $shared[$i]
             ])->render();
         }
         // send the response

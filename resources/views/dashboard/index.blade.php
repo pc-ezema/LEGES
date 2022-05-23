@@ -291,7 +291,7 @@
 							<div class="d-flex align-items-center mb-30">
 								<div class="me-15">
 									@if($user->avatar)
-									<img src="/storage/avatars/{{Auth::user()->avatar}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
+									<img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
 									@else
 									<img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
 									@endif

@@ -53,9 +53,9 @@ class ClientController extends Controller
         if (request()->hasFile('avatar')) {
             $filename = request()->avatar->getClientOriginalName();
             if($profile->avatar) {
-                Storage::delete('/public/avatars/'. $profile->avatar);
+                Storage::delete('/public/users-avatar/'. $profile->avatar);
             }
-            request()->avatar->storeAs('avatars', $filename, 'public');
+            request()->avatar->storeAs('users-avatar', $filename, 'public');
             $profile->avatar = $filename;
             $profile->save();
             
@@ -137,62 +137,6 @@ class ClientController extends Controller
                 'message' => 'Access denied!'
             ]);
         }
-    }
-
-    public function messages()
-    {
-        $display = 'inline-block';
-        $chat = 'none';
-
-        $users = UserCase::join('users', 'users.id', '=', 'user_cases.lawyer_id')
-                            ->select('user_cases.case_id', 'users.*')
-                            ->latest()
-                            ->where('user_id', Auth::user()->id)
-                            ->where('lawyer_id', '!=', null)->get();
-
-        $messages = Message::where('from_user', Auth::user()->id)->get();
-
-        $receiverUser = '';
-
-        return view('client.messages', [
-            'users' => $users,
-            'display' => $display,
-            'chat' => $chat,
-            'messages' => $messages,
-            'receiverUser' =>$receiverUser
-        ]);
-    }
-
-    public function getmessages($id) {
-        $display = 'none';
-        $chat = 'inline-block';
-
-        //Find user 
-        $receiverid = Crypt::decrypt($id);
-
-        $users = UserCase::join('users', 'users.id', '=', 'user_cases.lawyer_id')
-                            ->select('user_cases.case_id', 'users.*')
-                            ->latest()
-                            ->where('user_id', Auth::user()->id)
-                            ->where('lawyer_id', '!=', null)->get();
-
-        $receiverUser = User::findorfail($receiverid);
-
-        $messages = Message::orWhere(function ($query) use ($receiverid) {
-                        $query->where('from_user', Auth::user()->id)
-                            ->where('to_user', $receiverid);
-                    })->orWhere(function ($query) use ($receiverid) {
-                        $query->where('from_user', $receiverid)
-                            ->where('to_user', Auth::user()->id);
-                    })->get();
-
-        return view('client.messages', [
-            'receiverUser' =>$receiverUser,
-            'users' => $users,
-            'display' => $display,
-            'chat' => $chat,
-            'messages' => $messages
-        ]);
     }
 
     public function services()
@@ -293,7 +237,7 @@ class ClientController extends Controller
             'user_id' => Auth::user()->id,
             'case_id' => $user_case->case_id,
             'email' => $paymentDetails['data']['customer']['email'],
-            'amount' => $paymentDetails['data']['amount'],
+            'amount' => $paymentDetails['data']['amount'] / 100,
             'transaction_id' => $paymentDetails['data']['id'],
             'ref_id' => $paymentDetails['data']['reference'],
             'paid_at' => $paymentDetails['data']['paid_at'],
@@ -326,7 +270,7 @@ class ClientController extends Controller
         //Case
         $user_case = UserCase::findorfail($caseFinder)->delete();
 
-        Payment::where('case_id', $user_case->case_id)->delete();
+        // Payment::where('case_id', $user_case->case_id)->delete();
 
         return back()->with([
             'type' => 'success',
@@ -363,7 +307,7 @@ class ClientController extends Controller
 
         return back()->with([
             'type' => 'success',
-            'message' => 'Case assigned to a '.$user->first_name. ' ' .$user->last_name
+            'message' => 'Case assigned to '.$user->first_name. ' ' .$user->last_name
         ]);
     }
 

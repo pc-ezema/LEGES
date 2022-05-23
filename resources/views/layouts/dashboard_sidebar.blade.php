@@ -5,7 +5,7 @@
             <div class="d-block text-center">
                 <div class="image">
                     @if(Auth::user()->avatar)
-                    <img src="/storage/avatars/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
+                    <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
                     @else
                     <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
                     @endif
@@ -51,7 +51,7 @@
                         </a>
                     </li>	
                     <li>
-                        <a href="{{ route('client.messages') }}" class="ajax">
+                        <a href="/message" class="ajax">
                             <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
                             <span>Messages</span>
                         </a>
@@ -106,7 +106,7 @@
                         </ul>
                     </li>	
                     <li>
-                        <a href="{{ route('lawyer.messages') }}" class="ajax">
+                        <a href="/message" class="ajax">
                             <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
                             <span>Messages</span>
                         </a>

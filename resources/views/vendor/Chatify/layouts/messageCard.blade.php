@@ -12,7 +12,7 @@
         </p>
         {{-- If attachment is an image --}}
         @if(@$attachment[2] == 'image')
-        <div class="image-file chat-image" style="width: 250px; height: 150px;background-image: url('{{ Chatify::getAttachmentUrl($attachment[0]) }}')">
+        <div class="image-file chat-image" style="width: 250px; height: 150px;background-image: url('/storage/attachments/{{ ($attachment[0]) }}')">
         </div>
         @endif
     </div>
@@ -38,7 +38,7 @@
         </div>
         {{-- If attachment is an image --}}
         @if(@$attachment[2] == 'image')
-        <div class="image-file chat-image" style="margin-top:10px;width: 250px; height: 150px;background-image: url('{{ Chatify::getAttachmentUrl($attachment[0]) }}')">
+        <div class="image-file chat-image" style="margin-top:10px;width: 250px; height: 150px;background-image: url('/storage/attachments/{{ $attachment[0] }}')">
         </div>
         @endif
     </div>
