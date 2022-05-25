@@ -29,7 +29,7 @@ class ConfirmPasswordController extends Controller
      */
     protected function redirectTo()
     {
-    if (Auth::user()->user_type == 'Administrator')
+    if (Auth::user()->account_type == 'Administrator')
     {
         return '/admin/dashboard';  // admin dashboard path
     } else {

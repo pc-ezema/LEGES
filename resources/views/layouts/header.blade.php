@@ -13,17 +13,16 @@
                         flex-grow-1">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/teams">Teams</a></li>
                     <li class="nav-item"><a class="nav-link" href="/faqs">FAQs</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 </ul>
                 @auth
                     @if(Auth::user()->account_type == "Administrator")
-                    <div class="login-div desktop-login"><a class="btn-login" href="/admin/dashboard">Dashboard<span></span>
-                    <i class="fas fa-arrow-right"></i></a></div>
+                        <div class="login-div desktop-login"><a class="btn-login" href="/admin/dashboard">Dashboard<span></span>
+                        <i class="fas fa-arrow-right"></i></a></div>
                     @else
-                    <div class="login-div desktop-login"><a class="btn-login" href="/home">Dashboard<span></span>
-                    <i class="fas fa-arrow-right"></i></a></div>
+                        <div class="login-div desktop-login"><a class="btn-login" href="/home">Dashboard<span></span>
+                        <i class="fas fa-arrow-right"></i></a></div>
                     @endif
                 @else
                 <div class="login-div desktop-login"><a class="btn-login" href="/login">Login <span></span>

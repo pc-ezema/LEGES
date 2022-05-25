@@ -29,11 +29,11 @@ class ResetPasswordController extends Controller
      */
     protected function redirectTo()
     {
-    if (Auth::user()->user_type == 'Administrator')
-    {
-        return '/admin/dashboard';  // admin dashboard path
-    } else {
-        return '/home';  // user dashboard path
-    }
+        if (Auth::user()->account_type == 'Administrator')
+        {
+            return '/admin/dashboard';  // admin dashboard path
+        } else {
+            return '/home';  // user dashboard path
+        }
     }
 }

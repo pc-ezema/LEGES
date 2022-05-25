@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{URL::asset('images/favicon.png')}}" type="image/x-icon">
-    <title>{{config('app.name')}} - 404 Error</title>
+    <title>{{config('app.name')}} - Admin Dashboard</title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{URL::asset('css/vendors_css.css')}}">
@@ -32,30 +32,29 @@
 </head>
 
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
+    <!-- Alerts  Start-->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 100000; width: auto;">
+        @include('layouts.alert')
+    </div>
+    <!-- Alerts End -->
     <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <div class="container-full">	
-                <section class="error-page h-p100">
-                    <div class="container h-p100">
-                        <div class="row h-p100 align-items-center justify-content-center text-center">
-                            <div class="col-lg-7 col-md-10 col-12">
-                                <div class="rounded30 p-50">
-                                    <img src="{{URL::asset('images/auth-bg/500.jpg')}}" class="max-w-200" alt="" />
-                                    <h1>Uh-Ah</h1>
-                                    <h3>Internal Server Error !</h3>
-                                    <div class="my-30"><a href="/" class="btn btn-info">Back to dashboard</a></div>
-                                    <h5 class="mb-15">-- OR --</h5>
-                                    <h4>Please try after some time</h4>			  			  
-                                </div>							  			  
-                            </div>				
-                        </div>
-                    </div>
-                </section>
-            <!-- /.content -->
-            </div>
-        </div>
-        <!-- /.content-wrapper --> 
+
+        <!-- Dashboard Header -->
+        @includeIf('layouts.admin_dashboard_header')
+        <!-- End Dashboard Header -->
+
+        <!-- Dashboard Sidebar -->
+        @includeIf('layouts.admin_dashboard_sidebar')
+        <!-- End Deashboard Sidebar -->
+
+        <!-- Page-Content -->
+        @yield('page-content')
+        <!-- End Page-Content -->
+
+        <!-- Dashboard Footer -->
+        @includeIf('layouts.admin_dashboard_footer')
+        <!-- End Dashboard Footer -->
+
     </div>
     <script>
         function loadPreview(input){

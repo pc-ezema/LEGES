@@ -17,7 +17,6 @@ Route::get('/', 'HomePageController@index');
 Route::get('/about', 'HomePageController@about');
 Route::get('/contact', 'HomePageController@contact');
 Route::get('/faqs', 'HomePageController@faqs');
-Route::get('/teams', 'HomePageController@teams');
 Route::get('/dashboard', 'HomePageController@home');
 Route::get('/terms_conditions', 'HomePageController@terms_conditions');
 Route::get('/privacy_policy', 'HomePageController@privacy_policy');
@@ -70,5 +69,6 @@ Route::prefix('lawyer/dashboard')->group(function () {
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/dashboard', 'AdminController@index')->name('dashboard');
     Route::get('/users/{user_id}/approve', 'AdminController@approve')->name('admin.users.approve');
-    Route::get('/users/{user_id}/disapprove', 'AdminController@disapprove')->name('admin.users.disapprove');   
+    Route::get('/users/{user_id}/disapprove', 'AdminController@disapprove')->name('admin.users.disapprove'); 
+    Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');  
 });

@@ -37,11 +37,6 @@ class HomePageController extends Controller
     }
 
     //
-    public function teams() {
-        return view ('teams');
-    }
-
-    //
     public function app() {
         return view ('app');
     }
@@ -57,8 +52,8 @@ class HomePageController extends Controller
     }
 
     //
-    public function home() {
-        return view ('dashboard');
+    public function admin_login() {
+        return view ('auth.admin_login');
     }
 
 }

@@ -30,7 +30,6 @@
                 <div class="ft-link">
                     <h4>Company</h4>
                     <p><a href="/about">About Us</a></p>
-                    <p><a href="/teams">Teams</a></p>
                     <p><a href="/faqs">Faqs</a></p>
                 </div>
             </div>
