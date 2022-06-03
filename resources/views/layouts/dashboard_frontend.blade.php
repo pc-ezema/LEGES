@@ -90,6 +90,8 @@
 	<script src="{{URL::asset('assets/vendor_components/chart.js-master/Chart.min.js')}}"></script>
 	<script src="{{URL::asset('assets/vendor_components/d3/d3.min.js')}}"></script>
 	<script src="{{URL::asset('assets/vendor_components/d3/d3_tooltip.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
 
     <!-- Law Firm App -->
     <script src="{{URL::asset('js/template.js')}}"></script>

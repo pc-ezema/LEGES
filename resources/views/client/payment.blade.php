@@ -33,40 +33,22 @@
                         <div class="box-body">
                             <h4 class="box-title text-info mb-0">Please Kindly go through your information before proceeding to payment</h4>
                             <hr class="my-15">
-							<form class="form" method="GET" action="{{ route('client.case.payment') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+							<form class="form" method="GET" action="{{ route('client.case.payment', Crypt::encrypt($user_case->id)) }}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
                                     <div class="form-group">
-										<input type="hidden" name="email" value="{{$user_case->email}}"> {{-- required --}}
-										<input type="hidden" name="orderID" value="{{Auth::user()->id}}">
-										<input type="hidden" name="quantity" value="1">
-										<input type="hidden" name="currency" value="NGN">
-										<input type="hidden" name="metadata" value="{{ json_encode($array = ['key_name' => 'value',]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
-										<input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
-										
-										{{ csrf_field() }} {{-- works only when using laravel 5.1, 5.2 --}}
-
-										<input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
-
                                         <label class="form-label">Type of Case</label>
                                         <input type="email" class="form-control" value="{{$user_case->type_of_case}}" readonly>
                                     </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Time Limit</label>
-                                        <input type="tel" class="form-control" value="{{$user_case->time_limit}}" readonly>
-                                    </div>
-                                    </div>
-
-                                    <div class="col-md-6">
+                                    <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-label">Amount</label>
                                         <select class="form-control" name="amount" readonly>
-                                            <option value="{{($user_case->amount * 100)}}">₦{{ number_format($user_case->amount, 2) }}</option>
+                                            <option value="{{$user_case->amount}}">₦{{ number_format($user_case->amount, 2) }}</option>
                                         </select>
                                     </div>
                                     </div>

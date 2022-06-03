@@ -184,78 +184,75 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-12">
-						<div class="box">
-							<div class="row g-0 py-2">
-
-								<div class="col-12 col-lg-6">
-									<div class="box-body be-1 border-light">
-										<div class="flexbox mb-1">
-											<span>
-												<span class="icon-Hummer fs-40"><span class="path1"></span><span class="path2"></span></span><br>
-												Completed Cases
-											</span>
-											<span class="text-primary fs-40">{{$completedCases->count()}}</span>
-										</div>
-										<div class="progress progress-xxs mt-10 mb-0">
-											<div class="progress-bar w-35" role="progressbar" style="width: 35%; height: 4px;" aria-valuenow="{{$completedCases->count()}}" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
+				<div class="col-12">
+					<div class="box">
+						<div class="row g-0 py-2">
+							<div class="col-12 col-lg-6">
+								<div class="box-body be-1 border-light">
+									<div class="flexbox mb-1">
+										<span>
+											<span class="icon-Hummer fs-40"><span class="path1"></span><span class="path2"></span></span><br>
+											Completed Cases
+										</span>
+										<span class="text-primary fs-40">{{$completedCases->count()}}</span>
+									</div>
+									<div class="progress progress-xxs mt-10 mb-0">
+										<div class="progress-bar w-35" role="progressbar" style="width: 35%; height: 4px;" aria-valuenow="{{$completedCases->count()}}" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
+							</div>
 
 
-								<div class="col-12 col-lg-6 hidden-down">
-									<div class="box-body be-1 border-light">
-										<div class="flexbox mb-1">
-											<span>
-												<span class="icon-Attachment1 fs-40"><span class="path1"></span><span class="path2"></span></span><br>
-												Pending Cases
-											</span>
-											<span class="text-info fs-40">{{$pendingCases->count()}}</span>
-										</div>
-										<div class="progress progress-xxs mt-10 mb-0">
-											<div class="progress-bar bg-info" role="progressbar" style="width: 55%; height: 4px;" aria-valuenow="{{$pendingCases->count()}}" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
+							<div class="col-12 col-lg-6 hidden-down">
+								<div class="box-body be-1 border-light">
+									<div class="flexbox mb-1">
+										<span>
+											<span class="icon-Attachment1 fs-40"><span class="path1"></span><span class="path2"></span></span><br>
+											Pending Cases
+										</span>
+										<span class="text-info fs-40">{{$pendingCases->count()}}</span>
+									</div>
+									<div class="progress progress-xxs mt-10 mb-0">
+										<div class="progress-bar bg-info" role="progressbar" style="width: 55%; height: 4px;" aria-valuenow="{{$pendingCases->count()}}" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
+							</div>
 
 
-								<div class="col-12 col-lg-6 d-none d-lg-block">
-									<div class="box-body be-1 border-light">
-										<div class="flexbox mb-1">
-											<span>
-												<span class="icon-Library fs-40"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span><br>
-												Assigned Cases
-											</span>
-											<span class="text-warning fs-40">{{$assignedCases->count()}}</span>
-										</div>
-										<div class="progress progress-xxs mt-10 mb-0">
-											<div class="progress-bar bg-warning" role="progressbar" style="width: 65%; height: 4px;" aria-valuenow="{{$assignedCases->count()}}" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
+							<div class="col-12 col-lg-6 d-none d-lg-block">
+								<div class="box-body be-1 border-light">
+									<div class="flexbox mb-1">
+										<span>
+											<span class="icon-Library fs-40"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span><br>
+											Assigned Cases
+										</span>
+										<span class="text-warning fs-40">{{$assignedCases->count()}}</span>
+									</div>
+									<div class="progress progress-xxs mt-10 mb-0">
+										<div class="progress-bar bg-warning" role="progressbar" style="width: 65%; height: 4px;" aria-valuenow="{{$assignedCases->count()}}" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
+							</div>
 
 
-								<div class="col-12 col-lg-6 d-none d-lg-block">
-									<div class="box-body">
-										<div class="flexbox mb-1">
-											<span>
-												<span class="icon-Money fs-40"><span class="path1"></span><span class="path2"></span></span><br>
-												Transactions
-											</span>
-											<span class="text-danger fs-40">₦{{number_format($transactions, 2)}}</span>
-										</div>
-										<div class="progress progress-xxs mt-10 mb-0">
-											<div class="progress-bar bg-danger" role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
+							<div class="col-12 col-lg-6 d-none d-lg-block">
+								<div class="box-body">
+									<div class="flexbox mb-1">
+										<span>
+											<span class="icon-Money fs-40"><span class="path1"></span><span class="path2"></span></span><br>
+											Transactions
+										</span>
+										<span class="text-danger fs-40">₦{{number_format($transactions, 2)}}</span>
+									</div>
+									<div class="progress progress-xxs mt-10 mb-0">
+										<div class="progress-bar bg-danger" role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- /.col -->
 				</div>
+				<!-- /.col -->
 				<!-- /.row -->
 				<div class="col-xl-8 col-12">
 					<div class="box">
@@ -291,7 +288,7 @@
 							<div class="d-flex align-items-center mb-30">
 								<div class="me-15">
 									@if($user->avatar)
-									<img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
+									<img src="/storage/users-avatar/{{$user->avatar}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
 									@else
 									<img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
 									@endif

@@ -36,7 +36,6 @@
                                         <th>S/N</th>
 										<th>Cases ID</th>
 										<th>Case Type</th>
-										<th>Time Limit</th>
 										<th>Amount</th>
 										<th>Status</th>
 										<th>Date Added</th>
@@ -56,12 +55,11 @@
 										<td>{{$loop->iteration}}</td>
 										<td>{{$case->case_id}}</td>
 										<td>{{$case->type_of_case}}</td>
-										<td>{{$case->time_limit}}days</td>
 										<td>₦{{number_format($case->amount, 2)}}</td>
 										<td>
                                             @if($case->status == 'Pending')
-                                            <span class="badge badge-danger-light">{{$case->status}}</span>
-                                            @elseif($case->status == 'Accepted')
+                                            	<span class="badge badge-danger-light">{{$case->status}}</span>
+                                            @elseif($case->status == 'Assigned')
                                                 <span class="badge badge-primary-light">{{$case->status}}</span>
                                             @else
                                                 <span class="badge badge-success-light">{{$case->status}}</span>
@@ -78,6 +76,7 @@
                                         </div>
 										@else
 										<div class="clearfix">
+											@if($case->status !== 'Completed')
                                             <button type="button" id="viewCase" data-bs-toggle="modal" data-bs-target="#modal-right-{{$case->id}}" data-bs-id=""class="waves-effect waves-light btn btn-primary-light btn-flat mb-5">View</button>
                                             <!-- Modal -->
 											<div class="modal modal-right fade" id="modal-right-{{$case->id}}" tabindex="-1">
@@ -96,12 +95,6 @@
 																		<input type="text" class="form-control" value="{{$case->type_of_case}}" readonly>
 																	</div>
 																</div>
-																<div class="col-12">
-																	<div class="form-group">
-																		<label class="form-label">Time Limit</label>
-																		<input type="text" class="form-control" placeholder="{{$case->time_limit}}days" readonly>
-																	</div>
-																</div>
 															</div>
 															<div class="row">
 																<div class="col-12">
@@ -118,19 +111,19 @@
 														</div>
 														<div class="modal-footer modal-footer-uniform">
 															<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-															<button type="button" class="btn btn-primary float-end">Save changes</button>
 														</div>
 														</div>
 													<!-- </form> -->
 												</div>
 											</div>
 											<!-- /.modal -->
-
-											<form class="form" method="GET" action="{{ route('client.case.request', Crypt::encrypt($case->id)) }}">
-												@csrf
-                                                <button type="submit" class="waves-effect waves-light btn btn-info-light btn-flat mb-5">Request</button>
-                                            </form>
-											<button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat mb-5">Payment</button>
+											@endif
+											@if($case->status == 'Pending')
+                                                <a href="{{ route('client.case.request', Crypt::encrypt($case->id)) }}" class="waves-effect waves-light btn btn-info-light btn-flat mb-5">Request</a>
+											@elseif($case->status == 'Assigned')
+                                                <a href="{{ route('client.case.lawyer.view', Crypt::encrypt($case->lawyer_id)) }}" class="waves-effect waves-light btn btn-secondary-light btn-flat mb-5">View Lawyer</a>
+											@endif
+											<button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat mb-5">Pay</button>
                                         </div>
 										@endif
                                         </td>

@@ -56,14 +56,12 @@
 										<td>{{$caseRequest->email}}</td>
                                         <td>
                                         <div class="clearfix">
-                                            <button type="button" class="waves-effect waves-light btn btn-success-light btn-flat mb-5">View Lawyer</button>
+                                        <a href="{{ route('client.case.lawyer.view', Crypt::encrypt($case->lawyer_id)) }}" class="waves-effect waves-light btn btn-secondary-light btn-flat mb-5">View Lawyer</a>
                                             @if($caseRequest->status == 'Pending')
                                             <form class="form" method="post" action="{{ route('client.case.lawyer.accept', Crypt::encrypt($caseRequest->id)) }}">
 												@csrf
                                                 <button type="submit" class="waves-effect waves-light btn btn-danger-light btn-flat mb-5">Accept</button>
                                             </form>
-                                            @else
-                                            <button type="submit" class="waves-effect waves-light btn btn-primary-light btn-flat mb-5">Reject</button>
                                             @endif
                                         </div>
                                         </td>

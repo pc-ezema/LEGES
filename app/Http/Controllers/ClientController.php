@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Redirect;
 use App\CaseRequest;
 use App\Message;
+use App\Service;
 
 class ClientController extends Controller
 {
@@ -37,7 +38,8 @@ class ClientController extends Controller
         return view('client.profile');
     }
 
-    public function profile_picture($id, Request $request) {
+    public function profile_picture($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'avatar' => 'required|mimes:jpeg,png,jpg',
@@ -71,7 +73,8 @@ class ClientController extends Controller
         }
     }
 
-    public function password($id, Request $request) {
+    public function password($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'new_password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -101,7 +104,8 @@ class ClientController extends Controller
         }
     }
 
-    public function personal_data($id, Request $request) {
+    public function personal_data($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'first_name' => ['required','string', 'max:255'],
@@ -141,22 +145,28 @@ class ClientController extends Controller
 
     public function services()
     {
-        return view('client.services');
+        $services = Service::latest()->get();
+
+        return view('client.services',[
+            'services' => $services
+        ]);
     }
 
-    public function services_create_case()
+    public function services_create_case($id)
     {
+        $id = Crypt::decrypt($id);
 
-        return view('client.service_create_case');
+        $service = Service::findOrFail($id);
+
+        return view('client.service_create_case',[
+            'service' => $service
+        ]);
     }
 
     public function case_save(Request $request)
     {
         //Validate Request
         $this->validate($request, [
-            'type_of_case' => ['required','string', ''],
-            'time_limit' => ['required', 'numeric'],
-            'amount' => ['required','numeric'],
             'description' => ['required','string']
         ]);
         
@@ -167,7 +177,6 @@ class ClientController extends Controller
             'email' => Auth::user()->email,
             'case_id' => 'LEGES-'.$this->id_no(5),
             'type_of_case' => request()->type_of_case,
-            'time_limit' => request()->time_limit,
             'amount' => request()->amount,
             'description' => request()->description,
         ]);
@@ -185,7 +194,8 @@ class ClientController extends Controller
         }     
     }
 
-    function id_no($input, $strength = 5) {
+    function id_no($input, $strength = 5) 
+    {
         $input = '0123456789';
         $input_length = strlen($input);
         $random_string = '';
@@ -210,12 +220,64 @@ class ClientController extends Controller
         ]);
     }
 
-    public function redirectToGateway(Request $request) {
-        try{
-            return Paystack::getAuthorizationUrl()->redirectNow();
-        }   catch(\Exception $e) {
-            return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
-        } 
+    public function redirectToGateway($id, Request $request) 
+    {
+        //Find case 
+        $caseFinder = Crypt::decrypt($id);
+
+        //Case
+        $user_case = UserCase::findorfail($caseFinder);
+
+        $SECRET_KEY = config('app.paystack_secret_key');;
+
+        $url = "https://api.paystack.co/transaction/initialize";
+
+        $fields = [
+            'email' => Auth::user()->email,
+            'amount' => $request->amount * 100,
+            'callback_url' => url('client/dashboard/payment/callback'),
+            'metadata' => [
+                'user_id' => Auth::user()->id,
+                'users_case_id' => $user_case->id
+            ]
+        ];
+
+        $fields_string = http_build_query($fields);
+        //open connection
+        $ch = curl_init();
+        
+        //set the url, number of POST vars, POST data
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Authorization: Bearer $SECRET_KEY",
+            "Cache-Control: no-cache",
+        ));
+        
+        //So that curl_exec returns the contents of the cURL; rather than echoing it
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        
+        //execute post
+        $paystack_result = curl_exec($ch);
+        
+        $result = json_decode($paystack_result);
+
+        //  return $result;
+        $authorization_url = $result->data->authorization_url;
+        $paystack_status = $result->status;
+
+        // return dd($result->status);
+
+        if ($paystack_status == true) {
+            return redirect()->to($authorization_url);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'icon' => 'mdi-block-helper',
+                'message' => 'Payment failed. Response not ok'
+            ]); 
+        }
     }
 
     /**
@@ -224,38 +286,67 @@ class ClientController extends Controller
      */
     public function handleGatewayCallback()
     {
-        $paymentDetails = Paystack::getPaymentData();
-        // Now you have the payment details,
-        // you can store the authorization_code in your db to allow for recurrent subscriptions
-        // you can then redirect or do whatever you want
+        $SECRET_KEY = config('app.paystack_secret_key');
         
-        // dd($paymentDetails);
+        $curl = curl_init();
 
-        $user_case = UserCase::latest()->where('user_id', Auth::user()->id)->first();
+        $reference = isset($_GET['reference']) ? $_GET['reference'] : '';
+            if(!$reference){
+            die('No reference supplied');
+        }
+  
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/verify/" . rawurlencode($reference),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer $SECRET_KEY",
+                "Cache-Control: no-cache",
+            ),
+        ));
+        
+        $paystack_response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+            
+        $result = json_decode($paystack_response);
+        
+        if ($err) {
+            // there was an error contacting the Paystack API
+            die('Curl returned error: ' . $err);
+        } else {
+            // dd($result);            
+            $user_case = UserCase::findorfail($result->data->metadata->users_case_id);
 
-        Payment::create([
-            'user_id' => Auth::user()->id,
-            'case_id' => $user_case->case_id,
-            'email' => $paymentDetails['data']['customer']['email'],
-            'amount' => $paymentDetails['data']['amount'] / 100,
-            'transaction_id' => $paymentDetails['data']['id'],
-            'ref_id' => $paymentDetails['data']['reference'],
-            'paid_at' => $paymentDetails['data']['paid_at'],
-            'channel' => $paymentDetails['data']['channel'],
-            'ip_address' => $paymentDetails['data']['ip_address'],
-            'status' => $paymentDetails['data']['status'],
-        ]);
-
-        $user_case->payment = true;
-        $user_case->save();
-
-        return redirect()->route('client.case.details')->with([
-            'type' => 'success',
-            'message' => 'Case Submit Successfully!'
-        ]);
+            Payment::create([
+                'user_id' => $result->data->metadata->user_id,
+                'case_id' => $result->data->metadata->users_case_id,
+                'email' => $result->data->customer->email,
+                'amount' => ($result->data->amount / 100),
+                'transaction_id' => $result->data->id,
+                'ref_id' => $result->data->reference,
+                'paid_at' => $result->data->paid_at,
+                'channel' => $result->data->channel,
+                'ip_address' => $result->data->ip_address,
+                'status' => $result->data->status,
+            ]);
+    
+            $user_case->payment = true;
+            $user_case->save();
+    
+            return redirect()->route('client.case.details')->with([
+                'type' => 'success',
+                'message' => 'Case Submit Successfully!'
+            ]);
+        }
     }
 
-    public function case_details() {
+    public function case_details() 
+    {
         $cases = UserCase::latest()->where('user_id', Auth::user()->id)->get();
 
         return view('client.case_details', [
@@ -263,7 +354,8 @@ class ClientController extends Controller
         ]);
     }
 
-    public function case_delete($id) {
+    public function case_delete($id) 
+    {
         //Find case
         $caseFinder = Crypt::decrypt($id);
 
@@ -278,7 +370,8 @@ class ClientController extends Controller
         ]);
     }
 
-    public function case_request($id) {
+    public function case_request($id) 
+    {
         $caseid = Crypt::decrypt($id);
 
         $caseRequests = CaseRequest::latest()->where('case_id', $caseid)->get();
@@ -290,7 +383,8 @@ class ClientController extends Controller
         ]);
     }
 
-    public function case_lawyer_accept($id) {
+    public function case_lawyer_accept($id) 
+    {
         $caseid = Crypt::decrypt($id);
         
         $caseRequests = CaseRequest::findorfail($caseid);
@@ -311,7 +405,22 @@ class ClientController extends Controller
         ]);
     }
 
-    public function transactions() {
+    public function case_lawyer($id)
+    {
+        $user_id = Crypt::decrypt($id);
+
+        $user = User::findorfail($user_id);
+        $lawyerCompletedCases = UserCase::latest()->where('lawyer_id', $user->id)
+                                    ->where('status', 'Completed')->get();
+
+        return view('client.view_lawyer', [
+            'user' => $user,
+            'lawyerCompletedCases' => $lawyerCompletedCases
+        ]);
+    }
+
+    public function transactions() 
+    {
         $transactions = Payment::latest()->where('email', Auth::user()->email)->get();
 
         return view('client.transactions', [

@@ -40,8 +40,7 @@ class HomeController extends Controller
 
         $users = User::latest()->take(5)->where('account_type', 'Lawyer')->get();
         
-        $cases = UserCase::latest()->where('type_of_case', Auth::user()->area_practice)
-                                    ->where('payment', true)
+        $cases = UserCase::latest()->where('payment', true)
                                     ->where('status', 'Pending')
                                     ->take(5)->get();
 
@@ -54,7 +53,7 @@ class HomeController extends Controller
         $lawyerPendingCases = UserCase::latest()->where('lawyer_id', Auth::user()->id)
                                     ->where('status', 'Pending')->get();
 
-        $totalcases = UserCase::latest()->where('lawyer_id', Auth::user()->id)->get();
+        $totalcases = UserCase::latest()->where('payment', true)->where('status', 'Pending')->get();
 
         return view('dashboard.index', [
             'pendingCases' => $pendingCases,
@@ -69,4 +68,10 @@ class HomeController extends Controller
             'totalcases' => $totalcases
         ]);
     }
+
+    public function approval()
+    {
+        return view('dashboard.approval');
+    }
+
 }

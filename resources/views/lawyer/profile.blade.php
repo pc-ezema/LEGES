@@ -1,4 +1,3 @@
-
 @extends('layouts.dashboard_frontend')
 
 @section('page-content')
@@ -44,6 +43,7 @@
                     <li class="nav-item"> <a class="nav-link @if($active_tab == 'settings') active show @endif nav-bg" data-bs-toggle="tab" href="#settings" role="tab">Settings</a> </li>
                     <li class="nav-item"> <a class="nav-link @if($active_tab == 'personalData') active show @endif nav-bg" data-bs-toggle="tab" href="#personalData" role="tab">Personal Data</a> </li>
                     <li class="nav-item"> <a class="nav-link @if($active_tab == 'documents') active show @endif nav-bg" data-bs-toggle="tab" href="#documents" role="tab">Documents</a></li>
+                    <li class="nav-item"> <a class="nav-link @if($active_tab == 'viewdocuments') active show @endif nav-bg" data-bs-toggle="tab" href="#viewdocuments" role="tab">View Documents</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -229,7 +229,7 @@
                                                 <label class="form-label">What is your location of practice?</label>
                                                 <input type="text" class="form-control" name="location_practice" value="{{Auth::user()->location_practice}}">
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label class="form-label">Area of practice</label>
                                                 <select id="area_practice" class="form-control" name="area_practice" required>
                                                     <option value="{{Auth::user()->area_practice}}">{{Auth::user()->area_practice}}</option>
@@ -243,7 +243,7 @@
                                             <div class="form-group">
                                                 <label class="form-label">Documents to submit</label>
                                                 <input type="text" class="form-control" name="documents" value="{{Auth::user()->documents}}">
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <!-- /.box-body -->
                                         @if (Auth::user()->progress_value >= 50)
@@ -262,7 +262,8 @@
                         </div>
                     </div>
                     <div class="tab-pane @if($active_tab == 'documents') active show @endif" id="documents" role="tabpanel">
-                        <div class="p-15">
+                        
+                               <div class="p-15">
                             <!-- Main content -->
                             <div class="col-12">
                                 <div class="box">
@@ -275,6 +276,7 @@
                                         <h6 class="box-subtitle">- A copy of curriculum vitae</h6>
                                     </div>
                                     <div class="box-body">
+                                        
                                         @if (Auth::user()->progress_value >= 100)
                                         <form id="document-submit" class="dropzone" method="POST" action="{{ route('lawyer.documents.update', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
                                             @csrf
@@ -308,6 +310,34 @@
                                         <button form="document-submit" type="submit" class="btn pull-left ajax" style="background: #ed4b0c; color: #fff">Save</button>
                                     </div>
                                     @endif
+                                </div>
+                            </div>
+                            <!-- /.content -->
+                        </div>
+                    </div>
+                    <div class="tab-pane @if($active_tab == 'viewdocuments') active show @endif" id="viewdocuments" role="tabpanel">
+                        
+                        <div class="p-15">
+                            <!-- Main content -->
+                            <div class="col-12">
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="box-title">Documents Uploaded</h4>
+                                    </div>
+                                    <div class="box-body">
+
+                                    @if(Auth::user()->documents_attached)
+                                        <div id="image-popups" class="row">
+                                            @foreach(explode(',', Auth::user()->documents_attached) as $image) 
+                                            <div class="col-sm-2 mb-5">
+                                                <a href="/storage/documents/{{$image}}" data-effect="mfp-zoom-in"><img src="/storage/documents/{{$image}}" class="img-fluid" alt="" />
+                                                    <br/>{{$loop->iteration}}</a>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
+
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.content -->

@@ -29,8 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('agreement')->nullable();
             $table->string('bar')->nullable();
             $table->string('location_practice')->nullable();
-            $table->string('area_practice')->nullable();
-            $table->string('documents')->nullable();
+            // $table->string('area_practice')->nullable();
+            // $table->string('documents')->nullable();
             $table->string('documents_attached')->nullable();
             $table->string('notification')->nullable();
             $table->string('progress_value')->default(0);

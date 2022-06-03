@@ -140,7 +140,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-lg-6">
+                                        <!-- <div class="col-12 col-lg-6">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text bg-transparent"><i class="ti-clipboard"></i></span>
@@ -151,7 +151,6 @@
                                                         <option value="Contract Drafting">Contract Drafting</option>
                                                         <option value="Contract Review">Contract Review</option>
                                                     </select>
-                                                    <!-- <input id="area_practice" placeholder="Area of Practice" class="form-control ps-15 bg-transparent @error('area_practice') is-invalid @enderror" type="text" name="area_practice" required value="{{ old('area_practice') }}" autofocus> -->
                                                     @error('area_practice')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -159,8 +158,8 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12 col-lg-6">
+                                        </div> -->
+                                        <!-- <div class="col-12 col-lg-6">
                                             <div class="form-group">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text bg-transparent"><i class="ti-file"></i></span>
@@ -172,7 +171,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row">
                                             <div class="col-12">
                                             <div class="checkbox">

@@ -1,31 +1,6 @@
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar position-relative">
-        <div class="user-profile bb-1 px-20 py-10">
-            <div class="d-block text-center">
-                <div class="image">
-                    @if(Auth::user()->avatar)
-                    <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
-                    @else
-                    <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
-                    @endif
-                </div>
-                <div class="info pt-15">
-                    <a class="px-20 fs-18 fw-500" href="#">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
-                </div>
-            </div>
-            <ul class="list-inline profile-setting mt-20 mb-0 d-flex justify-content-center gap-3">
-                @if(Auth::user()->account_type == 'Client')
-                <li><a href="{{ route('client.profile') }}" data-bs-toggle="tooltip" title="Profile"><i class="icon-User fs-24"><span class="path1"></span><span class="path2"></span></i></a></li>
-                @elseif(Auth::user()->account_type == 'Lawyer')
-                <li><a href="{{ route('lawyer.profile', 'settings') }}" data-bs-toggle="tooltip" title="Profile"><i class="icon-User fs-24"><span class="path1"></span><span class="path2"></span></i></a></li>
-                @endif
-                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" data-bs-toggle="tooltip" title="Logout"><i class="icon-Lock-overturning fs-24"><span class="path1"></span><span class="path2"></span></i></a></li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                    @csrf
-                </form>
-            </ul>
-        </div>
         
         @if(Auth::user()->account_type == 'Client')
         <div class="multinav">
@@ -94,7 +69,7 @@
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
                             <span>Cases</span>
                             <span class="pull-right-container">
                             <i class="fa fa-angle-right pull-right"></i>
@@ -131,5 +106,20 @@
             </div>
         </div>
         @endif
+
+        <div class="user-profile bb-1 px-20 py-10">
+            <div class="d-block text-center">
+                <div class="image">
+                    @if(Auth::user()->avatar)
+                    <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-l bg-primary-light rounded100" width="50px" alt="User Image">
+                    @else
+                    <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-l bg-primary-light rounded100" width="50px" alt="User Image">
+                    @endif
+                </div>
+                <div class="info pt-15">
+                    <a class="px-20 fs-14 fw-500" href="#">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
+                </div>
+            </div>
+        </div>
     </section>
 </aside>

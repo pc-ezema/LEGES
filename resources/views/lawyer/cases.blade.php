@@ -37,7 +37,6 @@
 										<th>Cases ID</th>
 										<th>Client Name</th>
 										<th>Case Type</th>
-										<th>Time Limit</th>
 										<th>Amount</th>
 										<th>Status</th>
 										<th>Date Added</th>
@@ -57,7 +56,6 @@
 										<td>{{$case->case_id}}</td>
 										<td>{{$case->first_name}} {{$case->last_name}}</td>
 										<td>{{$case->type_of_case}}</td>
-										<td>{{$case->time_limit}}days</td>
 										<td>₦{{number_format($case->amount, 2)}}</td>
 										<td>
                                             @if($case->status == 'Pending')
@@ -85,12 +83,6 @@
 																<div class="form-group">
 																	<label class="form-label">Type of Case</label>
 																	<input type="text" class="form-control" value="{{$case->type_of_case}}" readonly>
-																</div>
-															</div>
-															<div class="col-12">
-																<div class="form-group">
-																	<label class="form-label">Time Limit</label>
-																	<input type="text" class="form-control" placeholder="{{$case->time_limit}}days" readonly>
 																</div>
 															</div>
 														</div>

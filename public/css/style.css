@@ -21316,7 +21316,8 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
 .sidebar {
   padding-bottom: 10px; }
   .sidebar .user-profile {
-    border-bottom-color: #ebedf3 !important; }
+    border-top: 1px solid #ebedf3 !important;
+    border-bottom: 1px solid #ebedf3 !important; }
 
 .sidebar-form input:focus {
   border-color: transparent; }
@@ -21324,7 +21325,7 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
 .sidebar-menu {
   list-style: none;
   margin: 0 0px;
-  padding: 10px 10px 30px 10px; }
+  padding: 10px 10px 10px 10px; }
   .sidebar-menu > li {
     position: relative;
     margin: 5px 0px;
@@ -22008,7 +22009,7 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
 
 @media (min-width: 768px) {
   .fixed .multinav {
-    position: fixed;
+    /* position: fixed; */
     width: 19.29rem;
     padding-bottom: 0;
     height: calc(100% - 290px); }

@@ -9,13 +9,13 @@
 		<div class="content-header">
 			<div class="d-flex align-items-center">
 				<div class="me-auto">
-					<h4 class="page-title">Profile</h4>
+					<h4 class="page-title">Case</h4>
 					<div class="d-inline-block align-items-center">
 						<nav>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="/home"><i class="mdi mdi-home-outline"></i></a></li>
 								<li class="breadcrumb-item" aria-current="page">Page</li>
-								<li class="breadcrumb-item active" aria-current="page">Profile</li>
+								<li class="breadcrumb-item active" aria-current="page">Create Case</li>
 							</ol>
 						</nav>
 					</div>
@@ -53,21 +53,13 @@
                                     <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Type of Case</label>
-                                        <input type="text" class="form-control" value="Advisory Services" name="type_of_case" readonly>
+                                        <input type="text" class="form-control" value="{{$service->name}}" name="type_of_case" readonly>
                                     </div>
                                     </div>
                                     <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label">Time Limit</label>
-                                        <input type="text" class="form-control" pleaseholder="Enter Time Limit" name="time_limit">
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                    <div class="form-group">
                                         <label class="form-label">Amount</label>
-                                        <input type="text" class="form-control" placeholder="Enter Amount" name="amount">
+                                        <input type="text" class="form-control" value="{{$service->amount}}" name="amount" readonly>
                                     </div>
                                     </div>
                                 </div>

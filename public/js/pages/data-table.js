@@ -19,6 +19,12 @@ $(function () {
 	
 	$('#example').DataTable( {
 		dom: 'Bfrtip',
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false,
 		buttons: [
 			'copy', 'csv', 'excel', 'pdf', 'print'
 		]

@@ -34,7 +34,7 @@
                 <!-- Notifications -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="waves-effect waves-light dropdown-toggle btn-primary-light" data-bs-toggle="dropdown" title="Notifications">
-                        <i class="icon-Notification"><span class="path1"></span><span class="path2"></span></i>
+                        <i class="fa fa-bell"><span class="path1"></span><span class="path2"></span></i>
                     </a>
                     <ul class="dropdown-menu animated bounceIn">
                         <li class="header">

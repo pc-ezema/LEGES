@@ -5,16 +5,16 @@
             <div class="d-block text-center">
                 <div class="image">
                     @if(Auth::user()->avatar)
-                    <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
+                    <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-xl bg-primary-light rounded100" alt="User Image">
                     @else
-                    <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xxl bg-primary-light rounded100" alt="User Image">
+                    <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-xl bg-primary-light rounded100" alt="User Image">
                     @endif
                 </div>
                 <div class="info pt-15">
-                    <a class="px-20 fs-18 fw-500" href="#">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
+                    <a class="px-20 fs-14 fw-500" href="#">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
                 </div>
             </div>
-            <ul class="list-inline profile-setting mt-20 mb-0 d-flex justify-content-center gap-3">
+            <ul class="list-inline profile-setting mt-10 mb-0 d-flex justify-content-center gap-3">
                 <li><a href="{{ route('admin.profile') }}" data-bs-toggle="tooltip" title="Profile"><i class="icon-User fs-24"><span class="path1"></span><span class="path2"></span></i></a></li>
                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" data-bs-toggle="tooltip" title="Logout"><i class="icon-Lock-overturning fs-24"><span class="path1"></span><span class="path2"></span></i></a></li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -33,31 +33,50 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('client.services') }}" class="ajax">
-                            <i class="icon-Hummer"><span class="path1"></span><span class="path2"></span></i>
-                            <span>Services</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('client.case.details') }}" class="ajax">
+                    <li class="treeview">
+                        <a href="#">
                             <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
-                            <span>Cases Details</span>
+                            <span>Users</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('admin.clients') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Clients</a></li>
+                            <li><a href="{{ route('admin.lawyers') }}" class="ajax"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Lawyers</a></li>
+                        </ul>
+                    </li>	
+                    <li>
+                        <a href="{{route('admin.cases')}}" class="ajax">
+                            <i class="icon-Hummer"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Cases</span>
                         </a>
                     </li>	
                     <li>
+                        <a href="{{route('admin.services')}}" class="ajax">
+                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Services</span>
+                        </a>
+                    </li>
+                    <!-- <li>
                         <a href="/message" class="ajax">
                             <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
                             <span>Messages</span>
                         </a>
+                    </li> -->
+                    <li>
+                        <a href="/message" class="ajax">
+                            <i class="fa fa-bell" style="font-size: 1.3rem"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Notifications</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ route('client.transactions') }}" class="ajax">
+                        <a href="{{ route('admin.transactions') }}" class="ajax">
                             <i class="icon-Money"><span class="path1"></span><span class="path2"></span></i>
                             <span>Transactions</span>
                         </a>
                     </li>
-                    <li class="header">Settings</li>
+                    <!-- <li class="header">Settings</li>
                     <li>
                         <a href="{{ route('client.profile') }}" class="ajax">
                             <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
@@ -72,7 +91,7 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                         </form>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

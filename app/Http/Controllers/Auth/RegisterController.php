@@ -72,8 +72,8 @@ class RegisterController extends Controller
             $this->validate(request(), array(
                 'bar' => ['required', 'string', 'max:255'],
                 'location_practice' => ['required', 'string', 'max:255'],
-                'area_practice' => ['required', 'string', 'max:255'],
-                'documents' => ['required', 'string', 'max:255'],
+                // 'area_practice' => ['required', 'string', 'max:255'],
+                // 'documents' => ['required', 'string', 'max:255'],
             ));
 
             $user = User::create([
@@ -86,8 +86,8 @@ class RegisterController extends Controller
                 'agreement' => $data['agreement'],
                 'bar' => $data['bar'],
                 'location_practice' => $data['location_practice'],
-                'area_practice' => $data['area_practice'],
-                'documents' => $data['documents'],
+                // 'area_practice' => $data['area_practice'],
+                // 'documents' => $data['documents'],
                 'progress_value' => 15,
             ]);
 
@@ -103,7 +103,7 @@ class RegisterController extends Controller
                 'gender' => ['required', 'string', 'max:255'],
                 'phone_number' => ['required', 'numeric'],
             ));
-            return User::create([
+            $user = User::create([
                 'account_type' => $data['account_type'],
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -116,6 +116,13 @@ class RegisterController extends Controller
                 'status' => 'Approved',
                 'approved_at' => now()
             ]);
+
+            $admin = User::where('account_type', 'Administrator')->first();
+            if ($admin) {
+                $admin->notify(new NewUser($user));
+            }
+
+            return $user;
         }
     }
 }

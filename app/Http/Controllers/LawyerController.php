@@ -43,7 +43,8 @@ class LawyerController extends Controller
         }
     }
 
-    public function profile_picture($id, Request $request) {
+    public function profile_picture($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'avatar' => 'required|mimes:jpeg,png,jpg',
@@ -77,7 +78,8 @@ class LawyerController extends Controller
         }
     }
 
-    public function password($id, Request $request) {
+    public function password($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'new_password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -107,7 +109,8 @@ class LawyerController extends Controller
         }
     }
 
-    public function personal_data($id, Request $request) {
+    public function personal_data($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'first_name' => ['required','string', 'max:255'],
@@ -117,8 +120,8 @@ class LawyerController extends Controller
             'gender' => ['required','string', 'max:255'],
             'bar' => ['required','string', 'max:255'],
             'location_practice' => ['required', 'string', 'max:255'],
-            'area_practice' => ['required', 'string', 'max:255'],
-            'documents' => ['required', 'string', 'max:255']
+            // 'area_practice' => ['required', 'string', 'max:255'],
+            // 'documents' => ['required', 'string', 'max:255']
         ]);
 
         //Find User
@@ -138,8 +141,8 @@ class LawyerController extends Controller
                 $profile->bio = request()->bio;
                 $profile->bar = request()->bar;
                 $profile->location_practice = request()->location_practice;
-                $profile->area_practice = request()->area_practice;
-                $profile->documents = request()->documents;
+                // $profile->area_practice = request()->area_practice;
+                // $profile->documents = request()->documents;
                 $profile->progress_value += 35;
                 $profile->save();
 
@@ -156,7 +159,8 @@ class LawyerController extends Controller
         }
     }
 
-    public function personal_data_update($id, Request $request) {
+    public function personal_data_update($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'first_name' => ['required','string', 'max:255'],
@@ -166,8 +170,8 @@ class LawyerController extends Controller
             'gender' => ['required','string', 'max:255'],
             'bar' => ['required','string', 'max:255'],
             'location_practice' => ['required', 'string', 'max:255'],
-            'area_practice' => ['required', 'string', 'max:255'],
-            'documents' => ['required', 'string', 'max:255']
+            // 'area_practice' => ['required', 'string', 'max:255'],
+            // 'documents' => ['required', 'string', 'max:255']
         ]);
 
         //Find User
@@ -186,8 +190,8 @@ class LawyerController extends Controller
             $profile->bio = request()->bio;
             $profile->bar = request()->bar;
             $profile->location_practice = request()->location_practice;
-            $profile->area_practice = request()->area_practice;
-            $profile->documents = request()->documents;
+            // $profile->area_practice = request()->area_practice;
+            // $profile->documents = request()->documents;
             $profile->save();
 
             return redirect()->route('lawyer.profile', 'documents')->with([
@@ -202,7 +206,8 @@ class LawyerController extends Controller
         }
     }
 
-    public function documents($id, Request $request) {
+    public function documents($id, Request $request) 
+    {
         //Validate Request
         $this->validate($request, [
             'documents.*' => 'required|mimes:jpeg,png,jpg,docx,pdf',
@@ -261,7 +266,8 @@ class LawyerController extends Controller
         }
     }
 
-    public function documents_update($id, Request $request){
+    public function documents_update($id, Request $request)
+    {
         //Validate Request
         $this->validate($request, [
             'documents.*' => 'required|mimes:jpeg,png,jpg,docx,pdf',
@@ -321,10 +327,7 @@ class LawyerController extends Controller
 
     public function cases()
     {
-        $user = User::latest()->where('id', Auth::user()->id)->first();
-
-        $cases = UserCase::latest()->where('type_of_case', $user->area_practice)
-                                    ->where('payment', true)
+        $cases = UserCase::latest()->where('payment', true)
                                     ->where('status', 'Pending')->get();
 
         return view('lawyer.cases', [
@@ -336,24 +339,13 @@ class LawyerController extends Controller
     {
         $user = User::latest()->where('id', Auth::user()->id)->first();
 
-        $cases = UserCase::latest()->where('type_of_case', $user->area_practice)
-                                    ->where('lawyer_id', $user->id)
+        $cases = UserCase::latest()->where('lawyer_id', $user->id)
                                     ->where('payment', true)
                                     ->where('status', '!=', 'Pending')->get();
 
         return view('lawyer.case_details', [
             'cases' => $cases
         ]);
-    }
-
-    public function messages()
-    {
-        return view('lawyer.messages');
-    }
-
-    public function services()
-    {
-        return view('dashboard.services');
     }
 
     public function case_request($id) {

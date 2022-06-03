@@ -21,7 +21,6 @@ class CreateUserCasesTable extends Migration
             $table->string('email');
             $table->string('case_id');
             $table->string('type_of_case');
-            $table->string('time_limit');
             $table->string('amount');
             $table->text('description');
             $table->string('lawyer_id')->nullable();
