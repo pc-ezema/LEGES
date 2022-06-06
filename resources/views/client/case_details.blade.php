@@ -137,7 +137,7 @@
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 															</div>
 															<div class="modal-body">
-																<p>Are you sure you want to delete this case?</p>
+																<p>Notice: Undergoing this action means that the case is completed and you accepted that authorization of payment should be made to the lawyer.</p>
 															</div>
 															<div class="modal-footer modal-footer-uniform">
 																<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
