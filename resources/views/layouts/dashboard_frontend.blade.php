@@ -79,7 +79,7 @@
     <script src="{{URL::asset('assets/icons/feather-icons/feather.min.js')}}"></script>
     <script src="https://use.fontawesome.com/633ef7b88d.js"></script>
     <script src="{{URL::asset('assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js')}}"></script>
-
+        
     <script src="{{URL::asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/dropzone/dropzone.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/PACE/pace.min.js')}}"></script>
@@ -92,8 +92,10 @@
 	<script src="{{URL::asset('assets/vendor_components/d3/d3_tooltip.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{URL::asset('assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_plugins/iCheck/icheck.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 
-    <!-- Law Firm App -->
+    <!-- Leges App -->
     <script src="{{URL::asset('js/template.js')}}"></script>
     <script src="{{URL::asset('js/pages/dashboard.js')}}"></script>
     <script src="{{URL::asset('js/pages/pace.js')}}"></script>
@@ -104,8 +106,9 @@
 	<script src="{{URL::asset('js/pages/app-ticket.js')}}"></script>
     <script src="{{URL::asset('js/pages/chart-widgets.js')}}"></script>
     <script src="{{URL::asset('js/pages/chartjs-int.js')}}"></script>
+    <script src="{{URL::asset('js/pages/mailbox.js')}}"></script>
+	<script src="{{URL::asset('js/pages/form-compose.js')}}"></script>
 
 </body>
 
-<!-- Mirrored from lawfirm-admin-template.multipurposethemes.com/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Jan 2022 06:12:17 GMT -->
-</html>
+<</html>

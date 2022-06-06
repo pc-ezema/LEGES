@@ -12,7 +12,7 @@
                 <div class="d-inline-block align-items-center">
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/home"><i class="mdi mdi-home-outline"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="mdi mdi-home-outline"></i></a></li>
                             <li class="breadcrumb-item" aria-current="page">Page</li>
                             <li class="breadcrumb-item active" aria-current="page">Lawyers</li>
                         </ol>
@@ -75,9 +75,31 @@
                                                        <button type="submit" class="waves-effect waves-light btn btn-danger-light btn-flat">Disapprove</button>
                                                     </form>    
                                                     @endif
-                                                    <button type="button" class="waves-effect waves-light btn btn-success-light btn-flat">View</button>
-                                                    <button type="button" class="waves-effect waves-light btn btn-info-light btn-flat">Message</button>
-                                                    <button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat">Delete</button>
+                                                    <a href="{{route('admin.view.lawyer', Crypt::encrypt($lawyer->id))}}" class="waves-effect waves-light btn btn-success-light btn-flat">View/Edit</a>
+                                                    <a href="{{route('admin.users.message', Crypt::encrypt($lawyer->id))}}" class="waves-effect waves-light btn btn-info-light btn-flat">Send Message</a>
+                                                    <button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat" data-bs-toggle="modal" data-bs-target="#delete-case-{{$lawyer->id}}">Delete</button>
+                                                    <!-- Modal -->
+                                                    <div class="modal center-modal fade" id="delete-case-{{$lawyer->id}}" tabindex="-1">
+                                                        <form method="Get" action="{{ route('admin.delete.lawyer', Crypt::encrypt($lawyer->id)) }}" enctype="multipart/form-data">
+                                                            @csrf 
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">{{$lawyer->first_name}} {{$lawyer->last_name}}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Are you sure you want to delete this lawyer?</p>
+                                                                </div>
+                                                                <div class="modal-footer modal-footer-uniform">
+                                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary float-end">Delete</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <!-- /.modal -->
                                                 </div>
                                             </div>
                                         </td>

@@ -33,6 +33,7 @@ Auth::routes(['verify' => true]);
 // Client & Lawyer
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/approval', 'HomeController@approval')->name('approval');
+Route::get('/notifications', 'HomeController@notifications')->name('notifications');
 
 Route::prefix('client/dashboard')->group(function () {
     Route::get('/services', 'ClientController@services')->name('client.services');
@@ -52,6 +53,8 @@ Route::prefix('client/dashboard')->group(function () {
 
     Route::get('/case/view/lawyer/{id}', 'ClientController@case_lawyer')->name('client.case.lawyer.view');
     Route::get('/transactions', 'ClientController@transactions')->name('client.transactions');
+    Route::get('/notifications', 'ClientController@notifications')->name('client.notifications');
+    Route::get('/notification/read/{id}', 'ClientController@read_notification')->name('client.read.notification');
 });
 
 Route::prefix('lawyer/dashboard')->group(function () {
@@ -67,20 +70,34 @@ Route::prefix('lawyer/dashboard')->group(function () {
     Route::post('/profile/personal-data/update/{id}', 'LawyerController@personal_data_update')->name('lawyer.personal-data.update');
     Route::post('/profile/documents/{id}', 'LawyerController@documents')->name('lawyer.documents');
     Route::post('/profile/documents/update/{id}', 'LawyerController@documents_update')->name('lawyer.documents.update');
-    
+    Route::get('/notifications', 'ClientController@notifications')->name('lawyer.notifications');
+    Route::get('/notification/read/{id}', 'ClientController@read_notification')->name('lawyer.read.notification');
 });
 
 // Admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/dashboard', 'AdminController@index')->name('dashboard');
     Route::get('/admin/lawyers', 'AdminController@lawyers')->name('admin.lawyers');
+    Route::get('/admin/view/lawyer/{id}', 'AdminController@view_lawyer')->name('admin.view.lawyer');
+    Route::post('admin/lawyer/password/{id}', 'AdminController@lawyer_password')->name('admin.lawyer.password');
+    Route::post('admin/lawyer/profile-picture/{id}', 'AdminController@lawyer_profile_picture')->name('admin.lawyer.profile-picture');
+    Route::get('/admin/delete/lawyer/{id}', 'AdminController@delete_lawyer')->name('admin.delete.lawyer');
     Route::get('/admin/clients', 'AdminController@clients')->name('admin.clients');
     Route::get('/admin/view/client/{id}', 'AdminController@view_client')->name('admin.view.client');
+    Route::post('admin/client/password/{id}', 'AdminController@client_password')->name('admin.client.password');
+    Route::post('admin/client/profile-picture/{id}', 'AdminController@client_profile_picture')->name('admin.client.profile-picture');
     Route::get('/admin/delete/client/{id}', 'AdminController@delete_client')->name('admin.delete.client');
     Route::get('/users/{user_id}/approve', 'AdminController@approve')->name('admin.users.approve');
     Route::get('/users/{user_id}/disapprove', 'AdminController@disapprove')->name('admin.users.disapprove'); 
+    Route::get('/users/{user_id}/message', 'AdminController@message')->name('admin.users.message');
+    Route::post('/users/{user_id}/send/message', 'AdminController@send_message')->name('admin.users.send.message');
     Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');  
+    Route::get('/admin/update/profile-picture/{id}', 'AdminController@update_profile_picture')->name('admin.profile.picture'); 
+    Route::get('/admin/update/password/{id}', 'AdminController@update_password')->name('admin.password'); 
+    Route::post('/admin/add', 'AdminController@add_admin')->name('add.admin');  
+    Route::get('/admin/delete/{id}', 'AdminController@delete_admin')->name('delete.admin'); 
     Route::get('/admin/transactions', 'AdminController@transactions')->name('admin.transactions');  
+    Route::get('/admin/notifications', 'AdminController@notifications')->name('admin.notifications');  
     Route::get('/admin/services', 'AdminController@services')->name('admin.services');
     Route::post('/admin/add/service', 'AdminController@add_service')->name('admin.add.service'); 
     Route::post('/admin/update/service/{id}', 'AdminController@update_service')->name('admin.update.service');  

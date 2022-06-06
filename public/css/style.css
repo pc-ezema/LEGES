@@ -22046,7 +22046,9 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
     position: fixed;
     width: 19.29rem;
     padding-bottom: 0;
-    height: calc(100% - 325px); } }
+    height: calc(100% - 325px); 
+  }
+}
 #chat-box-body {
   z-index: 9998;
   position: relative; }
@@ -32091,4 +32093,24 @@ img.away, img.busy, img.offline, img.online {
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 1;
+}
+
+@media (max-width: 767px) {
+  #desktop-display
+  {
+    display: none !important;
+  }
+  #mobile-display
+  {
+    display: block !important;
+  }
+  
+}
+#desktop-display
+{
+  display: block;
+}
+#mobile-display
+{
+  display: none;
 }

@@ -28,7 +28,7 @@
                 <!-- sidebar menu-->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li>
-                        <a href="/home">
+                        <a href="/admin/dashboard">
                             <i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>
                             <span>Dashboard</span>
                         </a>
@@ -65,7 +65,7 @@
                         </a>
                     </li> -->
                     <li>
-                        <a href="/message" class="ajax">
+                        <a href="{{route('admin.notifications')}}" class="ajax">
                             <i class="fa fa-bell" style="font-size: 1.3rem"><span class="path1"></span><span class="path2"></span></i>
                             <span>Notifications</span>
                         </a>

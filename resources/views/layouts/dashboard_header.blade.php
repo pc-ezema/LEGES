@@ -34,7 +34,7 @@
                 <!-- Notifications -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="waves-effect waves-light dropdown-toggle btn-primary-light" data-bs-toggle="dropdown" title="Notifications">
-                        <i class="fa fa-bell"><span class="path1"></span><span class="path2"></span></i>
+                        <i class="fa fa-bell"></i>
                     </a>
                     <ul class="dropdown-menu animated bounceIn">
                         <li class="header">
@@ -43,24 +43,35 @@
                                     <div>
                                         <h4 class="mb-0 mt-0">Notifications</h4>
                                     </div>
-                                    <div>
-                                        <a href="#" class="text-danger">Clear All</a>
-                                    </div>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu sm-scrol">
+                                @if($notifications->isEmpty()) 
                                 <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
+                                    <a>
+                                        <i class="fa fa-users text-info"></i>No Notification
                                     </a>
                                 </li>
+                                @else
+                                <li>
+                                    @foreach($notifications as $notification)
+                                    <a href="#" style="background: #f2f2f2">
+                                        <i class="fa fa-users text-info"></i>{{$notification->subject}}
+                                    </a>
+                                    @endforeach
+                                </li>
+                                @endif
                             </ul>
                         </li>
                         <li class="footer">
-                            <a href="#">View all</a>
+                            @if(Auth::user()->account_type == 'Client')
+                            <a href="{{route('client.notifications')}}">View all</a>
+                            @elseif(Auth::user()->account_type == 'Lawyer')
+                            <a href="{{route('lawyer.notifications')}}">View all</a>
+                            @endif
                         </li>
                     </ul>
                 </li>

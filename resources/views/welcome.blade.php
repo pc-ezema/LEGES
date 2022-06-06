@@ -20,7 +20,7 @@
                         esse consequatur blanditiis, atque illo delectus voluptate numquam nobis temporibus.</p>
                     @auth
                         @if(Auth::user()->account_type == "Administrator")
-                        <div class="btn-div"><a href="/admin/dashbboard" class="btn-register">Dashboard<span></span>
+                        <div class="btn-div"><a href="/admin/dashboard" class="btn-register">Dashboard<span></span>
                         <i class="fas fa-arrow-right"></i></a></div>
                         @else
                         <div class="btn-div"><a href="/home" class="btn-register">Dashboard<span></span>

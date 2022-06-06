@@ -12,7 +12,7 @@
                 <div class="d-inline-block align-items-center">
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/home"><i class="mdi mdi-home-outline"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="mdi mdi-home-outline"></i></a></li>
                             <li class="breadcrumb-item" aria-current="page">Page</li>
                             <li class="breadcrumb-item active" aria-current="page">Clients</li>
                         </ol>
@@ -57,7 +57,7 @@
                                             <div class="clearfix">
                                                 <div class="btn-group">
                                                     <a href="{{route('admin.view.client', Crypt::encrypt($client->id))}}" class="waves-effect waves-light btn btn-success-light btn-flat">View/Edit</a>
-                                                    <button type="button" class="waves-effect waves-light btn btn-info-light btn-flat">Message</button>
+                                                    <a href="{{route('admin.users.message', Crypt::encrypt($client->id))}}" class="waves-effect waves-light btn btn-info-light btn-flat">Send Message</a>
                                                     <button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat" data-bs-toggle="modal" data-bs-target="#delete-case-{{$client->id}}">Delete</button>
                                                     <!-- Modal -->
                                                     <div class="modal center-modal fade" id="delete-case-{{$client->id}}" tabindex="-1">

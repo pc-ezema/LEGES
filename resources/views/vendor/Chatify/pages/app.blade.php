@@ -7,7 +7,7 @@
     <title>{{ config('chatify.name') }}</title>
 
     {{-- Meta tags --}}
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="id" content="{{ $id }}">
     <meta name="type" content="{{ $type }}">
     <meta name="messenger-color" content="{{ $messengerColor }}">
@@ -41,7 +41,69 @@
         {{-- Messenger Color Style--}}
         @include('Chatify::layouts.messengerColor')
         <!-- Dashboard Header -->
-        @includeIf('layouts.dashboard_header')
+        <header class="main-header">
+            <div class="d-flex align-items-center logo-box justify-content-start">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <!-- logo-->
+                    <!-- <div class="logo-mini w-50">
+                <span class="light-logo"><img src="{{URL::asset('images/favicon.png')}}" alt="logo"></span>
+            </div> -->
+                    <div class="logo-lg">
+                        <span class="light-logo"><img src="{{URL::asset('images/logo.png')}}" alt="logo" width="110px"></span>
+                    </div>
+                </a>
+            </div>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <div class="app-menu">
+                    <ul class="header-megamenu nav">
+                        <li class="btn-group nav-item">
+                            <a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
+                                <i class="icon-Menu"><span class="path1"></span><span class="path2"></span></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navbar-custom-menu r-side">
+                    <ul class="nav navbar-nav">
+                        <li class="btn-group nav-item d-lg-inline-flex d-none">
+                            <a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link full-screen btn-primary-light" title="Full Screen">
+                                <i class="icon-Position"></i>
+                            </a>
+                        </li>
+                        <!-- Notifications -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="waves-effect waves-light dropdown-toggle btn-primary-light" data-bs-toggle="dropdown" title="Notifications">
+                                <i class="fa fa-bell"><span class="path1"></span><span class="path2"></span></i>
+                            </a>
+                            <ul class="dropdown-menu animated bounceIn">
+                                <li class="header">
+                                    <div class="p-20">
+                                        <div class="flexbox">
+                                            <div>
+                                                <h4 class="mb-0 mt-0">Notifications</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu sm-scrol">
+                                        
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="{{route('client.notifications')}}">View all</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
         <!-- End Dashboard Header -->
 
         <!-- Dashboard Sidebar -->
@@ -66,45 +128,45 @@
                                 </nav>
                             </div>
                         </div>
-                        
+
                     </div>
-                </div>	
+                </div>
                 <!-- Main content -->
                 <section class="content">
                     <div class="row">
                         <div class="col-12">
                             <div class="box">
                                 <!-- <div class="box-body"> -->
-                                    <div class="messenger">
-                                        {{-- ----------------------Users/Groups lists side---------------------- --}}
-                                        <div class="messenger-listView">
-                                            {{-- Header and search bar --}}
-                                            <div class="m-header">
-                                                <nav>
-                                                    <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">Messages</span> </a>
-                                                    {{-- header buttons --}}
-                                                    <nav class="m-header-right">
-                                                        <a href="#"><i class="fas fa-cog settings-btn"></i></a>
-                                                        <a href="#" class="listView-x"><i class="fas fa-times"></i></a>
-                                                    </nav>
+                                <div class="messenger">
+                                    {{-- ----------------------Users/Groups lists side---------------------- --}}
+                                    <div class="messenger-listView">
+                                        {{-- Header and search bar --}}
+                                        <div class="m-header">
+                                            <nav>
+                                                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">Messages</span> </a>
+                                                {{-- header buttons --}}
+                                                <nav class="m-header-right">
+                                                    <a href="#"><i class="fas fa-cog settings-btn"></i></a>
+                                                    <a href="#" class="listView-x"><i class="fas fa-times"></i></a>
                                                 </nav>
-                                                {{-- Search input --}}
-                                                <input type="text" class="messenger-search" placeholder="Search" />
-                                                {{-- Tabs --}}
-                                                <div class="messenger-listView-tabs">
-                                                    <a href="#" @if($type == 'user') class="active-tab" @endif data-view="users">
-                                                        @if(Auth::user()->account_type == 'Client')
-                                                            <span class="far fa-user"></span> Lawyers
-                                                        @elseif(Auth::user()->account_type == 'Lawyer')
-                                                            <span class="far fa-user"></span> Clients
-                                                        @endif
-                                                    </a>
-                                                    <!-- <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
+                                            </nav>
+                                            {{-- Search input --}}
+                                            <input type="text" class="messenger-search" placeholder="Search" />
+                                            {{-- Tabs --}}
+                                            <div class="messenger-listView-tabs">
+                                                <a href="#" @if($type=='user' ) class="active-tab" @endif data-view="users">
+                                                    @if(Auth::user()->account_type == 'Client')
+                                                    <span class="far fa-user"></span> Lawyers
+                                                    @elseif(Auth::user()->account_type == 'Lawyer')
+                                                    <span class="far fa-user"></span> Clients
+                                                    @endif
+                                                </a>
+                                                <!-- <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
                                                         <span class="fas fa-users"></span> Groups</a> -->
-                                                </div>
                                             </div>
-                                            {{-- tabs and lists --}}
-                                            <div class="m-body contacts-container">
+                                        </div>
+                                        {{-- tabs and lists --}}
+                                        <div class="m-body contacts-container">
                                             {{-- Lists [Users/Group] --}}
                                             {{-- ---------------- [ User Tab ] ---------------- --}}
                                             <div class="@if($type == 'user') show @endif messenger-tab users-tab app-scroll" data-view="users">
@@ -131,75 +193,75 @@
                                                     </p>
                                                 </div> -->
 
-                                                {{-- ---------------- [ Search Tab ] ---------------- --}}
+                                            {{-- ---------------- [ Search Tab ] ---------------- --}}
                                             <div class="messenger-tab search-tab app-scroll" data-view="search">
-                                                    {{-- items --}}
-                                                    <p class="messenger-title">Search</p>
-                                                    <div class="search-records">
-                                                        <p class="message-hint center-el"><span>Type to search..</span></p>
-                                                    </div>
+                                                {{-- items --}}
+                                                <p class="messenger-title">Search</p>
+                                                <div class="search-records">
+                                                    <p class="message-hint center-el"><span>Type to search..</span></p>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        {{-- ----------------------Messaging side---------------------- --}}
-                                        <div class="messenger-messagingView">
-                                            {{-- header title [conversation name] amd buttons --}}
-                                            <div class="m-header m-header-messaging">
-                                                <nav class="chatify-d-flex chatify-justify-content-between chatify-align-items-center">
-                                                    {{-- header back button, avatar and user name --}}
-                                                    <div class="chatify-d-flex chatify-justify-content-between chatify-align-items-center">
-                                                        <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
-                                                        <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
-                                                        </div>
-                                                        <a href="#" class="user-name">{{ config('chatify.name') }}</a>
+                                    {{-- ----------------------Messaging side---------------------- --}}
+                                    <div class="messenger-messagingView">
+                                        {{-- header title [conversation name] amd buttons --}}
+                                        <div class="m-header m-header-messaging">
+                                            <nav class="chatify-d-flex chatify-justify-content-between chatify-align-items-center">
+                                                {{-- header back button, avatar and user name --}}
+                                                <div class="chatify-d-flex chatify-justify-content-between chatify-align-items-center">
+                                                    <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
+                                                    <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
                                                     </div>
-                                                    {{-- header buttons --}}
-                                                    <nav class="m-header-right">
-                                                        <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
-                                                        <!-- <a href="/home"><i class="fas fa-home"></i></a>
+                                                    <a href="#" class="user-name">{{ config('chatify.name') }}</a>
+                                                </div>
+                                                {{-- header buttons --}}
+                                                <nav class="m-header-right">
+                                                    <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
+                                                    <!-- <a href="/home"><i class="fas fa-home"></i></a>
                                                         <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a> -->
-                                                    </nav>
                                                 </nav>
-                                            </div>
-                                            {{-- Internet connection --}}
-                                            <div class="internet-connection">
-                                                <span class="ic-connected">Connected</span>
-                                                <span class="ic-connecting">Connecting...</span>
-                                                <span class="ic-noInternet">No internet access</span>
-                                            </div>
-                                            {{-- Messaging area --}}
-                                            <div class="m-body messages-container app-scroll">
-                                                <div class="messages">
-                                                    <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
-                                                </div>
-                                                {{-- Typing indicator --}}
-                                                <div class="typing-indicator">
-                                                    <div class="message-card typing">
-                                                        <p>
-                                                            <span class="typing-dots">
-                                                                <span class="dot dot-1"></span>
-                                                                <span class="dot dot-2"></span>
-                                                                <span class="dot dot-3"></span>
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                {{-- Send Message Form --}}
-                                                @include('Chatify::layouts.sendForm')
-                                            </div>
+                                            </nav>
                                         </div>
-                                        {{-- ---------------------- Info side ---------------------- --}}
-                                        <!-- <div class="messenger-infoView app-scroll">
+                                        {{-- Internet connection --}}
+                                        <div class="internet-connection">
+                                            <span class="ic-connected">Connected</span>
+                                            <span class="ic-connecting">Connecting...</span>
+                                            <span class="ic-noInternet">No internet access</span>
+                                        </div>
+                                        {{-- Messaging area --}}
+                                        <div class="m-body messages-container app-scroll">
+                                            <div class="messages">
+                                                <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
+                                            </div>
+                                            {{-- Typing indicator --}}
+                                            <div class="typing-indicator">
+                                                <div class="message-card typing">
+                                                    <p>
+                                                        <span class="typing-dots">
+                                                            <span class="dot dot-1"></span>
+                                                            <span class="dot dot-2"></span>
+                                                            <span class="dot dot-3"></span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            {{-- Send Message Form --}}
+                                            @include('Chatify::layouts.sendForm')
+                                        </div>
+                                    </div>
+                                    {{-- ---------------------- Info side ---------------------- --}}
+                                    <!-- <div class="messenger-infoView app-scroll">
                                             {{-- nav actions --}}
                                             <nav>
                                                 <a href="#"><i class="fas fa-times"></i></a>
                                             </nav>
                                             {!! view('Chatify::layouts.info')->render() !!}
                                         </div> -->
-                                    </div>
+                                </div>
 
-                                    @include('Chatify::layouts.modals')
+                                @include('Chatify::layouts.modals')
                                 <!-- </div> -->
                             </div>
                         </div>

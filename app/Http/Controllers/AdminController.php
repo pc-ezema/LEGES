@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CaseRequest;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -24,14 +25,255 @@ class AdminController extends Controller
 
     public function index() 
     {
-        return view('admin.dashboard');
+        $clients = User::latest()->where('account_type', 'Client')->get();
+        $lawyers = User::latest()->where('account_type', 'Lawyer')->get();
+        $completedcases = UserCase::latest()->where('status', 'Completed')->get();
+        $assignedcases = UserCase::latest()->where('status', 'Assigned')->get();
+        $pendingcases = UserCase::latest()->where('status', 'Pending')->get();
+
+        $recentclients = User::latest()->where('account_type', 'Client')->take(5)->get();
+        $recentlawyers = User::latest()->where('account_type', 'Lawyer')->take(5)->get();
+
+        return view('admin.dashboard',[
+            'clients' => $clients,
+            'lawyers' => $lawyers,
+            'completedcases' => $completedcases,
+            'assignedcases' => $assignedcases,
+            'pendingcases' => $pendingcases,
+            'recentclients' => $recentclients,
+            'recentlawyers' => $recentlawyers
+        ]);
     }
 
-    public function clients() {
+    public function profile() {
+        $admins = User::latest()->where('account_type', 'Administrator')
+                                ->where('first_name', '!=', 'Admin')
+                                ->where('last_name', '!=', 'Admin')->get();
+
+        return view('admin.profile',[
+            'admins' => $admins
+        ]);
+    }
+
+    public function update_profile_picture($id, Request $request) 
+    {
+        //Validate Request
+        $this->validate($request, [
+            'avatar' => 'required|mimes:jpeg,png,jpg',
+        ]);
+
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        //Validate User
+        if (request()->hasFile('avatar')) {
+            $filename = request()->avatar->getClientOriginalName();
+            if($profile->avatar) {
+                Storage::delete('/public/users-avatar/'. $profile->avatar);
+            }
+            request()->avatar->storeAs('users-avatar', $filename, 'public');
+            $profile->avatar = $filename;
+            $profile->save();
+            
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Profile Picture Update Successfully!'
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Access denied!',
+            ]);
+        }
+    }
+
+    public function update_password($id, Request $request) 
+    {
+        //Validate Request
+        $this->validate($request, [
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        //Validate User
+        if ($profile) {
+            $profile->password = Hash::make(request()->new_password);
+            $profile->save();
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Password Updated Successfully!'
+            ]);
+
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Access denied!',
+            ]);
+        }
+    }
+
+    public function add_admin(Request $request)
+    {
+        //Validate Request
+        $this->validate($request, [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'user_name' => ['required', 'string', 'unique:users', 'alpha_dash', 'min:3', 'max:30'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = new User();
+        $user->account_type = 'Administrator';
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->user_name = $request->user_name;
+        $user->email_verified_at = now();
+        $user->password = Hash::make($request->password);
+        $user->status = 'Approved';
+        $user->approved_at = now();
+        $user->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Account Created Successfully!'
+        ]);
+
+    }
+
+    public function delete_admin($id)
+    {
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        if($profile->avatar) {
+            Storage::delete('/public/users-avatar/'. $profile->avatar);
+        }
+
+        $profile->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Account Deleted Successfully!'
+        ]);
+    }
+
+    public function clients() 
+    {
         $clients = User::latest()->where('account_type', 'Client')->get();
 
         return view('admin.clients', [
             'clients' => $clients
+        ]);
+    }
+
+    public function view_client($id)
+    {
+        $user_id = Crypt::decrypt($id);
+
+        $client = User::findOrFail($user_id);
+
+        return view('admin.view_client', [
+            'client' => $client
+        ]);
+    }
+
+    public function client_profile_picture($id, Request $request) 
+    {
+        //Validate Request
+        $this->validate($request, [
+            'avatar' => 'required|mimes:jpeg,png,jpg',
+        ]);
+
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        //Validate User
+        if (request()->hasFile('avatar')) {
+            $filename = request()->avatar->getClientOriginalName();
+            if($profile->avatar) {
+                Storage::delete('/public/users-avatar/'. $profile->avatar);
+            }
+            request()->avatar->storeAs('users-avatar', $filename, 'public');
+            $profile->avatar = $filename;
+            $profile->save();
+            
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Profile Picture Update Successfully!'
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Access denied!',
+            ]);
+        }
+    }
+
+    public function client_password($id, Request $request) 
+    {
+        //Validate Request
+        $this->validate($request, [
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        //Validate User
+        if ($profile) {
+            $profile->password = Hash::make(request()->new_password);
+            $profile->save();
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Password Updated Successfully!'
+            ]);
+
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Access denied!',
+            ]);
+        }
+    }
+
+    public function delete_client($id)
+    {
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        if($profile->avatar) {
+            Storage::delete('/public/users-avatar/'. $profile->avatar);
+        }
+
+        $profile->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Account Deleted Successfully!'
         ]);
     }
 
@@ -44,8 +286,101 @@ class AdminController extends Controller
         ]);
     }
 
-    public function profile() {
-        return view('admin.profile');
+    public function view_lawyer($id)
+    {
+        $user_id = Crypt::decrypt($id);
+
+        $lawyer = User::findOrFail($user_id);
+
+        return view('admin.view_lawyer', [
+            'lawyer' => $lawyer
+        ]);
+    }
+
+    public function lawyer_profile_picture($id, Request $request) 
+    {
+        //Validate Request
+        $this->validate($request, [
+            'avatar' => 'required|mimes:jpeg,png,jpg',
+        ]);
+
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        //Validate User
+        if (request()->hasFile('avatar')) {
+            $filename = request()->avatar->getClientOriginalName();
+            if($profile->avatar) {
+                Storage::delete('/public/users-avatar/'. $profile->avatar);
+            }
+            request()->avatar->storeAs('users-avatar', $filename, 'public');
+            $profile->avatar = $filename;
+            $profile->save();
+            
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Profile Picture Update Successfully!'
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Access denied!',
+            ]);
+        }
+    }
+
+    public function lawyer_password($id, Request $request) 
+    {
+        //Validate Request
+        $this->validate($request, [
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        //Validate User
+        if ($profile) {
+            $profile->password = Hash::make(request()->new_password);
+            $profile->save();
+
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Password Updated Successfully!'
+            ]);
+
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Access denied!',
+            ]);
+        }
+    }
+
+    public function delete_lawyer($id)
+    {
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        if($profile->avatar) {
+            Storage::delete('/public/users-avatar/'. $profile->avatar);
+        }
+
+        $profile->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Account Deleted Successfully!'
+        ]);
     }
 
     public function approve($user_id)
@@ -108,6 +443,7 @@ class AdminController extends Controller
         ]);
 
         $id = Crypt::decrypt($user_id);
+
         $user = User::where('email', request()->to)->first();
 
         $message = new Notification();
@@ -124,11 +460,12 @@ class AdminController extends Controller
         $data = array(
             'name' => $user->first_name,
             'email' => $user->email,
+            'account_type' => $user->account_type
         );
         
         /** Send message to the user */
         Mail::send('emails.notification', $data, function ($m) use ($data) {
-            $m->to($data['email'])->subject('Prime Parkland');
+            $m->to($data['email'])->subject('Leges');
         });
 
         return back()->with([
@@ -245,6 +582,15 @@ class AdminController extends Controller
         ]);
     }
 
+    public function notifications()
+    {
+        $notifications = Notification::latest()->get();
+
+        return view('admin.notifications',[
+            'notifications' => $notifications
+        ]);
+    }
+
     public function cases() 
     {
         $cases = UserCase::latest()->get();
@@ -266,10 +612,18 @@ class AdminController extends Controller
 
         $case = UserCase::findOrFail($id);
 
+        if($request->status == 'Pending') {
+            $caserequest = CaseRequest::where('user_id', $case->lawyer_id)->first();
+            $caserequest->status = 'Pending';
+            $caserequest->save();
+        }
+
         $case->status = $request->status;
         $case->description = $request->description;
+        $case->lawyer_id = null;
         $case->save();
 
+        
         return back()->with([
             'type' => 'success',
             'message' => 'Case Updated Successfully!'
@@ -283,7 +637,7 @@ class AdminController extends Controller
         $case = UserCase::findOrFail($id);
         Payment::findOrFail('case_id', $case->id)->first()->delete();
         UserCase::findOrFail($id)->delete();
-        
+
         return back()->with([
             'type' => 'success',
             'message' => 'Case Deleted Successfully!'

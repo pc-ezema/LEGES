@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Redirect;
 use App\UserCase;
 use App\CaseRequest;
+use App\Notification;
 
 class LawyerController extends Controller
 {
@@ -33,13 +34,15 @@ class LawyerController extends Controller
     public function profile($id)
     {
         $active_tab = $id;
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
 
         if($active_tab == 'settings') {
-            return view ('lawyer.profile', compact('active_tab'));
+            return view ('lawyer.profile', compact('active_tab', 'notifications'));
         } elseif($active_tab == 'personalData') {
-            return view ('lawyer.profile', compact('active_tab'));
+            return view ('lawyer.profile', compact('active_tab', 'notifications'));
         } elseif($active_tab == 'documents') {
-            return view ('lawyer.profile', compact('active_tab'));
+            return view ('lawyer.profile', compact('active_tab', 'notifications'));
         }
     }
 
@@ -60,9 +63,9 @@ class LawyerController extends Controller
         if (request()->hasFile('avatar')) {
             $filename = request()->avatar->getClientOriginalName();
             if($profile->avatar) {
-                Storage::delete('/public/avatars/'. $profile->avatar);
+                Storage::delete('/public/users-avatar/'. $profile->avatar);
             }
-            request()->avatar->storeAs('avatars', $filename, 'public');
+            request()->avatar->storeAs('users-avatar', $filename, 'public');
             $profile->avatar = $filename;
             $profile->save();
             
@@ -329,9 +332,12 @@ class LawyerController extends Controller
     {
         $cases = UserCase::latest()->where('payment', true)
                                     ->where('status', 'Pending')->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                    ->where('status', 'Unread')->get();
 
         return view('lawyer.cases', [
-            'cases' => $cases
+            'cases' => $cases,
+            'notifications' => $notifications
         ]);
     }
 
@@ -342,13 +348,17 @@ class LawyerController extends Controller
         $cases = UserCase::latest()->where('lawyer_id', $user->id)
                                     ->where('payment', true)
                                     ->where('status', '!=', 'Pending')->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
 
         return view('lawyer.case_details', [
-            'cases' => $cases
+            'cases' => $cases,
+            'notifications' => $notifications
         ]);
     }
 
-    public function case_request($id) {
+    public function case_request($id) 
+    {
         $caseid = Crypt::decrypt($id);
 
         $caseRequest = CaseRequest::latest()->get();
@@ -391,5 +401,30 @@ class LawyerController extends Controller
 
             }
         }
+    }
+
+    public function notifications() 
+    {
+        $allnotifications = Notification::latest()->where('to', Auth::user()->email)->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+
+        return view('client.notifications', [
+            'allnotifications' => $allnotifications,
+            'notifications' => $notifications
+        ]);
+    }
+
+    public function read_notification($id)
+    {
+        $Finder = Crypt::decrypt($id);
+
+        $notification = Notification::findorfail($Finder);
+
+        $notification->status = 'Read';
+        $notification->save();
+
+        return back();
+
     }
 }

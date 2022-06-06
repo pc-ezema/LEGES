@@ -90,8 +90,12 @@
 	<script src="{{URL::asset('assets/vendor_components/chart.js-master/Chart.min.js')}}"></script>
 	<script src="{{URL::asset('assets/vendor_components/d3/d3.min.js')}}"></script>
 	<script src="{{URL::asset('assets/vendor_components/d3/d3_tooltip.js')}}"></script>
-
-    <!-- Law Firm App -->
+    <script src="{{URL::asset('assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{URL::asset('assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_plugins/iCheck/icheck.js')}}"></script>
+	<script src="{{URL::asset('assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+    
+    <!-- Leges App -->
     <script src="{{URL::asset('js/template.js')}}"></script>
     <script src="{{URL::asset('js/pages/dashboard.js')}}"></script>
     <script src="{{URL::asset('js/pages/pace.js')}}"></script>
@@ -102,6 +106,8 @@
 	<script src="{{URL::asset('js/pages/app-ticket.js')}}"></script>
     <script src="{{URL::asset('js/pages/chart-widgets.js')}}"></script>
     <script src="{{URL::asset('js/pages/chartjs-int.js')}}"></script>
+    <script src="{{URL::asset('js/pages/mailbox.js')}}"></script>
+	<script src="{{URL::asset('js/pages/form-compose.js')}}"></script>
 
 </body>
 

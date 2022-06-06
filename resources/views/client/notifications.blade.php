@@ -1,4 +1,4 @@
-@extends('layouts.admin_dashboard_frontend')
+@extends('layouts.dashboard_frontend')
 
 @section('page-content')
 <!-- Content Wrapper. Contains page content -->
@@ -8,11 +8,11 @@
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="me-auto">
-                    <h4 class="page-title">Users Notifications</h4>
+                    <h4 class="page-title">Notifications</h4>
                     <div class="d-inline-block align-items-center">
                         <nav>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="mdi mdi-home-outline"></i></a></li>
+                                <li class="breadcrumb-item"><a href="/home"><i class="mdi mdi-home-outline"></i></a></li>
                                 <li class="breadcrumb-item" aria-current="page">Page</li>
                                 <li class="breadcrumb-item active" aria-current="page">Notifications</li>
                             </ol>
@@ -41,13 +41,13 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <tbody>
-                                            @foreach($notifications as $notification)
+                                            @foreach($allnotifications as $notification)
                                                 @if($notification->status == 'Unread')
                                                 <tr style="background: #f2f2f2;">
                                                     <td><input type="checkbox"></td>
                                                     <td>
                                                         <p class="mailbox-name mb-0 fs-16 fw-600">{{$notification->from}}</p>
-                                                        <a class="mailbox-subject" href="#"><b>{{$notification->subject}}</b> - {{$notification->message}}</a>
+                                                        <a class="mailbox-subject" href="{{route('client.read.notification', Crypt::encrypt($notification->id))}}"><b>{{$notification->subject}}</b> - {{$notification->message}}</a>
                                                     </td>
                                                     <td class="mailbox-date">{{$notification->updated_at->toTimeString()}}</td>
                                                 </tr>
@@ -77,7 +77,7 @@
             </div>
         </section>
         <!-- /.content -->
-</div>
+    </div>
 </div>
 <!-- /.content-wrapper -->
 @endsection

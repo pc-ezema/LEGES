@@ -10,6 +10,7 @@ use App\User;
 use Paystack;
 use App\Payment;
 use App\UserCase;
+use App\Notification;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
 use App\CaseRequest;
@@ -27,7 +28,7 @@ class ClientController extends Controller
     {
         $this->middleware(['auth','verified']);
     }
-
+    
     /**
      * Show the application dashboard.
      *
@@ -35,7 +36,12 @@ class ClientController extends Controller
      */
     public function profile()
     {
-        return view('client.profile');
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+
+        return view('client.profile',[
+            'notifications' => $notifications
+        ]);
     }
 
     public function profile_picture($id, Request $request) 
@@ -145,21 +151,29 @@ class ClientController extends Controller
 
     public function services()
     {
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+
         $services = Service::latest()->get();
 
         return view('client.services',[
-            'services' => $services
+            'services' => $services,
+            'notifications' => $notifications
         ]);
     }
 
     public function services_create_case($id)
     {
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+
         $id = Crypt::decrypt($id);
 
         $service = Service::findOrFail($id);
 
         return view('client.service_create_case',[
-            'service' => $service
+            'service' => $service,
+            'notifications' => $notifications
         ]);
     }
 
@@ -215,8 +229,12 @@ class ClientController extends Controller
         //Case
         $user_case = UserCase::findorfail($caseFinder);
 
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+
         return view ('client.payment', [
-            'user_case' => $user_case
+            'user_case' => $user_case,
+            'notifications' => $notifications
         ]);
     }
 
@@ -275,7 +293,7 @@ class ClientController extends Controller
             return back()->with([
                 'type' => 'danger',
                 'icon' => 'mdi-block-helper',
-                'message' => 'Payment failed. Response not ok'
+                'message' => 'Payment failed. Try again.'
             ]); 
         }
     }
@@ -348,9 +366,12 @@ class ClientController extends Controller
     public function case_details() 
     {
         $cases = UserCase::latest()->where('user_id', Auth::user()->id)->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
 
         return view('client.case_details', [
-            'cases' => $cases
+            'cases' => $cases,
+            'notifications' => $notifications
         ]);
     }
 
@@ -376,10 +397,13 @@ class ClientController extends Controller
 
         $caseRequests = CaseRequest::latest()->where('case_id', $caseid)->get();
         $case = UserCase::latest()->where('id', $caseid)->first();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
 
         return view('client.case_request', [
             'caseRequests' => $caseRequests,
-            'case' => $case
+            'case' => $case,
+            'notifications' => $notifications
         ]);
     }
 
@@ -412,19 +436,50 @@ class ClientController extends Controller
         $user = User::findorfail($user_id);
         $lawyerCompletedCases = UserCase::latest()->where('lawyer_id', $user->id)
                                     ->where('status', 'Completed')->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                    ->where('status', 'Unread')->get();
 
         return view('client.view_lawyer', [
             'user' => $user,
-            'lawyerCompletedCases' => $lawyerCompletedCases
+            'lawyerCompletedCases' => $lawyerCompletedCases,
+            'notifications' => $notifications
         ]);
     }
 
     public function transactions() 
     {
         $transactions = Payment::latest()->where('email', Auth::user()->email)->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
 
         return view('client.transactions', [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'notifications' => $notifications
         ]);
+    }
+
+    public function notifications() 
+    {
+        $allnotifications = Notification::latest()->where('to', Auth::user()->email)->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+
+        return view('client.notifications', [
+            'allnotifications' => $allnotifications,
+            'notifications' => $notifications
+        ]);
+    }
+
+    public function read_notification($id)
+    {
+        $Finder = Crypt::decrypt($id);
+
+        $notification = Notification::findorfail($Finder);
+
+        $notification->status = 'Read';
+        $notification->save();
+
+        return back();
+
     }
 }

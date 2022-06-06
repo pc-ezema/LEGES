@@ -1,7 +1,20 @@
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar position-relative">
-        
+        <div class="user-profile bb-1 px-20 py-10" id="mobile-display">
+            <div class="d-block text-center">
+                <div class="image">
+                    @if(Auth::user()->avatar)
+                    <img src="/storage/users-avatar/{{Auth::user()->avatar}}" class="avatar avatar-l bg-primary-light rounded100" width="50px" alt="User Image">
+                    @else
+                    <img src="{{URL::asset('images/avatar.jpg')}}" class="avatar avatar-l bg-primary-light rounded100" width="50px" alt="User Image">
+                    @endif
+                </div>
+                <div class="info pt-15">
+                    <a class="px-20 fs-14 fw-500" href="#">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
+                </div>
+            </div>
+        </div>
         @if(Auth::user()->account_type == 'Client')
         <div class="multinav">
             <div class="multinav-scroll" style="height: 100%;">
@@ -107,7 +120,7 @@
         </div>
         @endif
 
-        <div class="user-profile bb-1 px-20 py-10">
+        <div class="user-profile bb-1 px-20 py-10" id="desktop-display">
             <div class="d-block text-center">
                 <div class="image">
                     @if(Auth::user()->avatar)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UserCase;
 use App\Payment;
+use App\Notification;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,6 +56,9 @@ class HomeController extends Controller
 
         $totalcases = UserCase::latest()->where('payment', true)->where('status', 'Pending')->get();
 
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+        
         return view('dashboard.index', [
             'pendingCases' => $pendingCases,
             'completedCases' => $completedCases,
@@ -65,7 +69,8 @@ class HomeController extends Controller
             'lawyerCompletedCases' => $lawyerCompletedCases,
             'lawyerAssignedCases' => $lawyerAssignedCases,
             'lawyerPendingCases' => $lawyerPendingCases,
-            'totalcases' => $totalcases
+            'totalcases' => $totalcases,
+            'notifications' => $notifications
         ]);
     }
 
