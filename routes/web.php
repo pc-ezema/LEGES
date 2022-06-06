@@ -43,6 +43,7 @@ Route::prefix('client/dashboard')->group(function () {
     Route::get('/case/confirm/{id}', 'ClientController@case_confirm')->name('client.confirm.case');
     Route::get('/case/payment/{id}', 'ClientController@redirectToGateway')->name('client.case.payment');
     Route::get('/case/delete/{id}', 'ClientController@case_delete')->name('client.case.delete');
+    Route::post('/case/pay/lawyer/{id}', 'ClientController@pay_lawyer')->name('client.case.pay.lawyer');
     Route::get('/payment/callback', 'ClientController@handleGatewayCallback');
     Route::get('/profile', 'ClientController@profile')->name('client.profile');
     Route::post('/profile/profile-picture/{id}', 'ClientController@profile_picture')->name('client.profile-picture');

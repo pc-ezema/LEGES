@@ -75,54 +75,80 @@
                                         </div>
 										@else
 										<div class="clearfix">
-											@if($case->status !== 'Completed')
-                                            <button type="button" id="viewCase" data-bs-toggle="modal" data-bs-target="#modal-right-{{$case->id}}" data-bs-id=""class="waves-effect waves-light btn btn-primary-light btn-flat mb-5">View</button>
-                                            <!-- Modal -->
-											<div class="modal modal-right fade" id="modal-right-{{$case->id}}" tabindex="-1">
-												<div class="modal-dialog">
-													<!-- <form id="companydata"> -->
-														<div class="modal-content">
+											@if($case->status == 'Completed')
+											<button type="button" class="waves-effect waves-light btn btn-success-light btn-flat mb-5">Case Completed</button>
+											@else
+												@if($case->status !== 'Completed')
+												<button type="button" id="viewCase" data-bs-toggle="modal" data-bs-target="#modal-right-{{$case->id}}" data-bs-id=""class="waves-effect waves-light btn btn-primary-light btn-flat mb-5">View</button>
+												<!-- Modal -->
+												<div class="modal modal-right fade" id="modal-right-{{$case->id}}" tabindex="-1">
+													<div class="modal-dialog">
+														<!-- <form id="companydata"> -->
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title">{{$case->case_id}}</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body">
+																<div class="row">
+																	<div class="col-12">
+																		<div class="form-group">
+																			<label class="form-label">Type of Case</label>
+																			<input type="text" class="form-control" value="{{$case->type_of_case}}" readonly>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-12">
+																		<div class="form-group">
+																			<label class="form-label">Amount</label>
+																			<input type="text" class="form-control" placeholder="{{$case->amount}}" readonly>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label class="form-label">Description</label>
+																	<textarea rows="4" class="form-control" placeholder="Description" readonly>{{$case->description}}</textarea>
+																</div>
+															</div>
+															<div class="modal-footer modal-footer-uniform">
+																<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+															</div>
+															</div>
+														<!-- </form> -->
+													</div>
+												</div>
+												<!-- /.modal -->
+												@endif
+												@if($case->status == 'Pending')
+													<a href="{{ route('client.case.request', Crypt::encrypt($case->id)) }}" class="waves-effect waves-light btn btn-info-light btn-flat mb-5">Request</a>
+												@elseif($case->status == 'Assigned')
+													<a href="{{ route('client.case.lawyer.view', Crypt::encrypt($case->lawyer_id)) }}" class="waves-effect waves-light btn btn-secondary-light btn-flat mb-5">View Lawyer</a>
+												@endif
+												<button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat mb-5" data-bs-toggle="modal" data-bs-target="#case-pay-{{$case->id}}">Pay</button>
+												<!-- Modal -->
+												<div class="modal center-modal fade" id="case-pay-{{$case->id}}" tabindex="-1">
+													<form method="Post" action="{{ route('client.case.pay.lawyer', Crypt::encrypt($case->id)) }}" enctype="multipart/form-data">
+														@csrf 
+														<div class="modal-dialog">
+															<div class="modal-content">
 															<div class="modal-header">
 																<h5 class="modal-title">{{$case->case_id}}</h5>
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 															</div>
 															<div class="modal-body">
-															<div class="row">
-																<div class="col-12">
-																	<div class="form-group">
-																		<label class="form-label">Type of Case</label>
-																		<input type="text" class="form-control" value="{{$case->type_of_case}}" readonly>
-																	</div>
-																</div>
+																<p>Are you sure you want to delete this case?</p>
 															</div>
-															<div class="row">
-																<div class="col-12">
-																	<div class="form-group">
-																		<label class="form-label">Amount</label>
-																		<input type="text" class="form-control" placeholder="{{$case->amount}}" readonly>
-																	</div>
-																</div>
+															<div class="modal-footer modal-footer-uniform">
+																<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+																<button type="submit" class="btn btn-primary float-end">Pay</button>
 															</div>
-															<div class="form-group">
-																<label class="form-label">Description</label>
-																<textarea rows="4" class="form-control" placeholder="Description" readonly>{{$case->description}}</textarea>
 															</div>
 														</div>
-														<div class="modal-footer modal-footer-uniform">
-															<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-														</div>
-														</div>
-													<!-- </form> -->
+													</form>
 												</div>
-											</div>
-											<!-- /.modal -->
+												<!-- /.modal -->
 											@endif
-											@if($case->status == 'Pending')
-                                                <a href="{{ route('client.case.request', Crypt::encrypt($case->id)) }}" class="waves-effect waves-light btn btn-info-light btn-flat mb-5">Request</a>
-											@elseif($case->status == 'Assigned')
-                                                <a href="{{ route('client.case.lawyer.view', Crypt::encrypt($case->lawyer_id)) }}" class="waves-effect waves-light btn btn-secondary-light btn-flat mb-5">View Lawyer</a>
-											@endif
-											<button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat mb-5">Pay</button>
                                         </div>
 										@endif
                                         </td>

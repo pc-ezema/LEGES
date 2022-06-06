@@ -35,6 +35,7 @@
                                         <th>S/N</th>
 										<th>Full Name</th>
 										<th>Email</th>
+                                        <th>Progress</th>
                                         <th>Status</th>
 										<th>Date Added</th>
                                         <th>Action</th>
@@ -53,6 +54,29 @@
 										<td>{{$loop->iteration}}</td>
 										<td>{{$lawyer->first_name}} {{$lawyer->last_name}}</td>
 										<td>{{$lawyer->email}}</td>
+                                        <td>
+                                            <div class="d-flex flex-column w-p100">
+                                                @if($lawyer->progress_value < 100)
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="text-fade text-center">
+                                                        {{$lawyer->progress_value}}%
+                                                    </span>
+                                                </div>
+                                                <div class="progress progress-xs w-p100">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{$lawyer->progress_value}}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @elseif($lawyer->progress_value >= 100)
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="text-fade text-center">
+                                                        {{$lawyer->progress_value}}%
+                                                    </span>
+                                                </div>
+                                                <div class="progress progress-xs w-p100">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$lawyer->progress_value}}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </td>
                                         <td>
                                             @if($lawyer->status == 'Disapprove')
                                                 <span class="badge badge-danger-light">{{$lawyer->status}}</span>

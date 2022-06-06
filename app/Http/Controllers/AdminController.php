@@ -33,6 +33,7 @@ class AdminController extends Controller
 
         $recentclients = User::latest()->where('account_type', 'Client')->take(5)->get();
         $recentlawyers = User::latest()->where('account_type', 'Lawyer')->take(5)->get();
+        $notifications = Notification::latest()->where('to', 'Administrator')->take(5)->get();
 
         return view('admin.dashboard',[
             'clients' => $clients,
@@ -41,7 +42,8 @@ class AdminController extends Controller
             'assignedcases' => $assignedcases,
             'pendingcases' => $pendingcases,
             'recentclients' => $recentclients,
-            'recentlawyers' => $recentlawyers
+            'recentlawyers' => $recentlawyers,
+            'notifications' => $notifications
         ]);
     }
 

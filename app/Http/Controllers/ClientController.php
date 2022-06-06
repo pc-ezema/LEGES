@@ -16,6 +16,7 @@ use Redirect;
 use App\CaseRequest;
 use App\Message;
 use App\Service;
+use Mail;
 
 class ClientController extends Controller
 {
@@ -434,6 +435,7 @@ class ClientController extends Controller
         $user_id = Crypt::decrypt($id);
 
         $user = User::findorfail($user_id);
+
         $lawyerCompletedCases = UserCase::latest()->where('lawyer_id', $user->id)
                                     ->where('status', 'Completed')->get();
         $notifications = Notification::latest()->where('to', Auth::user()->email)
@@ -444,6 +446,54 @@ class ClientController extends Controller
             'lawyerCompletedCases' => $lawyerCompletedCases,
             'notifications' => $notifications
         ]);
+    }
+
+    public function pay_lawyer($id)
+    {
+        $case_id = Crypt::decrypt($id);
+
+        $usercase = UserCase::findorfail($case_id);
+        
+        $caserequests = CaseRequest::where('case_id', $usercase->id)
+                                    ->where('status', 'Pending')->get();
+
+        if(!$caserequests == null)
+        {
+            foreach($caserequests as $caserequest)
+            {
+                $caserequest->delete();
+            }
+        }
+
+        $usercase->status = 'Completed';
+        $usercase->save();
+
+        $admin = User::where('account_type', 'Administrator')->first();
+
+        $message = new Notification();
+        $message->from = Auth::user()->first_name. ' ' .Auth::user()->last_name;
+        $message->to = $admin->account_type;
+        $message->subject = $usercase->case_id.' Completed';
+        $message->message = $usercase->case_id.' Completed, please initiate payment to the lawyer. Thank you.';
+        $message->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $admin->first_name,
+            'email' => $admin->email,
+            'account_type' => $admin->account_type
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.notification', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject('Leges Client');
+        });
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Case Completed and Payment Initiated'
+        ]);
+
     }
 
     public function transactions() 
