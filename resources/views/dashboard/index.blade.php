@@ -21,8 +21,8 @@
 						</div>
 						@endif
 						@else
-						<div class="card-header" style="background: #ED4B0C !important; color: #fff;">
-							<h4 class="card-title">{{Auth::user()->notification}}</h4>
+						<div class="card-header" style="background: #ED4B0C !important; color: #fff; justify-content: start !important;">
+							<i class="fa fa-bell"></i><h4 class="card-title">{{Auth::user()->notification}}</h4>
 						</div>
 						@endif
 					</div>
@@ -167,6 +167,15 @@
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						@if(Auth::user()->notification)
+						<div class="card-header" style="background: #ED4B0C !important; color: #fff; justify-content: start !important;">
+							<i class="fa fa-bell"></i><h4 class="card-title">{{Auth::user()->notification}}</h4>
+						</div>
+						@endif
+					</div>
+				</div>
 				<div class="col-12">
 					<div class="box">
 						<div class="box-body d-flex p-0">

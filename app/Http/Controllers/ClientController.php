@@ -477,6 +477,9 @@ class ClientController extends Controller
         $message->message = $usercase->case_id.' Completed, please initiate payment to the lawyer. Thank you.';
         $message->save();
 
+        $admin->notification = $usercase->case_id.' Completed';
+        $admin->save();
+
         /** Store information to include in mail in $data as an array */
         $data = array(
             'name' => $admin->first_name,

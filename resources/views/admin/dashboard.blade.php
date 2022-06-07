@@ -6,7 +6,15 @@
     <div class="container-full">
         <!-- Main content -->
         <section class="content">
-
+            <div class="col-12">
+                <div class="card">
+                    @if(Auth::user()->notification)
+                    <div class="card-header" style="background: #ED4B0C !important; color: #fff; justify-content: start !important;">
+                        <i class="fa fa-bell"></i><h4 class="card-title">{{Auth::user()->notification}}</h4>
+                    </div>
+                    @endif
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="box box-body bg-primary">
@@ -184,26 +192,25 @@
                     </div>  
                 </div>
                 <div class="col-lg-3 col-12">
-				<div class="box">
-					<div class="box-header with-border">
-						<h4 class="box-title">Recent Notifications</h4>
-					</div>
-					<div class="box-body p-0">
-					  <div class="media-list media-list-hover">
-                        @foreach($notifications as $notification)
-						<a class="media media-single" href="#">
-						  <h4 class="w-20 text-gray fw-400">{{$notification->created_at->format('H:i')}}</h4>
-						  <div class="media-body ps-15 bs-5 rounded border-primary">
-							<p>{{$notification->subject}}</p>
-							<span class="text-fade">by {{$notification->from}}</span>
-						  </div>
-						</a>
-                        @endforeach
-					  </div>
-					</div>
-				</div>
-			  </div>
-
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Recent Notifications</h4>
+                        </div>
+                        <div class="box-body p-0">
+                        <div class="media-list media-list-hover">
+                            @foreach($notifications as $notification)
+                            <a class="media media-single" href="#">
+                            <h4 class="w-20 text-gray fw-400">{{$notification->created_at->format('H:i')}}</h4>
+                            <div class="media-body ps-15 bs-5 rounded border-primary">
+                                <p>{{$notification->subject}}</p>
+                                <span class="text-fade">by {{$notification->from}}</span>
+                            </div>
+                            </a>
+                            @endforeach
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- /.content -->
