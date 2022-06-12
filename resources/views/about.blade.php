@@ -24,18 +24,16 @@
                 <div class="col-lg-6">
                     <div class="help-item">
                         <div class="help-right">
-                            <h2>We Provide Professional Attorneys to Assist You</h2>
-                            <p>We are qualified for the success of our client & as a professional law firm. So these professional attorneys are still here at your side with kindness, integrity, and loyalty to help with the worst moments of your life.</p>
-                            <p>We are qualified for the success of our client & as a professional law firm. So these professional attorneys are still here at your side with kindness.</p>
-                            <div class="help-inner-left">
+                            <h2>LEGES is a legal tech solution (LTS)</h2>
+                            <p>Leges intends to provide affordable, efficient and quality legal services to low and middle income earners in Nigeria and Africa generally.</p>
+                            <p>In addition, Leges is also interested in building employment opportunities for legal practitioners in Africa.
+                                Our core philosophy is to provide affordable, quality and efficient legal services.
+                            </p>
+                                <div class="help-inner-left">
                                 <ul>
                                     <li>
                                         <i class="flaticon-checkmark"></i>
-                                        Browse Our Website
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-checkmark"></i>
-                                        Choose Services
+                                        Affordable
                                     </li>
                                 </ul>
                             </div>
@@ -43,19 +41,18 @@
                                 <ul>
                                     <li>
                                         <i class="flaticon-checkmark"></i>
-                                        Quick Reply
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-checkmark"></i>
-                                        Best Performances
+                                        Quality
                                     </li>
                                 </ul>
                             </div>
-                            <div class="help-signature">
-                                <img src="assets/img/home-one/4.png" alt="Signature">
+                            <div class="help-inner-right">
+                                <ul>
+                                    <li>
+                                        <i class="flaticon-checkmark"></i>
+                                        Efficient
+                                    </li>
+                                </ul>
                             </div>
-                            <h3>Barrister Babatunde Smithi</h3>
-                            <span>Founder and CEO</span>
                         </div>
                     </div>
                 </div>

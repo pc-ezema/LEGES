@@ -49,7 +49,7 @@
                                                         <p class="mailbox-name mb-0 fs-16 fw-600">{{$notification->from}}</p>
                                                         <a class="mailbox-subject" href="{{route('client.read.notification', Crypt::encrypt($notification->id))}}"><b>{{$notification->subject}}</b> - {{$notification->message}}</a>
                                                     </td>
-                                                    <td class="mailbox-date">{{$notification->updated_at->toTimeString()}}</td>
+                                                    <td class="mailbox-date">{{$notification->created_at->toTimeString()}}</td>
                                                 </tr>
                                                 @else
                                                 <tr>
@@ -58,7 +58,7 @@
                                                         <p class="mailbox-name mb-0 fs-16 fw-600">{{$notification->from}}</p>
                                                         <a class="mailbox-subject" href="#"><b>{{$notification->subject}}</b> - {{$notification->message}}</a>
                                                     </td>
-                                                    <td class="mailbox-date">{{$notification->updated_at->toTimeString()}}</td>
+                                                    <td class="mailbox-date">{{$notification->created_at->toTimeString()}}</td>
                                                 </tr>
                                                 @endif
                                             @endforeach

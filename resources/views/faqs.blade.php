@@ -23,24 +23,25 @@
                     <div class="faq-item">
                         <ul class="accordion">
                             <li class="wow fadeInUp" data-wow-delay=".3s">
-                                <a>What is criminal law?</a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, quos mollitia voluptatum aliquam repellendus similique iure fuga aspernatur amet odit! At vitae dicta excepturi quasi? Veritatis, pariatur excepturi! Illum, ut?</p>
+                                <a>How long does it take to get solution?</a>
+                                <p>The Leges team ensures that every service is completed before 24 hrs. from the time of request.</p>
                             </li>
                             <li class="wow fadeInUp" data-wow-delay=".4s">
-                                <a>What is the purpose of a search warrant?</a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, quos mollitia voluptatum aliquam repellendus similique iure fuga aspernatur amet odit! At vitae dicta excepturi quasi? Veritatis, pariatur excepturi! Illum, ut?</p>
+                                <a>How expenses are your services?</a>
+                                <p>We pride ourselves in providing affordable legal services to our client. The average benchmark fee for each service in Leges is below 100 dollars.</p>
                             </li>
                             <li class="wow fadeInUp" data-wow-delay=".5s">
-                                <a>How long does a criminal case take?</a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, quos mollitia voluptatum aliquam repellendus similique iure fuga aspernatur amet odit! At vitae dicta excepturi quasi? Veritatis, pariatur excepturi! Illum, ut?</p>
+                                <a>As a lawyer, how complex is the process of registration?</a>
+                                <p>Leges has ensured that the registration process for lawyers are just in 2 folds: (i) Filling of relevant information and (ii) submission of relevant documents.
+                                    Leges team will do the due diligence and successful shall be contacted.</P>
                             </li>
                             <li class="wow fadeInUp" data-wow-delay=".6s">
-                                <a>Should I waive time?</a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, quos mollitia voluptatum aliquam repellendus similique iure fuga aspernatur amet odit! At vitae dicta excepturi quasi? Veritatis, pariatur excepturi! Illum, ut?</p>
+                                <a>How long does it take to get a solution?</a>
+                                <p>Every service to be rendered on Leges takes approximately 24 hrs. from the point of receipt for solution to be given to the user.</p>
                             </li>
                             <li class="wow fadeInUp" data-wow-delay=".7s">
-                                <a>Can a defendant be convicted based only on a confession?</a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quis modi ullam amet debitis libero veritatis enim repellat optio natus eum delectus deserunt, odit expedita eos molestiae ipsa totam quidem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, quos mollitia voluptatum aliquam repellendus similique iure fuga aspernatur amet odit! At vitae dicta excepturi quasi? Veritatis, pariatur excepturi! Illum, ut?</p>
+                                <a>Can I get legal representation for my case in court from Leges?</a>
+                                <p>We are working towards providing legal representation services to user and will unveil the product soon.</p>
                             </li>
                         </ul>
                     </div>

@@ -14,10 +14,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 text-area">
-                    <h1>Looking For Affordable &amp; Easy Legal Service?
-                    </h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum magni suscipit vitae praesentium ut similique laboriosam sit asperiores corporis, ab recusandae blanditiis possimus animi eos dolore accusantium. Ducimus praesentium
-                        esse consequatur blanditiis, atque illo delectus voluptate numquam nobis temporibus.</p>
+                    <h1>Think LEGES!</h1>
+                    <p>We are focused on providing affordable, quality and quick legal services to Africa.</p>
                     @auth
                         @if(Auth::user()->account_type == "Administrator")
                         <div class="btn-div"><a href="/admin/dashboard" class="btn-register">Dashboard<span></span>
@@ -73,17 +71,16 @@
                 <div class="col-lg-5 text-center">
                     <div class="box box1">
                         <h4>For Clients</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, esse ab repellat, blanditiis repudiandae quia itaque excepturi iste voluptatum rem quod minus natus vitae, id sint minima officia dolor delectus! Lorem ipsum dolor
-                            sit amet, consectetur adipisicing elit.
-                        </p><a href="#"><button>Sign up as
+                        <p>Provide a quick, efficient and effective to solve your legal problem.</p>
+                        <p>Gives you access to quality legal service and Affordable fees.</p><a href="#"><button>Sign up as
                                     Client <span></span><i class="fas fa-arrow-right"></i></button></a></div>
                 </div>
                 <div class="col-lg-5 text-center">
                     <div class="box box2">
                         <h4>For Lawyers</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, esse ab repellat, blanditiis repudiandae quia itaque excepturi iste voluptatum rem quod minus natus vitae, id sint minima officia dolor delectus! Lorem ipsum dolor
-                            sit amet, consectetur adipisicing elit.
-                        </p><a href="#"><button>Sign up as
+                        <p>A medium to make an extra cash and build a second stream of income distinct from your salary.</p>
+                            <p>Meet clients without stress or hustle.</p>
+                            <a href="#"><button>Sign up as
                                     Lawyer <span></span><i class="fas fa-arrow-right"></i></button></a></div>
                 </div>
                 <div class="col-lg-1"></div>

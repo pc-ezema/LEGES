@@ -38,18 +38,7 @@
         <!--card deck!-->
         <div class="col-12 mb-20">
             <div class="row row-cols-1 row-cols-lg-3 g-4">
-                @foreach($services as $service)
-                <div class="col-lg-6 p-50">
-                    <a href="{{ route('client.services.create.case', Crypt::encrypt($service->id)) }}">
-                        <div class="card">
-                            <img class="card-img-top" src="{{$service->image}}" alt="{{$service->name}}">
-                            <div class="card-body">
-                                <h4 class="card-title b-0 px-0 text-center">{{$service->name}}</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                @endforeach
+                @if($service->isEmpty())
                 <!-- <div class="col-lg-6 p-50">
                     <a href="#">
                         <div class="card">
@@ -60,6 +49,20 @@
                         </div>
                     </a>
                 </div> -->
+                @else
+                    @foreach($services as $service)
+                    <div class="col-lg-6 p-50">
+                        <a href="{{ route('client.services.create.case', Crypt::encrypt($service->id)) }}">
+                            <div class="card">
+                                <img class="card-img-top" src="{{$service->image}}" alt="{{$service->name}}">
+                                <div class="card-body">
+                                    <h4 class="card-title b-0 px-0 text-center">{{$service->name}}</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

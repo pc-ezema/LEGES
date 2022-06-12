@@ -15,7 +15,10 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'paystack_secret_key' => env('PAYSTACK_SECRET_KEY'),
-
+    'phone_1' => '',
+    'email' => 'info@leges.io',
+    'email_2' => 'legeslts@gmail.com',
+    'address' => 'Lagos, Nigeria',
     /*
     |--------------------------------------------------------------------------
     | Application Environment

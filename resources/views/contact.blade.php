@@ -25,7 +25,7 @@
                             </div>
                             <h3>Location</h3>
                             <ul>
-                                <li>[Location]</li>
+                                <li>[{{config('app.address')}}]</li>
                             </ul>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <h3>Phone</h3>
                             <ul>
                                 <li>
-                                    <a href="tel:+0755543332322">[Telephone]</a>
+                                    <a href="tel:">[Telephone]</a>
                                 </li>
                             </ul>
                         </div>
@@ -50,7 +50,7 @@
                             <h3>Email</h3>
                             <ul>
                                 <li>
-                                    <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d9b1bcb5b5b699b5a0a3b6f7bab6b4"><span class="__cf_email__" data-cfemail="94fcf1f8f8fbd4f8edeefbbaf7fbf9">[email&#160;protected]</span></a>
+                                    <a href="#"><span class="__cf_email__" data-cfemail="94fcf1f8f8fbd4f8edeefbbaf7fbf9">[{{config('app.email')}}], [{{config('app.email_2')}}]</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -105,6 +105,6 @@
     </div>
 
     <div class="map-area">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1587550284019!5m2!1sen!2sbd"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1014756.6903063876!2d2.9765107751947335!3d6.535154906881565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf2bae227550d%3A0xe771ad7f1bbe89d6!2sLagos%2C%20Nigeria!5e0!3m2!1sen!2suk!4v1655018152646!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 @endsection
