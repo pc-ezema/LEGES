@@ -34,22 +34,17 @@
                     </div>
                 </div>
             </div>	
-
-        <!--card deck!-->
-        <div class="col-12 mb-20">
-            <div class="row row-cols-1 row-cols-lg-3 g-4">
-                @if($service->isEmpty())
-                <!-- <div class="col-lg-6 p-50">
-                    <a href="#">
-                        <div class="card">
-                            <img class="card-img-top" src="{{URL::asset('images/gallery/thumb/5.jpg')}}" alt="card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title b-0 px-0 text-center">Contract Negotiation</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div> -->
-                @else
+            @if($services->isEmpty())
+            <div class="col-12 mb-20">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title b-0 px-0 text-center">Administrator yet to add services, please check back later.</h4>
+                    </div>
+                </div>
+            </div>
+            @else
+            <div class="col-12 mb-20">
+                <div class="row row-cols-1 row-cols-lg-3 g-4">             
                     @foreach($services as $service)
                     <div class="col-lg-6 p-50">
                         <a href="{{ route('client.services.create.case', Crypt::encrypt($service->id)) }}">
@@ -62,8 +57,9 @@
                         </a>
                     </div>
                     @endforeach
-                @endif
+                </div>
             </div>
+            @endif
         </div>
     </section>
     </div>
