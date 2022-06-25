@@ -53,7 +53,7 @@
                     <div class="info-box">
                         <span class="info-box-icon rounded bg-danger"><span class="icon-Equalizer"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span></span>
 
-                        <div class="info-box-content">
+                        <div class="info-box-content text-end">
                             <span class="info-box-number">{{$completedcases->count()}}</span>
                             @if($completedcases->count() <= 1)
                             <span class="info-box-text">Completed Case</span>

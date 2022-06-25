@@ -33,13 +33,22 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            @if($notifications->isEmpty())
+                            @else
                             <div class="mailbox-controls">
-                                <!-- Check all button -->
                                 <a href="javascript:window.top.location.reload(true)" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i></a>
                             </div>
+                            @endif
                             <div class="mailbox-messages inbox-bx">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
+                                        @if($notifications->isEmpty())
+                                        <tbody>
+                                            <tr>
+                                                <td class="align-enter text-dark font-13" colspan="5">No Notification.</td>
+                                            </tr>
+                                        </tbody>
+                                        @else
                                         <tbody>
                                             @foreach($notifications as $notification)
                                                 @if($notification->status == 'Unread')
@@ -63,6 +72,7 @@
                                                 @endif
                                             @endforeach
                                         </tbody>
+                                        @endif
                                     </table>
                                 </div>
                                 <!-- /.table -->

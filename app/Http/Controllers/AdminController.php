@@ -47,7 +47,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function profile() {
+    public function profile() 
+    {
         $admins = User::latest()->where('account_type', 'Administrator')
                                 ->where('first_name', '!=', 'Admin')
                                 ->where('last_name', '!=', 'Admin')->get();

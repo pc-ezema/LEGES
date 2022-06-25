@@ -158,7 +158,9 @@
                                                         </form>
                                                     </div>
                                                     <!-- /.modal -->
+                                                    @if($user->lawyer_id)
                                                     <a href="{{route('admin.view.lawyer', Crypt::encrypt($case->lawyer_id))}}" class="waves-effect waves-light btn btn-secondary-light btn-flat">View Lawyer</a>
+                                                    @endif
                                                     <button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat" data-bs-toggle="modal" data-bs-target="#delete-case-{{$case->id}}">Delete</button>
                                                     <!-- Modal -->
                                                     <div class="modal center-modal fade" id="delete-case-{{$case->id}}" tabindex="-1">
