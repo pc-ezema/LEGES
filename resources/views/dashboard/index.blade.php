@@ -28,55 +28,61 @@
 					</div>
 				</div>
 				<div class="col-xl-4 col-12">
-					<div class="box overflow-h">
-						<div class="box-body p-0 text-center">
-							<div class="d-flex justify-content-around">
-								<div class="bg-primary p-20 w-p100">
-									<div class="fw-400">
-										<h1 class="mb-2">{{$lawyerCompletedCases->count()}}</h1>
-									</div>
-									<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
-									<div class="text-white fw-600 mb-2 mt-5">
-										<h2>Completed Cases</h2>
+					<a href="{{ route('lawyer.case.details') }}" class="ajax">
+						<div class="box overflow-h">
+							<div class="box-body p-0 text-center">
+								<div class="d-flex justify-content-around">
+									<div class="bg-primary p-20 w-p100">
+										<div class="fw-400">
+											<h1 class="mb-2">{{$lawyerCompletedCases->count()}}</h1>
+										</div>
+										<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
+										<div class="text-white fw-600 mb-2 mt-5">
+											<h2>Completed Cases</h2>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 				<div class="col-xl-4 col-12">
-					<div class="box overflow-h">
-						<div class="box-body p-0 text-center">
-							<div class="d-flex justify-content-around">
-								<div class="p-20 w-p100" style="background: #ED4B0C !important;">
-									<div class="fw-400">
-										<h1 class="mb-2">{{$lawyerPendingCases->count()}}</h1>
-									</div>
-									<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
-									<div class="text-white fw-600 mb-2 mt-5">
-										<h2>Pending Cases</h2>
+					<a href="{{ route('lawyer.case.details') }}" class="ajax">
+						<div class="box overflow-h">
+							<div class="box-body p-0 text-center">
+								<div class="d-flex justify-content-around">
+									<div class="p-20 w-p100" style="background: #ED4B0C !important;">
+										<div class="fw-400">
+											<h1 class="mb-2">{{$lawyerPendingCases->count()}}</h1>
+										</div>
+										<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
+										<div class="text-white fw-600 mb-2 mt-5">
+											<h2>Pending Cases</h2>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 				<div class="col-xl-4 col-12">
-					<div class="box overflow-h">
-						<div class="box-body p-0 text-center">
-							<div class="d-flex justify-content-around">
-								<div class="bg-primary p-20 w-p100">
-									<div class="fw-400">
-										<h1 class="mb-2">{{$lawyerAssignedCases->count()}}</h1>
-									</div>
-									<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
-									<div class="text-white fw-600 mb-2 mt-5">
-										<h2>Assigned Cases</h2>
+					<a href="{{ route('lawyer.case.details') }}" class="ajax">
+						<div class="box overflow-h">
+							<div class="box-body p-0 text-center">
+								<div class="d-flex justify-content-around">
+									<div class="bg-primary p-20 w-p100">
+										<div class="fw-400">
+											<h1 class="mb-2">{{$lawyerAssignedCases->count()}}</h1>
+										</div>
+										<!-- <span class="text-white fs-60 icon-Like"><span class="path1"></span><span class="path2"></span></span> -->
+										<div class="text-white fw-600 mb-2 mt-5">
+											<h2>Assigned Cases</h2>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 				<div class="col-xl-6 col-12">
 					<div class="box">
