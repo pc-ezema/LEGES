@@ -76,7 +76,12 @@ class HomeController extends Controller
 
     public function approval()
     {
-        return view('dashboard.approval');
+        $notifications = Notification::latest()->where('to', Auth::user()->email)
+                                            ->where('status', 'Unread')->get();
+
+        return view('dashboard.approval',[
+            'notifications' => $notifications
+        ]);
     }
 
 }

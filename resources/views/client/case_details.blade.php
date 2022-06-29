@@ -124,7 +124,7 @@
 													<a href="{{ route('client.case.request', Crypt::encrypt($case->id)) }}" class="waves-effect waves-light btn btn-info-light btn-flat mb-5">Request</a>
 												@elseif($case->status == 'Assigned')
 													<a href="{{ route('client.case.lawyer.view', Crypt::encrypt($case->lawyer_id)) }}" class="waves-effect waves-light btn btn-secondary-light btn-flat mb-5">View Lawyer</a>
-												@endif
+												@endifwe
 												<button type="button" class="waves-effect waves-light btn btn-danger-light btn-flat mb-5" data-bs-toggle="modal" data-bs-target="#case-pay-{{$case->id}}">Pay</button>
 												<!-- Modal -->
 												<div class="modal center-modal fade" id="case-pay-{{$case->id}}" tabindex="-1">
