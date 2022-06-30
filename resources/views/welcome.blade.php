@@ -50,12 +50,21 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6">
                     <h1><i class="fas fa-check" style="color:#115A00;font-size:35px;"></i><span></span>Affordable Legal Service</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit quibusdam totam atque itaque unde natus aliquid, quisquam quo sint iusto, necessitatibus facere.</p>
+                    <p>{{config('app.name')}} is determined to provide a cheap legal service to those who cannot afford to pay lawyers in the continent. This can be achieved by ensuring that our subscription fee annually is affordable to the middle and
+                        low income earners in Africa.</p>
                     <h1><i class="fas fa-check" style="color:#115A00;font-size:35px;"></i><span></span>Reliable Legal Solution</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit quibusdam totam atque itaque unde natus aliquid, quisquam quo sint iusto, necessitatibus facere.</p>
+                    <p>In as much as we are focused on offering affordable legal services
+                        to our users, we are also concerned on the quality & reliability of such services and pride
+                        ourselves ensuring that we organize a virtual screening option for the
+                        recruitment process of lawyers working for us. In addition to this, we are
+                        going to build a different application for the purpose of tracking the value,
+                        affairs, progress and value of our lawyers.
+                        </p>
                     <h1>
                         <i class="fas fa-check" style="color:#115A00;font-size:35px;"></i><span></span>Effective Legal Service</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit quibusdam totam atque itaque unde natus aliquid, quisquam quo sint iusto, necessitatibus facere.</p>
+                    <p>We are also going to build an efficient response metrics to ensure
+                        that all services are rendered within 24 hrs.
+                        </p>
                 </div>
                 <div class="col-lg-3"></div>
             </div>
@@ -71,14 +80,14 @@
                 <div class="col-lg-5 text-center">
                     <div class="box box1">
                         <h4>For Clients</h4>
-                        <p>Provide a quick, efficient and effective to solve your legal problem.</p>
+                        <p>Provide a quick, efficient and effective means to solve your legal problem.</p>
                         <p>Gives you access to quality legal service and Affordable fees.</p><a href="#"><button>Sign up as
                                     Client <span></span><i class="fas fa-arrow-right"></i></button></a></div>
                 </div>
                 <div class="col-lg-5 text-center">
                     <div class="box box2">
                         <h4>For Lawyers</h4>
-                        <p>A medium to make an extra cash and build a second stream of income distinct from your salary.</p>
+                        <p>A medium to make extra cash and build a second stream of income distinct from your salary.</p>
                             <p>Meet clients without stress or hustle.</p>
                             <a href="#"><button>Sign up as
                                     Lawyer <span></span><i class="fas fa-arrow-right"></i></button></a></div>

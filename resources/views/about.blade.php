@@ -24,7 +24,7 @@
                 <div class="col-lg-6">
                     <div class="help-item">
                         <div class="help-right">
-                            <h2>LEGES is a legal tech solution (LTS)</h2>
+                            <h2>LEGES is a Legal Tech Solution (LTS)</h2>
                             <p>Leges intends to provide affordable, efficient and quality legal services to low and middle income earners in Nigeria and Africa generally.</p>
                             <p>In addition, Leges is also interested in building employment opportunities for legal practitioners in Africa.
                                 Our core philosophy is to provide affordable, quality and efficient legal services.
@@ -64,7 +64,7 @@
         <div class="container">
             <div class="section-title">
                 <span>OUR EXPERTISE</span>
-                <h2>Law Firm Devoted To Our Clients</h2>
+                <h2>Legal Tech Solution Devoted To Our Clients</h2>
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -122,7 +122,7 @@
                                     <img src="assets/img/home-one/11.png" alt="Shape">
                                 </div>
                                 <h3>Quick Service</h3>
-                                <p>We manage all valid papers and paperwork and continue to enter our path lawfully.</p>
+                                <p>We employ our skills and proficiency towards rendering timeous & quality services to our users.</p>
                             </li>
                         </ul>
                     </div>

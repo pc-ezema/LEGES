@@ -132,7 +132,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="left" valign="top" style="border-bottom: 1px solid #ed4b0c; border-top: 1px solid #ed4b0c; padding: 10px 30px 20px 30px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 1px; line-height: 10px;">
-                            <h1 style="font-size: 20px; font-weight: 400;">Hello {{$name}}</h1> 
+                            <h1 style="font-size: 20px; font-weight: 400;">Hello {{$client_name}}</h1> 
                         </td>
                     </tr>
                 </table>
@@ -143,9 +143,14 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td align="left" style="padding: 20px 30px 20px 10px; color: #000; border-top: none; border-bottom: none; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-							<p>You have <span style="color: red;">1</span> new<sup style="color: red;">*</sup> Notification.</p>
-                            
-                            @if($account_type == 'Client')
+							<p>The case with the following information: </p>
+							<ul>
+								<li>Case ID: <b>{{$case_id}}</b></li>
+								<li>Client Name: <b>{{$client_name}}</b></li>
+								<li>Type of Case: <b>{{$type_of_case}}</b></li>
+							</ul>
+							<p>has been <b>assigned</b> to you.</p>
+                   
                             <a style="padding: 5px 25px;
                                     font-size: 16px;
                                     text-align: center;
@@ -156,20 +161,7 @@
                                     cursor: pointer;
                                     transition: .5s ease;
                                     outline-color: none;
-                                    text-decoration: none;" href="{{route('client.notifications')}}">Click Here!</a>
-                            @elseif($account_type == 'Lawyer')
-                            <a style="padding: 5px 25px;
-                                    font-size: 16px;
-                                    text-align: center;
-                                    display: inline-block;
-                                    border-radius: 5px;
-                                    background-color: #ed4b0c;
-                                    color: #fff;
-                                    cursor: pointer;
-                                    transition: .5s ease;
-                                    outline-color: none;
-                                    text-decoration: none;" href="{{route('lawyer.notifications')}}">Click Here!</a>
-                            @endif
+                                    text-decoration: none;" href="{{route('lawyer.case.details')}}">Click Here To View More</a>
                         </td>
                     </tr>		
                     <tr>

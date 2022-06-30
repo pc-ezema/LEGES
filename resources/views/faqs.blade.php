@@ -17,9 +17,9 @@
         <div class="container">
             <div class="row faq-wrap">
                 <div class="col-lg-12">
-                    <div class="faq-head">
+                    <!-- <div class="faq-head">
                         <h2>Criminal Law</h2>
-                    </div>
+                    </div> -->
                     <div class="faq-item">
                         <ul class="accordion">
                             <li class="wow fadeInUp" data-wow-delay=".3s">

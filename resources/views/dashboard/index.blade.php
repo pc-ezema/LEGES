@@ -191,7 +191,8 @@
 									Quality Legal Services</h4>
 
 								<p class="my-10 fs-12">
-									At vero eos et accusamus et iusto odio <br> dignissimos ducimus qui blanditiis praesentium voluptatum
+									{{config('app.name')}} is a legal tech solution that is primarily focused on providing affordable,
+									<br>efficient and quality legal services to low and middle income earners in Africa.
 								</p>
 
 								<a href="#" class="btn btn-danger-light">Learn More</a>

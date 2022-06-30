@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-4">
                 <div class="main-ft"><img src="{{URL::asset('front_assets/img/footer-logo.eaf057a0.png')}}" alt="LEGES">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, minus eveniet architecto distinctio porro iusto dolorem amet corporis ab quos aliquam autem natus dolore nobis, error vero tempore ipsa rerum!</p>
+                    <p>{{config('app.name')}} is a legal tech solution that is primarily focused on providing affordable, efficient and quality legal services to low and middle income earners in Africa.</p>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram-square"></i></a>
                     <a href="#"><i class="fas fa-envelope-square"></i></a>
@@ -22,8 +22,8 @@
             <div class="col-sm-6 col-lg-2">
                 <div class="ft-link">
                     <h4>Product</h4>
-                    <p><a href="#">For Client</a></p>
-                    <p><a href="#">For Lawyer</a></p>
+                    <p><a href="/client/registration">For Client</a></p>
+                    <p><a href="/lawyer/registration">For Lawyer</a></p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-2">

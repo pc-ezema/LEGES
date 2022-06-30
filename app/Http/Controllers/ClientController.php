@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use App\User;
 use Paystack;
 use App\Payment;
@@ -16,7 +17,7 @@ use Redirect;
 use App\CaseRequest;
 use App\Message;
 use App\Service;
-use Mail;
+// use Mail;
 
 class ClientController extends Controller
 {
@@ -423,6 +424,19 @@ class ClientController extends Controller
 
         $caseRequests->status = 'Assigned';
         $caseRequests->save();
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'client_name' => $case->first_name. ' ' . $case->last_name,
+            'case_id' => $case->case_id,
+            'type_of_case' => $case->type_of_case,
+            'lawyer' => $caseRequests->email,
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.accept', $data, function ($m) use ($data) {
+            $m->to($data['lawyer'])->subject('Leges Case');
+        });
 
         return back()->with([
             'type' => 'success',
