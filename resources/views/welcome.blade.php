@@ -41,7 +41,9 @@
                 </div>
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <div class="note-box"></div>
+                    <div class="note-box">
+                        <img src="{{URL::asset('front_assets/img/leges_screen.png')}}" class="leges-screen">
+                    </div>
                     <div class="sub-note-box"></div>
                 </div>
                 <div class="col-lg-1"></div>

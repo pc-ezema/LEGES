@@ -176,7 +176,7 @@
                                             <div class="col-12">
                                             <div class="checkbox">
                                                 <input type="checkbox" id="basic_checkbox_1" class="@error('agreement') is-invalid @enderror" name="agreement">
-                                                <label for="basic_checkbox_1">I agree to the <a href="#" class="text-warning"><b>Terms</b></a></label>
+                                                <label for="basic_checkbox_1">I agree to the <a href="/terms_conditions" class="text-warning"><b>Terms &amp; Conditions</b></a></label>
                                                 @error('agreement')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

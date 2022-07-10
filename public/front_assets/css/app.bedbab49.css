@@ -134,7 +134,7 @@
         width: 100%;
         height: 3000px;
         background-image: url(../img/main-bg.f17348eb.png);
-        background-size: 90% 1850px;
+        background-size: 90% 1820px;
         background-position-x: 165px;
         background-position-y: 330px;
         background-repeat: no-repeat
@@ -149,7 +149,7 @@
     @media (max-width:1199px) {
         main {
             background-position-y: 200px;
-            background-size: 90% 2000px
+            background-size: 90% 1700px
         }
     }
     
@@ -235,14 +235,36 @@
     }
     
     .about-section .note-box {
-        background-color: #fff;
+        background-color: transparent;
         width: 100%;
-        margin-top: 70px
+        margin-top: 70px;
+        height: auto;
+        border-radius: 20px;
+        /* box-shadow: 0 0 20px rgba(170, 113, 113, 0.198) */
     }
     
-    .about-section .note-box,
+    .leges-screen {
+        /* width: 1070px; */
+        width: 100%;
+        animation: pulse 3s infinite ease-in-out alternate;
+    }
+
+    @keyframes pulse {
+        from { transform: scale(1.1); }
+        to { transform: scale(1.2); }
+    } 
+
+    @media (max-width: 991px) {
+        .leges-screen {
+            width: 90%;
+            display: block;
+            margin: auto;
+            margin-left: 40px;
+        }
+    }
+        
     .about-section .sub-note-box {
-        height: 600px;
+        height: 550px;
         border-radius: 20px;
         box-shadow: 0 0 20px rgba(44, 44, 44, .198)
     }
@@ -258,7 +280,7 @@
     }
     
     .about-section .bullet-box {
-        margin-top: -610px
+        margin-top: -510px
     }
     
     .about-section .bullet-box .col-lg-6 {
@@ -291,7 +313,7 @@
     
     @media (max-width:1199px) {
         .about-section .bullet-box {
-            margin-top: -500px
+            margin-top: -550px
         }
         .about-section .bullet-box .col-lg-6 {
             padding-right: 10px
@@ -317,10 +339,11 @@
             z-index: 0;
             top: 0;
             right: 0;
-            margin-top: 20px
+            margin-top: 20px;
+            display: none;
         }
         .about-section .note-box {
-            height: 400px
+            height: auto
         }
         .about-section h1 {
             color: #000
@@ -332,7 +355,8 @@
             color: #242424
         }
         .about-section .note-box {
-            margin-top: 40px
+            /* margin-top: 40px; */
+            background: #f2f2f5
         }
     }
     
