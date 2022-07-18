@@ -52,11 +52,11 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6">
                     <h1><i class="fas fa-check" style="color:#115A00;font-size:35px;"></i><span></span>Affordable Legal Service</h1>
-                    <p>{{config('app.name')}} is determined to provide a cheap legal service to those who cannot afford to pay lawyers in the continent. This can be achieved by ensuring that our subscription fee annually is affordable to the middle and
+                    <p>{{config('app.name')}} is determined to provide a affordable legal service to those who cannot afford to pay lawyers in the continent. This can be achieved by ensuring that our subscription fee annually is affordable to the middle and
                         low income earners in Africa.</p>
                     <h1><i class="fas fa-check" style="color:#115A00;font-size:35px;"></i><span></span>Reliable Legal Solution</h1>
-                    <p>In as much as we are focused on offering affordable legal services
-                        to our users, we are also concerned on the quality & reliability of such services and pride
+                    <p>In as much as we are focused in offering affordable legal services
+                        to our users, we are also concerned in the quality & reliability of such services and pride
                         ourselves ensuring that we organize a virtual screening option for the
                         recruitment process of lawyers working for us. In addition to this, we are
                         going to build a different application for the purpose of tracking the value,
@@ -108,14 +108,14 @@
                         <div class="col-xl-4 boxes">
                             <div class="box-img box-img1"></div>
                             <div class="box-text">
-                                <p class="test-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam iste dignissimos accusamus est repellat nemo cumque! Odio, dolore, id harum neque sunt, cum nesciunt nobis ipsam omnis blanditiis praesentium voluptas!</p>
+                                <p class="test-text">I have been looking for a fast way to find a good (and affordable) lawyer... this is it! Great idea and excellent experience so far... 10 out of 10</p>
                                 <p class="name">Faith Imabong</p>
                             </div>
                         </div>
                         <div class="col-xl-4 boxes">
                             <div class="box-img box-img2"></div>
                             <div class="box-text">
-                                <p class="test-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam iste dignissimos accusamus est repellat nemo cumque! Odio, dolore, id harum neque sunt, cum nesciunt nobis ipsam omnis blanditiis praesentium voluptas!</p>
+                                <p class="test-text">A brilliant aid to anyone wanting fast, cost-effective legal help without the hassle of a big law firm.</p>
                                 <p class="name">Michael Job</p>
                             </div>
                         </div>
