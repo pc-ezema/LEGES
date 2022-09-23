@@ -56,7 +56,7 @@
 										<td>{{$case->case_id}}</td>
 										<td>{{$case->first_name}} {{$case->last_name}}</td>
 										<td>{{$case->type_of_case}}</td>
-										<td>₦{{number_format($case->amount, 2)}}</td>
+										<td>₦{{number_format($case->amount_payout, 2)}}</td>
 										<td>
                                             @if($case->status == 'Pending')
                                             <span class="badge badge-danger-light">{{$case->status}}</span>
@@ -88,7 +88,7 @@
 															<div class="col-12">
 																<div class="form-group">
 																	<label class="form-label">Amount</label>
-																	<input type="text" class="form-control" placeholder="{{$case->amount}}" readonly>
+																	<input type="text" class="form-control" placeholder="{{$case->amount_payout}}" readonly>
 																</div>
 															</div>
 														</div>

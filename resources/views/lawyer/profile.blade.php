@@ -263,7 +263,7 @@
                     </div>
                     <div class="tab-pane @if($active_tab == 'documents') active show @endif" id="documents" role="tabpanel">
                         
-                               <div class="p-15">
+                        <div class="p-15">
                             <!-- Main content -->
                             <div class="col-12">
                                 <div class="box">

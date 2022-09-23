@@ -22,6 +22,8 @@ class CreateUserCasesTable extends Migration
             $table->string('case_id');
             $table->string('type_of_case');
             $table->string('amount');
+            $table->string('leges_commission')->nullable();
+            $table->string('amount_payout')->nullable();
             $table->text('description');
             $table->string('lawyer_id')->nullable();
             $table->string('status')->default('Pending');

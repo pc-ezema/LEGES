@@ -39,6 +39,8 @@
 										<th>Cases ID</th>
 										<th>Case Type</th>
 										<th>Amount</th>
+                                        <th>Leges Commission</th>
+                                        <th>Lawyer Payout</th>
                                         <th>Lawyer</th>
 										<th>Status</th>
 										<th>Date Added</th>
@@ -61,6 +63,8 @@
                                         <td>{{$case->case_id}}</td>
 										<td>{{$case->type_of_case}}</td>
 										<td>₦{{number_format($case->amount, 2)}}</td>
+                                        <td>₦{{number_format($case->leges_commission, 2)}}</td>
+                                        <td>₦{{number_format($case->amount_payout, 2)}}</td>
                                         <td>{{$case->lawyer_id}}</td>
 										<td>
                                             @if($case->status == 'Pending')

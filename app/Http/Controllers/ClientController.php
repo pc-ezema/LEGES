@@ -186,6 +186,9 @@ class ClientController extends Controller
             'description' => ['required','string']
         ]);
         
+        $leges_commission = $request->amount/10;
+        $amount_payout = $request->amount - $leges_commission;
+
         $user_case = UserCase::create([
             'user_id' => Auth::user()->id,
             'first_name' => Auth::user()->first_name,
@@ -194,6 +197,8 @@ class ClientController extends Controller
             'case_id' => 'LEGES-'.$this->id_no(5),
             'type_of_case' => request()->type_of_case,
             'amount' => request()->amount,
+            'leges_commission' => $leges_commission,
+            'amount_payout' => $amount_payout,
             'description' => request()->description,
         ]);
 

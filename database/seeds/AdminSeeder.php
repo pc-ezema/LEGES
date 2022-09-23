@@ -11,7 +11,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        //
         \App\User::create([
             'account_type' => 'Administrator',
             'first_name' => 'Admin',
